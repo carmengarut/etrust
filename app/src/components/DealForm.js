@@ -1,12 +1,10 @@
-import React, { useRef, useState } from 'react'
-import Toggable from './Toggable'
-import Button from 'react-bootstrap/Button'
+import React, { useState } from 'react'
+import { Button, Container } from 'react-bootstrap'
 import { addNewDeal } from '../reducers/dealReducer'
 import { useDispatch } from 'react-redux'
 
 export default function DealForm () {
   const [newDeal, setNewDeal] = useState('')
-  const toggableRef = useRef()
 
   const dispatch = useDispatch()
 
@@ -23,11 +21,10 @@ export default function DealForm () {
 
     dispatch(addNewDeal(dealObject))
     setNewDeal('')
-    toggableRef.current.toggleVisibility()
   }
 
   return (
-    <Toggable buttonLabel='New Deal' ref={toggableRef}>
+    <Container>
       <h3>Create a new deal</h3>
       <form onSubmit={handleSubmit}>
         <input
@@ -40,6 +37,6 @@ export default function DealForm () {
           Save
         </Button>
       </form>
-    </Toggable>
+    </Container>
   )
 }

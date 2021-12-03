@@ -2,10 +2,10 @@ import { useEffect } from 'react'
 import Notification from './components/Notification'
 import Deal from './components/Deal'
 import LoginForm from './components/LoginForm'
-import DealForm from './components/DealForm'
+import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { dealInit } from './reducers/dealReducer'
-import { ListGroup } from 'react-bootstrap'
+import { ListGroup, Button } from 'react-bootstrap'
 
 function Deals () {
   const user = useSelector(state => state.user)
@@ -22,11 +22,12 @@ function Deals () {
       <h1>My deals</h1>
       <Notification />
       {
-        user
-          ? <DealForm />
+        user.username
+          ? <Button><Link to='/create-deal' style={{ color: '#FFFFFF' }}>New Deal</Link></Button>
           : <LoginForm />
       }
 
+      <br />
       <br />
       <ListGroup>
         {deals.filter(deal => {

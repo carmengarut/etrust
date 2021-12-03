@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Switch, Redirect, Link } from 'react-router-dom'
 import { DealDetails } from './components/DealDetails'
 import LoginForm from './components/LoginForm'
 import RegistrationForm from './components/RegistrationForm'
+import DealForm from './components/DealForm'
 import Deals from './Deals'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
@@ -89,6 +90,10 @@ const App = () => {
 
           <Route path='/deals'>
             <Deals />
+          </Route>
+
+          <Route path='/create-deal'>
+            <DealForm />
           </Route>
 
           <Route
