@@ -1,42 +1,43 @@
-import React, { useState } from 'react'
+
 import propTypes from 'prop-types'
-import Form from 'react-bootstrap/Form'
-import { Button } from '@material-ui/core'
+import { Form, Button } from 'react-bootstrap'
+import { useDispatch } from 'react-redux'
+import { useState } from 'react'
+import { userLogin } from '../reducers/userReducer'
 
-const useField = ({ type }) => {
-  const [value, setValue] = useState('')
+export default function LoginForm () {
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
 
-  const onChange = event => {
-    setValue(event.target.value)
+  const dispatch = useDispatch()
+
+  const handleLogin = (event) => {
+    dispatch(userLogin({ username, password }))
+    setUsername('')
+    setPassword('')
   }
 
-  return {
-    type,
-    value,
-    onChange
-  }
-}
-
-export default function LoginForm (props) {
-  const username = useField({ type: 'text' })
-  const password = useField({ type: 'password' })
   return (
-    <Form onSubmit={props.handleLogin}>
+    <Form>
       <Form.Group id='username'>
         <Form.Control
-          {... username}
+          type='text'
+          value={username}
           name='Username'
           placeholder='Username'
+          onChange={({ target }) => setUsername(target.value)}
         />
       </Form.Group>
       <Form.Group id='password'>
         <Form.Control
-          {... password}
+          type='password'
+          value={password}
           name='Password'
           placeholder='Password'
+          onChange={({ target }) => setPassword(target.value)}
         />
       </Form.Group>
-      <Button color='primary' variant='outlined' id='form-login-button'>
+      <Button onClick={handleLogin} id='form-login-button'>
         Login
       </Button>
     </Form>
@@ -44,6 +45,5 @@ export default function LoginForm (props) {
 }
 
 LoginForm.propTypes = {
-  handleSubmit: propTypes.func.isRequired,
   username: propTypes.string
 }

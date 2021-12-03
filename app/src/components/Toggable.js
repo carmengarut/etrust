@@ -20,7 +20,7 @@ const Toggable = forwardRef(({ children, buttonLabel = 'show' }, ref) => {
   return (
     <div>
       <div style={hideWhenVisible}>
-        <button onClick={toggleVisibility}>{buttonLabel}</button>
+        <Button onClick={toggleVisibility}>{buttonLabel}</Button>
       </div>
       <div style={showWhenVisible}>
         {children}
