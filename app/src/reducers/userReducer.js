@@ -1,4 +1,5 @@
 import { login } from '../services/login'
+import { register } from '../services/register'
 import { setToken } from '../services/deals'
 import { setNotification, removeNotification } from './notificationReducer'
 const initialState = {}
@@ -52,5 +53,28 @@ export const userLogout = () => {
   window.localStorage.removeItem('loggedNoteAppUser')
   return {
     type: '@users/logout'
+  }
+}
+
+export const userRegister = (userToRegister) => {
+  return async (dispatch) => {
+    try {
+      const userCreated = await register(userToRegister)
+      window.localStorage.setItem(
+        'loggedNoteAppUser', JSON.stringify(userCreated)
+      )
+      setToken(userCreated.token)
+      dispatch({
+        type: '@users/login',
+        payload: userCreated
+      })
+    } catch (e) {
+      console.log(e.name)
+      console.log(e.message)
+      dispatch(setNotification('Wrong credentials'))
+      setTimeout(() => {
+        dispatch(removeNotification())
+      }, 5000)
+    }
   }
 }

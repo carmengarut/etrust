@@ -1,43 +1,46 @@
-
+import { useEffect } from 'react'
 import Notification from './components/Notification'
 import Deal from './components/Deal'
 import LoginForm from './components/LoginForm'
 import DealForm from './components/DealForm'
-import useDeals from './hooks/useDeals'
-import { useSelector } from 'react-redux'
-
-import { TableBody, Table, TableContainer, TableRow } from '@material-ui/core'
+import { useSelector, useDispatch } from 'react-redux'
+import { dealInit } from './reducers/dealReducer'
+import { ListGroup } from 'react-bootstrap'
 
 function Deals () {
-  const { deals, addDeal } = useDeals()
   const user = useSelector(state => state.user)
+  const deals = useSelector(state => state.deals)
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(dealInit())
+  }, [])
 
   return (
     <div>
-      <h1>Deals</h1>
+      <h1>My deals</h1>
       <Notification />
       {
         user
-          ? <DealForm
-              addDeal={addDeal}
-            />
+          ? <DealForm />
           : <LoginForm />
       }
 
-      <TableContainer>
-        <Table>
-          <TableBody>
-            {deals.map((deal, i) =>
-              <TableRow key={deal.id}>
-                <Deal
-                  key={i}
-                  deal={deal}
-                />
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <br />
+      <ListGroup>
+        {deals.filter(deal => {
+          if (deal.createdBy.id) return deal.createdBy.id === user.id
+          return deal.createdBy === user.id
+        }).map((deal, i) =>
+          <ListGroup.Item className='d-flex justify-content-between align-items-start' key={deal.id}>
+            <Deal
+              key={i}
+              deal={deal}
+            />
+          </ListGroup.Item>
+        )}
+      </ListGroup>
     </div>
   )
 }

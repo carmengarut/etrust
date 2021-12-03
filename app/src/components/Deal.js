@@ -1,13 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import TableCell from '@material-ui/core/TableCell'
+import { Badge } from 'react-bootstrap'
 
 const Deal = ({ deal }) => {
   return (
     <>
-      <TableCell className='deal'>
-        <Link to={`/deal/${deal.id}`}>{deal.content}</Link>
-      </TableCell>
+      <Link to={`/deal/${deal.id}`}>{deal.content}</Link>
+      <Badge variant='primary'>
+        {deal.status}
+      </Badge>
     </>
   )
 }

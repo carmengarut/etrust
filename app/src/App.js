@@ -1,22 +1,19 @@
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
+import { BrowserRouter, Route, Switch, Redirect, Link } from 'react-router-dom'
 import { DealDetails } from './components/DealDetails'
-import Login from './Login'
+import LoginForm from './components/LoginForm'
+import RegistrationForm from './components/RegistrationForm'
 import Deals from './Deals'
-import useDeals from './hooks/useDeals'
-// import { Container, AppBar, IconButton, Toolbar } from '@material-ui/core'
-import { StyledLink } from './components/StyledLink'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
-import { userSet } from './reducers/userReducer'
+import { userSet, userLogout } from './reducers/userReducer'
+import { Navbar, Container, Nav } from 'react-bootstrap'
 
 const Home = () => <h1>Home Page</h1>
-const Users = () => <h1>Users</h1>
-
-// const LinkButton = (props) => <Button color='inherit' component={Link} {...props} />
+const Profile = () => <h1>Profile</h1>
 
 const App = () => {
   const user = useSelector(state => state.user)
-  const { deals } = useDeals()
+  const deals = useSelector(state => state.deals)
 
   const dispatch = useDispatch()
 
@@ -29,47 +26,88 @@ const App = () => {
   }, [])
 
   return (
+
     <BrowserRouter>
-      <header>
-        <StyledLink to='/'>
-          Home
-        </StyledLink>
-        <StyledLink to='/deals'>
-          Deals
-        </StyledLink>
-        <StyledLink to='/users'>
-          Users
-        </StyledLink>{console.log(user)}
-        {
-          user.username
-            ? <em>Logged as {user.name}</em>
-            : <StyledLink variant='bold' to='/login'>Login</StyledLink>
-        }
-      </header>
+      <Navbar sticky='top' bg='primary' variant='dark'>
+        <Container>
+          <Navbar.Brand href='/'>
+            eTrust
+          </Navbar.Brand>
+          <Navbar.Toggle />
+          <Nav>
+            <Nav.Link href='#' as='span'>
+              <Link to='/' style={{ color: '#FFFFFF' }}>
+                Home
+              </Link>
+            </Nav.Link>
+            <Nav.Link href='#' as='span'>
+              <Link to='/deals' style={{ color: '#FFFFFF' }}>
+                Deals
+              </Link>
+            </Nav.Link>
+            <Nav.Link href='#' as='span'>
+              <Link to='/profile' style={{ color: '#FFFFFF' }}>
+                My Profile
+              </Link>
+            </Nav.Link>
+          </Nav>
+          <Navbar.Collapse className='justify-content-end'>
+            {
+              user.username
+                ? (
 
-      <Switch>
-        <Route path='/deals/:id'>
-          <DealDetails deals={deals} />
-        </Route>
+                  <Navbar.Text>
+                    Signed in as: {user.name} <a onClick={() => { dispatch(userLogout()) }} variant='link' style={{ color: '#FFFFFF' }} href='#'>Logout</a>
+                  </Navbar.Text>
 
-        <Route path='/users'>
-          <Users />
-        </Route>
+                  )
+                : (
+                  <>
+                    <Nav.Link href='#' as='span'>
+                      <Link to='/login' style={{ color: '#FFFFFF' }}>Login</Link>
+                    </Nav.Link>
+                    <Nav.Link href='#' as='span'>
+                      <Link to='/register' style={{ color: '#FFFFFF' }}>Register</Link>
+                    </Nav.Link>
+                  </>
+                  )
+            }
+          </Navbar.Collapse>
 
-        <Route path='/deals'>
-          <Deals />
-        </Route>
+        </Container>
+      </Navbar>
+      <Container>
+        <br />
+        <Switch>
+          <Route path='/deals/:id'>
+            <DealDetails deals={deals} />
+          </Route>
 
-        <Route
-          path='/login' render={() => {
-            return user.username ? <Redirect to='/' /> : <Login />
-          }}
-        />
+          <Route path='/profile'>
+            <Profile />
+          </Route>
 
-        <Route path='/'>
-          <Home />
-        </Route>
-      </Switch>
+          <Route path='/deals'>
+            <Deals />
+          </Route>
+
+          <Route
+            path='/login' render={() => {
+              return user.username ? <Redirect to='/' /> : <LoginForm />
+            }}
+          />
+
+          <Route
+            path='/register' render={() => {
+              return user.username ? <Redirect to='/' /> : <RegistrationForm />
+            }}
+          />
+
+          <Route path='/'>
+            <Home />
+          </Route>
+        </Switch>
+      </Container>
     </BrowserRouter>
   )
 }

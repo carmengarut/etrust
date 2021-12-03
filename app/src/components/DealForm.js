@@ -1,10 +1,10 @@
 import React, { useRef, useState } from 'react'
 import Toggable from './Toggable'
 import Button from 'react-bootstrap/Button'
-import { userLogout } from '../reducers/userReducer'
+import { addNewDeal } from '../reducers/dealReducer'
 import { useDispatch } from 'react-redux'
 
-export default function DealForm ({ addDeal }) {
+export default function DealForm () {
   const [newDeal, setNewDeal] = useState('')
   const toggableRef = useRef()
 
@@ -21,7 +21,7 @@ export default function DealForm ({ addDeal }) {
       content: newDeal
     }
 
-    addDeal(dealObject)
+    dispatch(addNewDeal(dealObject))
     setNewDeal('')
     toggableRef.current.toggleVisibility()
   }
@@ -40,9 +40,6 @@ export default function DealForm ({ addDeal }) {
           Save
         </Button>
       </form>
-      <Button onClick={() => { dispatch(userLogout()) }}>
-        Logout
-      </Button>
     </Toggable>
   )
 }

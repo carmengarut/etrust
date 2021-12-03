@@ -4,10 +4,10 @@ import { createStore, applyMiddleware, combineReducers } from 'redux'
 import thunk from 'redux-thunk'
 import { userReducer } from './reducers/userReducer'
 import { notificationReducer } from './reducers/notificationReducer'
-// import { dealReducer } from './reducers/dealReducer'
+import { dealReducer } from './reducers/dealReducer'
 
 const reducer = combineReducers({
-  // deals: dealReducer,
+  deals: dealReducer,
   notification: notificationReducer,
   user: userReducer
   // users: usersReducer

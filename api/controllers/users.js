@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt')
 const usersRouter = require('express').Router()
 const User = require('../models/User')
+const jwt = require('jsonwebtoken')
 
 usersRouter.get('/', async (request, response) => {
   const users = await User.find({}).populate('deals', {
@@ -27,7 +28,29 @@ usersRouter.post('/', async (request, response) => {
     })
 
     const savedUser = await user.save()
-    response.status(201).json(savedUser)
+
+    const userForToken = {
+      id: user._id,
+      username: user.username
+    }
+
+    const token = jwt.sign(
+      userForToken,
+      process.env.SECRET,
+      {
+        expiresIn: 60 * 60 * 24 * 7
+      }
+    )
+
+    const userReturned = {
+      username: savedUser.username,
+      name: savedUser.name,
+      deals: savedUser.deals,
+      id: savedUser._id,
+      token
+    }
+
+    response.status(201).json(userReturned)
   } catch (error) {
     response.status(400).json(error)
   }
