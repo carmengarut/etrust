@@ -8,9 +8,10 @@ const userSchema = new Schema({
   },
   name: String,
   passwordHash: String,
-  notes: [{
+  trustRate: Number,
+  deals: [{
     type: Schema.Types.ObjectId,
-    ref: 'Note'
+    ref: 'Deal'
   }]
 })
 

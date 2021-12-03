@@ -7,7 +7,7 @@ const express = require('express')
 const cors = require('cors')
 const logger = require('./loggerMiddleware')
 const app = express()
-const Note = require('./models/Note')
+const Deal = require('./models/Deal')
 const User = require('./models/User.js')
 
 const notFound = require('./middleware/notFound')
@@ -49,35 +49,45 @@ app.use(Sentry.Handlers.requestHandler())
 // TracingHandler creates a trace for every incoming request
 app.use(Sentry.Handlers.tracingHandler())
 
-app.get('/api/notes', async (request, response) => {
-  const notes = await Note.find({}).populate('user', {
-    username: 1,
-    name: 1
-  })
-  response.json(notes)
+app.get('/api/deals', async (request, response) => {
+  const deals = await Deal.find({})
+    .populate('createdBy', {
+      username: 1,
+      name: 1
+    })
+    .populate('signedBy', {
+      username: 1,
+      name: 1
+    })
 
-  // Note.find({}).then(notes => {
-  //     response.json(notes)
-  // })
+  response.json(deals)
 })
 
-app.get('/api/notes/:id', (request, response, next) => {
+app.get('/api/deals/:id', (request, response, next) => {
   const id = request.params.id
-  Note.findById(id).then(note => {
-    if (note) {
-      return response.json(note)
-    } else {
-      response.status(404).end()
-    }
-  })
+  Deal.findById(id)
+    .populate('createdBy', {
+      username: 1,
+      name: 1
+    })
+    .populate('signedBy', {
+      username: 1,
+      name: 1
+    }).then(deal => {
+      if (deal) {
+        return response.json(deal)
+      } else {
+        response.status(404).end()
+      }
+    })
     .catch(err => {
       next(err)
     })
 })
 
-app.delete('/api/notes/:id', userExtractor, async (request, response, next) => {
+app.delete('/api/deals/:id', userExtractor, async (request, response, next) => {
   const { id } = request.params
-  await Note.findByIdAndDelete(id)
+  await Deal.findByIdAndDelete(id)
 
   try {
     response.status(204).end()
@@ -87,31 +97,32 @@ app.delete('/api/notes/:id', userExtractor, async (request, response, next) => {
 })
 
 // en el siguiente post, primerto ejecuta el user extractor y luego la funcion async
-app.post('/api/notes', userExtractor, async (request, response, next) => {
-  const { content, important = false } = request.body
+app.post('/api/deals', userExtractor, async (request, response, next) => {
+  const { content } = request.body
 
   const { userId } = request
 
   const user = await User.findById(userId)
   if (!content) {
     return response.status(400).json({
-      error: 'note.content is missing'
+      error: 'Deal content is missing'
     })
   }
 
-  const newNote = new Note({
+  const newDeal = new Deal({
     content: content,
-    important: important,
     date: new Date().toISOString(),
-    user: user._id
+    status: 'New',
+    createdBy: user._id,
+    signedBy: [user.id]
   })
 
   try {
-    const savedNote = await newNote.save()
-    user.notes = user.notes.concat(savedNote._id)
+    const savedDeal = await newDeal.save()
+    user.deals = user.deals.concat(savedDeal._id)
     await user.save()
 
-    response.status(201).json(savedNote)
+    response.status(201).json(savedDeal)
   } catch (error) {
     next(error)
   }
@@ -122,14 +133,13 @@ app.post('/api/notes', userExtractor, async (request, response, next) => {
   //     .catch(err => next(err))
 })
 
-app.put('/api/notes/:id', userExtractor, (request, response) => {
+app.put('/api/deals/:id', userExtractor, (request, response) => {
   const { id } = request.params
-  const currentNote = request.body
-  const newNote = {
-    content: currentNote.content,
-    important: currentNote.important
+  const { content } = request.body
+  const newDeal = {
+    content
   }
-  Note.findByIdAndUpdate(id, newNote, { new: true }).then(result =>
+  Deal.findByIdAndUpdate(id, newDeal, { new: true }).then(result =>
     response.json(result))
 })
 

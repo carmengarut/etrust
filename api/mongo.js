@@ -21,22 +21,3 @@ process.on('uncaughtException', error => {
   console.log(error)
   mongoose.disconnect()
 })
-// Note.find({}).then(result => {
-//     console.log(result)
-//     mongoose.connection.close()
-// })
-
-// const note = new Note({
-//     content: 'Hola soy carmeneeeen',
-//     date: new Date(),
-//     important: true
-// })
-
-// note.save()
-//     .then(result => {
-//         console.log(result)
-//         mongoose.connection.close()
-//     })
-//     .catch(err => {
-//         console.log(err)
-//     })
