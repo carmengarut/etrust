@@ -40,6 +40,17 @@ export const DealDetails = ({ deals }) => {
           ? deal.signedBy.map(user => <span key={user.id}>{user.name} {user.surname}</span>)
           : '-'}
         </Card.Text>
+        <Card.Text>Ratings:</Card.Text>
+        {deal.ratings.map(rating => (
+          <Card key={rating.id}>
+            <Card.Body>
+              <Card.Text>By {rating.createdBy}</Card.Text>
+              <Card.Text>{rating.content}</Card.Text>
+              <Card.Text>To {rating.recipient}</Card.Text>
+            </Card.Body>
+          </Card>
+        ))}
+
         {deal.status === 'Signed'
           ? <Button onClick={() => history.push(`/rate/${id}`)}>Submit Rating</Button>
           : deal.signedBy[0].name

@@ -24,7 +24,8 @@ dealsRouter.get('/', async (request, response) => {
     .populate('ratings', {
       fulfilled: 1,
       content: 1,
-      recipient: 1
+      recipient: 1,
+      createdBy: 1
     })
 
   response.json(deals)
@@ -51,7 +52,8 @@ dealsRouter.get('/:id', (request, response, next) => {
     .populate('ratings', {
       fulfilled: 1,
       content: 1,
-      recipient: 1
+      recipient: 1,
+      createdBy: 1,
     })
     .then(deal => {
       if (deal) {
