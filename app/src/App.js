@@ -54,7 +54,7 @@ const App = () => {
           </Nav>
           <Navbar.Collapse className='justify-content-end'>
             {
-              user.username
+              user.email
                 ? (
 
                   <Navbar.Text>
@@ -98,13 +98,13 @@ const App = () => {
 
           <Route
             path='/login' render={() => {
-              return user.username ? <Redirect to='/' /> : <LoginForm />
+              return user.email ? <Redirect to='/' /> : <LoginForm />
             }}
           />
 
           <Route
             path='/register' render={() => {
-              return user.username ? <Redirect to='/' /> : <RegistrationForm />
+              return user.email ? <Redirect to='/' /> : <RegistrationForm />
             }}
           />
 

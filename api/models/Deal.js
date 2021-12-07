@@ -1,6 +1,7 @@
 const { Schema, model } = require('mongoose')
 
 const dealSchema = new Schema({
+  title: String,
   content: String, // En un futuro metemos aqui otro modelo que seria el contrato
   date: Date,
   status: String,
@@ -8,6 +9,10 @@ const dealSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
+  members: [{
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  }],
   signedBy: [{
     type: Schema.Types.ObjectId,
     ref: 'User'

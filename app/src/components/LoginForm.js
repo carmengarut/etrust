@@ -7,14 +7,14 @@ import { userLogin } from '../reducers/userReducer'
 import Notification from './Notification'
 
 export default function LoginForm () {
-  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   const dispatch = useDispatch()
 
   const handleLogin = (event) => {
-    dispatch(userLogin({ username, password }))
-    setUsername('')
+    dispatch(userLogin({ email, password }))
+    setEmail('')
     setPassword('')
   }
 
@@ -22,14 +22,14 @@ export default function LoginForm () {
     <Container>
       <Notification />
       <Form>
-        <Form.Group id='username'>
-          <Form.Label>Username</Form.Label>
+        <Form.Group id='email'>
+          <Form.Label>Email</Form.Label>
           <Form.Control
-            type='text'
-            value={username}
-            name='Username'
-            placeholder='Username'
-            onChange={({ target }) => setUsername(target.value)}
+            type='email'
+            value={email}
+            name='Email'
+            placeholder='Email'
+            onChange={({ target }) => setEmail(target.value)}
           />
         </Form.Group>
         <Form.Group id='password'>
@@ -51,5 +51,5 @@ export default function LoginForm () {
 }
 
 LoginForm.propTypes = {
-  username: propTypes.string
+  email: propTypes.string
 }

@@ -12,6 +12,11 @@ export const getAll = () => {
   return request.then(response => response.data)
 }
 
+export const getDeal = (id) => {
+  const request = axios.get(`${baseUrl}/${id}`)
+  return request.then(response => response.data)
+}
+
 export const create = (newObject) => {
   const config = {
     headers: {
@@ -29,5 +34,20 @@ export const update = (id, newObject) => {
     }
   }
   const request = axios.put(`${baseUrl}/${id}`, newObject, config)
+  return request.then(response => response.data)
+}
+
+export const sign = (id, users) => {
+  const config = {
+    headers: {
+      Authorization: token
+    }
+  }
+
+  const newObject = {
+    users
+  }
+  console.log(newObject)
+  const request = axios.put(`${baseUrl}/${id}/sign`, newObject, config)
   return request.then(response => response.data)
 }

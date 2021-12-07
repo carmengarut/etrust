@@ -22,24 +22,22 @@ function Deals () {
       <h1>My deals</h1>
       <Notification />
       {
-        user.username
+        user.email
           ? <Button><Link to='/create-deal' style={{ color: '#FFFFFF' }}>New Deal</Link></Button>
           : <LoginForm />
       }
 
       <br />
       <br />
-      <ListGroup>
+      <ListGroup>{console.log(deals)}
         {deals.filter(deal => {
-          if (deal.createdBy.id) return deal.createdBy.id === user.id
-          return deal.createdBy === user.id
+          if (deal.createdBy.id) return (deal.createdBy.id === user.id || deal.members.find(member => member.id === user.id))
+          return (deal.createdBy === user.id || deal.members.find(member => member.id === user.id))
         }).map((deal, i) =>
-          <ListGroup.Item className='d-flex justify-content-between align-items-start' key={deal.id}>
-            <Deal
-              key={i}
-              deal={deal}
-            />
-          </ListGroup.Item>
+          <Deal
+            key={i}
+            deal={deal}
+          />
         )}
       </ListGroup>
     </div>

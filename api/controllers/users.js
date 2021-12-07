@@ -17,13 +17,14 @@ usersRouter.get('/', async (request, response) => {
 usersRouter.post('/', async (request, response) => {
   try {
     const { body } = request
-    const { username, name, password } = body
+    const { email, name, surname, password } = body
 
     const saltRounds = 10 // coste de generar el hash, mientras mas alto mas seguro
     const passwordHash = await bcrypt.hash(password, saltRounds)
     const user = new User({
-      username,
+      email,
       name,
+      surname,
       passwordHash
     })
 
@@ -31,7 +32,7 @@ usersRouter.post('/', async (request, response) => {
 
     const userForToken = {
       id: user._id,
-      username: user.username
+      email: user.email
     }
 
     const token = jwt.sign(
@@ -43,8 +44,9 @@ usersRouter.post('/', async (request, response) => {
     )
 
     const userReturned = {
-      username: savedUser.username,
+      email: savedUser.email,
       name: savedUser.name,
+      surname: savedUser.surname,
       deals: savedUser.deals,
       id: savedUser._id,
       token

@@ -6,16 +6,17 @@ import { userRegister } from '../reducers/userReducer'
 import Notification from './Notification'
 
 export default function RegistrationForm () {
-  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [name, setName] = useState('')
+  const [surname, setSurname] = useState('')
 
   const dispatch = useDispatch()
 
   const handleRegister = async () => {
     try {
-      dispatch(userRegister({ username, name, password }))
-      setUsername('')
+      dispatch(userRegister({ email, name, password }))
+      setEmail('')
       setPassword('')
       setName('')
     } catch (e) {
@@ -37,14 +38,24 @@ export default function RegistrationForm () {
             onChange={({ target }) => setName(target.value)}
           />
         </Form.Group>
-        <Form.Group id='username'>
-          <Form.Label>Username</Form.Label>
+        <Form.Group id='surname'>
+          <Form.Label>Surname</Form.Label>
           <Form.Control
             type='text'
-            value={username}
-            name='Username'
-            placeholder='Username'
-            onChange={({ target }) => setUsername(target.value)}
+            value={surname}
+            name='Surname'
+            placeholder='Surname'
+            onChange={({ target }) => setSurname(target.value)}
+          />
+        </Form.Group>
+        <Form.Group id='email'>
+          <Form.Label>Email</Form.Label>
+          <Form.Control
+            type='text'
+            value={email}
+            name='Email'
+            placeholder='Email'
+            onChange={({ target }) => setEmail(target.value)}
           />
         </Form.Group>
         <Form.Group id='password'>
@@ -66,5 +77,5 @@ export default function RegistrationForm () {
 }
 
 RegistrationForm.propTypes = {
-  username: propTypes.string
+  email: propTypes.string
 }
