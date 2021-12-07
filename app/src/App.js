@@ -3,6 +3,7 @@ import { DealDetails } from './components/DealDetails'
 import LoginForm from './components/LoginForm'
 import RegistrationForm from './components/RegistrationForm'
 import DealForm from './components/DealForm'
+import RatingForm from './components/RatingForm'
 import Deals from './Deals'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
@@ -94,6 +95,10 @@ const App = () => {
 
           <Route path='/create-deal'>
             <DealForm />
+          </Route>
+
+          <Route path='/rate/:id'>
+            <RatingForm />
           </Route>
 
           <Route

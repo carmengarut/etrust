@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { Card, Button, Badge } from 'react-bootstrap'
 import { signDeal } from '../reducers/dealReducer'
@@ -10,8 +10,9 @@ export const DealDetails = ({ deals }) => {
   const deal = deals.find(deal => deal.id === id)
 
   const dispatch = useDispatch()
+  const history = useHistory()
 
-  const handleClick = async () => {
+  const handleSign = async () => {
     const users = [...deal.signedBy.map(user => user.id), user.id]
     console.log(users)
     dispatch(signDeal(id, users))
@@ -39,11 +40,13 @@ export const DealDetails = ({ deals }) => {
           ? deal.signedBy.map(user => <span key={user.id}>{user.name} {user.surname}</span>)
           : '-'}
         </Card.Text>
-        {deal.signedBy[0].name
-          ? deal.signedBy.find(userSigned => userSigned.id === user.id)
+        {deal.status === 'Signed'
+          ? <Button onClick={() => history.push(`/rate/${id}`)}>Submit Rating</Button>
+          : deal.signedBy[0].name
+            ? deal.signedBy.find(userSigned => userSigned.id === user.id)
               ? <Card.Text>Signed</Card.Text>
-              : <Button onClick={handleClick}>Sign Now</Button>
-          : <Button onClick={handleClick}>Sign Now</Button>}
+              : <Button onClick={handleSign}>Sign Now</Button>
+            : <Button onClick={handleSign}>Sign Now</Button>}
       </Card.Body>
     </Card>
   )

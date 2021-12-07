@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose')
 
 const ratingSchema = new Schema({
-  fulfilled: Boolean,
+  fulfilled: String,
   content: String,
   date: Date,
   status: String,

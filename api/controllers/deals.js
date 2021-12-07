@@ -188,7 +188,8 @@ dealsRouter.post('/:id/rate', userExtractor, async (request, response, next) => 
     date: new Date().toISOString(),
     status: 'New',
     createdBy: userId,
-    recipient: recipientId
+    recipient: recipientId,
+    deal: id
   })
 
   try {
