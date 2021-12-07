@@ -143,19 +143,29 @@ dealsRouter.put('/:id', userExtractor, (request, response) => {
     response.json(result))
 })
 
-dealsRouter.put('/:id/sign', userExtractor, (request, response) => {
+dealsRouter.put('/:id/sign', userExtractor, async (request, response) => {
   const { id } = request.params
   const { users } = request.body
-  const newDeal = {
-    signedBy: users
+
+  const deal = await Deal.findById(id).populate('signedBy', {
+    email: 1,
+    name: 1,
+    surname: 1
+  })
+
+  deal.signedBy = users
+
+  if (deal.signedBy.length >= 2) {
+    deal.status = 'Signed'
   }
-  Deal.findByIdAndUpdate(id, newDeal, { new: true })
-    .populate('signedBy', {
-      email: 1,
-      name: 1,
-      surname: 1
-    })
-    .then(result => response.json(result))
+
+  await deal.save()
+  const savedDeal = await Deal.findById(id).populate('signedBy', {
+    email: 1,
+    name: 1,
+    surname: 1
+  })
+  response.json(savedDeal)
 })
 
 dealsRouter.post('/:id/rate', userExtractor, async (request, response, next) => {
@@ -165,6 +175,12 @@ dealsRouter.post('/:id/rate', userExtractor, async (request, response, next) => 
   const { userId } = request
 
   const deal = await Deal.findById(id)
+
+  if (deal.status !== 'Signed') {
+    return response.status(400).json({
+      error: 'The deal should be signed by all members before submitting a rating'
+    })
+  }
 
   const newRating = new Rating({
     fulfilled,
