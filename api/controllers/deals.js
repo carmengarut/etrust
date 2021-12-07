@@ -1,6 +1,7 @@
 const dealsRouter = require('express').Router()
 const Deal = require('../models/Deal')
 const User = require('../models/User.js')
+const Rating = require('../models/Rating')
 const userExtractor = require('../middleware/userExtractor')
 
 dealsRouter.get('/', async (request, response) => {
@@ -19,6 +20,11 @@ dealsRouter.get('/', async (request, response) => {
       email: 1,
       name: 1,
       surname: 1
+    })
+    .populate('ratings', {
+      fulfilled: 1,
+      content: 1,
+      recipient: 1
     })
 
   response.json(deals)
@@ -41,7 +47,13 @@ dealsRouter.get('/:id', (request, response, next) => {
       email: 1,
       name: 1,
       surname: 1
-    }).then(deal => {
+    })
+    .populate('ratings', {
+      fulfilled: 1,
+      content: 1,
+      recipient: 1
+    })
+    .then(deal => {
       if (deal) {
         return response.json(deal)
       } else {
@@ -68,8 +80,13 @@ dealsRouter.delete('/:id', userExtractor, async (request, response, next) => {
 dealsRouter.post('/', userExtractor, async (request, response, next) => {
   const { title, content, memberEmail } = request.body
 
-  const member = await User.findOne({ email: memberEmail })
+  if (!content) {
+    return response.status(400).json({
+      error: 'Deal content is missing'
+    })
+  }
 
+  const member = await User.findOne({ email: memberEmail })
   if (!member) {
     return response.status(400).json({
       error: 'Please, add a valid member email'
@@ -77,11 +94,11 @@ dealsRouter.post('/', userExtractor, async (request, response, next) => {
   }
 
   const { userId } = request
-
+  console.log(userId)
   const user = await User.findById(userId)
-  if (!content) {
+  if (!user) {
     return response.status(400).json({
-      error: 'Deal content is missing'
+      error: 'User does´t exist, please login and try again'
     })
   }
 
@@ -139,6 +156,35 @@ dealsRouter.put('/:id/sign', userExtractor, (request, response) => {
       surname: 1
     })
     .then(result => response.json(result))
+})
+
+dealsRouter.post('/:id/rate', userExtractor, async (request, response, next) => {
+  const { id } = request.params
+  const { fulfilled, content, recipientId } = request.body
+
+  const { userId } = request
+
+  const deal = await Deal.findById(id)
+
+  const newRating = new Rating({
+    fulfilled,
+    content,
+    date: new Date().toISOString(),
+    status: 'New',
+    createdBy: userId,
+    recipient: recipientId
+  })
+
+  try {
+    const savedRating = await newRating.save()
+    console.log(savedRating)
+    deal.ratings = deal.ratings.concat(savedRating._id)
+    await deal.save()
+
+    response.status(201).json(savedRating)
+  } catch (error) {
+    next(error)
+  }
 })
 
 module.exports = dealsRouter

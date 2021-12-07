@@ -1,29 +1,25 @@
 const { Schema, model } = require('mongoose')
 
-const dealSchema = new Schema({
-  title: String,
-  content: String, // En un futuro metemos aqui otro modelo que seria el contrato
+const ratingSchema = new Schema({
+  fulfilled: Boolean,
+  content: String,
   date: Date,
   status: String,
   createdBy: {
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
-  members: [{
+  recipient: {
     type: Schema.Types.ObjectId,
     ref: 'User'
-  }],
-  signedBy: [{
+  },
+  deal: {
     type: Schema.Types.ObjectId,
-    ref: 'User'
-  }],
-  ratings: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Rating'
-  }]
+    ref: 'Deal'
+  }
 })
 
-dealSchema.set('toJSON', {
+ratingSchema.set('toJSON', {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id
     delete returnedObject._id
@@ -31,6 +27,6 @@ dealSchema.set('toJSON', {
   }
 })
 
-const Deal = model('Deal', dealSchema)
+const Rating = model('Rating', ratingSchema)
 
-module.exports = Deal
+module.exports = Rating
