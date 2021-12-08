@@ -1,4 +1,4 @@
-import { addRating, create, getAll, sign } from '../services/deals'
+import { create, getAll, sign } from '../services/deals'
 import { setNotification, removeNotification } from './notificationReducer'
 
 const compareFunction = (objectA, objectB) => {
@@ -30,20 +30,6 @@ export const dealReducer = (state = initialState, action) => {
       return deal
     })
     deals.sort(compareFunction)
-    return deals
-  }
-
-  if (action.type === '@deals/rate') {
-    const newRating = action.payload
-    const deals = state.map(deal => {
-      if (deal.id === newRating.deal) {
-        return {
-          ...deal,
-          ratings: [...deal.ratings, newRating]
-        }
-      }
-      return deal
-    })
     return deals
   }
 
@@ -118,13 +104,3 @@ export const signDeal = (id, users) => {
 //     })
 //   }
 // }
-
-export const addNewRating = (id, rating) => {
-  return async (dispatch) => {
-    const savedRating = await addRating(id, rating)
-    dispatch({
-      type: '@deals/rate',
-      payload: savedRating
-    })
-  }
-}

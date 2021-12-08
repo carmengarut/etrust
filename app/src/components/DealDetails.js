@@ -6,6 +6,7 @@ import { signDeal } from '../reducers/dealReducer'
 
 export const DealDetails = ({ deals }) => {
   const user = useSelector(state => state.user)
+  const ratings = useSelector(state => state.ratings)
   const { id } = useParams()
   const deal = deals.find(deal => deal.id === id)
 
@@ -40,12 +41,12 @@ export const DealDetails = ({ deals }) => {
           : '-'}
         </Card.Text>
         <Card.Text>Ratings:</Card.Text>
-        {deal.ratings.map(rating => (
+        {ratings.filter(rating => rating.deal === id).map(rating => (
           <Card key={rating.id}>
             <Card.Body>
-              <Card.Text>By {rating.createdBy}</Card.Text>
+              <Card.Text>By {rating.createdBy.email}</Card.Text>
               <Card.Text>{rating.content}</Card.Text>
-              <Card.Text>To {rating.recipient}</Card.Text>
+              <Card.Text>To </Card.Text>
             </Card.Body>
           </Card>
         ))}

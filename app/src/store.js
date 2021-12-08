@@ -5,11 +5,13 @@ import thunk from 'redux-thunk'
 import { userReducer } from './reducers/userReducer'
 import { notificationReducer } from './reducers/notificationReducer'
 import { dealReducer } from './reducers/dealReducer'
+import { ratingReducer } from './reducers/ratingReducer'
 
 const reducer = combineReducers({
   deals: dealReducer,
   notification: notificationReducer,
-  user: userReducer
+  user: userReducer,
+  ratings: ratingReducer
   // users: usersReducer
 })
 

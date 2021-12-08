@@ -43,6 +43,8 @@ export default function RegistrationForm () {
 
   return (
     <Container>
+      <br />
+      <h2>Register</h2>
       <Notification />
       <Form>
         <Form.Group id='name' className='mb-3'>

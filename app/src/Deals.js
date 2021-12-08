@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { dealInit } from './reducers/dealReducer'
 import { ListGroup, Button } from 'react-bootstrap'
+import { ratingInit } from './reducers/ratingReducer'
 
 function Deals () {
   const user = useSelector(state => state.user)
@@ -15,6 +16,7 @@ function Deals () {
 
   useEffect(() => {
     dispatch(dealInit())
+    dispatch(ratingInit())
   }, [])
 
   return (

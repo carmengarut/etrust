@@ -17,7 +17,9 @@ const Deal = ({ deal }) => {
           <Badge variant='secondary'>
             {deal.signedBy.find(member => member.id === user.id)
               ? 'Signed'
-              : 'Not signed'}
+              : deal.signedBy.find(member => member === user.id)
+                ? 'Signed'
+                : 'Not signed'}
           </Badge>
         </Col>
         <Col lg='1'>

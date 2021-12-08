@@ -3,7 +3,7 @@ import { Button, Container, Form } from 'react-bootstrap'
 // import { addNewDeal } from '../reducers/dealReducer'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams, useHistory } from 'react-router-dom'
-import { addNewRating } from '../reducers/dealReducer'
+import { addNewRating } from '../reducers/ratingReducer'
 
 const RatingForm = () => {
   const [fulfilled, setFulfilled] = useState('')
@@ -23,10 +23,11 @@ const RatingForm = () => {
     const ratingObject = {
       fulfilled,
       content,
-      recipientId: recipient
+      recipientId: recipient,
+      dealId: id
     }
 
-    dispatch(addNewRating(id, ratingObject))
+    dispatch(addNewRating(ratingObject))
     setFulfilled('')
     setContent('')
     setRecipient('')

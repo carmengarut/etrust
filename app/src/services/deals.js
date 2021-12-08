@@ -51,12 +51,17 @@ export const sign = (id, users) => {
   return request.then(response => response.data)
 }
 
-export const addRating = (id, newObject) => {
+export const addRating = (newObject) => {
   const config = {
     headers: {
       Authorization: token
     }
   }
-  const request = axios.post(`${baseUrl}/${id}/rate`, newObject, config)
+  const request = axios.post('/api/ratings/', newObject, config)
+  return request.then(response => response.data)
+}
+
+export const getAllRatings = () => {
+  const request = axios.get('/api/ratings/')
   return request.then(response => response.data)
 }

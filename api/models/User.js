@@ -11,6 +11,10 @@ const userSchema = new Schema({
   deals: [{
     type: Schema.Types.ObjectId,
     ref: 'Deal'
+  }],
+  ratings: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Rating'
   }]
 })
 

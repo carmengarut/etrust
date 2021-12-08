@@ -1,7 +1,6 @@
 const dealsRouter = require('express').Router()
 const Deal = require('../models/Deal')
 const User = require('../models/User.js')
-const Rating = require('../models/Rating')
 const userExtractor = require('../middleware/userExtractor')
 
 dealsRouter.get('/', async (request, response) => {
@@ -169,39 +168,5 @@ dealsRouter.put('/:id/sign', userExtractor, async (request, response) => {
   response.json(savedDeal)
 })
 
-dealsRouter.post('/:id/rate', userExtractor, async (request, response, next) => {
-  const { id } = request.params
-  const { fulfilled, content, recipientId } = request.body
-
-  const { userId } = request
-
-  const deal = await Deal.findById(id)
-
-  if (deal.status !== 'Signed') {
-    return response.status(400).json({
-      error: 'The deal should be signed by all members before submitting a rating'
-    })
-  }
-
-  const newRating = new Rating({
-    fulfilled,
-    content,
-    date: new Date().toISOString(),
-    status: 'New',
-    createdBy: userId,
-    recipient: recipientId,
-    deal: id
-  })
-
-  try {
-    const savedRating = await newRating.save()
-    deal.ratings = deal.ratings.concat(savedRating._id)
-    await deal.save()
-
-    response.status(201).json(savedRating)
-  } catch (error) {
-    next(error)
-  }
-})
 
 module.exports = dealsRouter

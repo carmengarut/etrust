@@ -1,10 +1,11 @@
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { userSet } from './reducers/userReducer'
 import Header from './components/Header'
 import RouterApp from './RouterApp'
 import LoginForm from './components/LoginForm'
+import RegistrationForm from './components/RegistrationForm'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -26,7 +27,22 @@ const App = () => {
             <Header />
             <RouterApp />
           </>)
-        : <LoginForm />}
+        : (
+          <Switch>
+
+            <Route path='/login'>
+              <LoginForm />
+            </Route>
+
+            <Route path='/register'>
+              <RegistrationForm />
+            </Route>
+
+            <Route path='/'>
+              <LoginForm />
+            </Route>
+          </Switch>
+          )}
     </BrowserRouter>
   )
 }

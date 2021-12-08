@@ -14,6 +14,7 @@ const handleErrors = require('./middleware/handleErrors')
 const usersRouter = require('./controllers/users')
 const loginRouter = require('./controllers/login')
 const dealsRouter = require('./controllers/deals')
+const ratingsRouter = require('./controllers/ratings.js')
 
 // app.use(express.urlencoded({extended: true})); 
 app.use(cors())
@@ -46,6 +47,7 @@ app.use(Sentry.Handlers.tracingHandler())
 app.use('/api/deals', dealsRouter)
 app.use('/api/users', usersRouter)
 app.use('/api/login', loginRouter)
+app.use('/api/ratings', ratingsRouter)
 
 if (process.env.NODE_ENV === 'test') {
   const testingRouter = require('./controllers/testing')
