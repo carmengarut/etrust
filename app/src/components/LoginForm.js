@@ -20,6 +20,8 @@ export default function LoginForm () {
 
   return (
     <Container>
+      <br />
+      <h2>Login</h2>
       <Notification />
       <Form>
         <Form.Group id='email' className='mb-3'>
