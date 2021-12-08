@@ -6,6 +6,7 @@ const userSchema = new Schema({
   name: String,
   surname: String,
   passwordHash: String,
+  profileImg: String,
   trustRate: Number,
   deals: [{
     type: Schema.Types.ObjectId,

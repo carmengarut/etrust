@@ -15,11 +15,12 @@ const usersRouter = require('./controllers/users')
 const loginRouter = require('./controllers/login')
 const dealsRouter = require('./controllers/deals')
 
+// app.use(express.urlencoded({extended: true})); 
 app.use(cors())
 app.use(express.json())
 app.use(logger)
 
-app.use(express.static('../app/build'))
+app.use('/public', express.static('public'))
 
 Sentry.init({
   dsn: 'https://d67d64d4595c432683cc5e9ade2e8a5a@o1037870.ingest.sentry.io/6006005',

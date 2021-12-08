@@ -5,13 +5,13 @@ import RegistrationForm from './components/RegistrationForm'
 import DealForm from './components/DealForm'
 import RatingForm from './components/RatingForm'
 import Deals from './Deals'
+import Profile from './Profile'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { userSet, userLogout } from './reducers/userReducer'
 import { Navbar, Container, Nav } from 'react-bootstrap'
 
 const Home = () => <h1>Home Page</h1>
-const Profile = () => <h1>Profile</h1>
 
 const App = () => {
   const user = useSelector(state => state.user)

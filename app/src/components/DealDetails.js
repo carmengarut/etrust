@@ -14,7 +14,6 @@ export const DealDetails = ({ deals }) => {
 
   const handleSign = async () => {
     const users = [...deal.signedBy.map(user => user.id), user.id]
-    console.log(users)
     dispatch(signDeal(id, users))
   }
   if (!deal) {

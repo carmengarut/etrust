@@ -4,21 +4,38 @@ import { useDispatch } from 'react-redux'
 import { useState } from 'react'
 import { userRegister } from '../reducers/userReducer'
 import Notification from './Notification'
+import CropImageModal from './CropImageModal'
 
 export default function RegistrationForm () {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [name, setName] = useState('')
   const [surname, setSurname] = useState('')
+  const [profileImg, setProfileImg] = useState(null)
+
+  const [show, setShow] = useState(false)
 
   const dispatch = useDispatch()
 
+  const handleClick = ({ target }) => {
+    setShow(true)
+  }
+
   const handleRegister = async () => {
+    // const formData = new FormData()
+    // formData.append('email', email)
+    // formData.append('name', name)
+    // formData.append('surname', surname)
+    // formData.append('password', password)
+    // formData.append('profileImg', profileImg)
+
     try {
-      dispatch(userRegister({ email, name, password }))
+      dispatch(userRegister({ email, password, name, surname, profileImg }))
       setEmail('')
       setPassword('')
       setName('')
+      setSurname('')
+      setProfileImg('')
     } catch (e) {
       console.log(e.message)
     }
@@ -68,10 +85,32 @@ export default function RegistrationForm () {
             onChange={({ target }) => setPassword(target.value)}
           />
         </Form.Group>
+        <Form.Group id='profileImg'>
+          <Form.Label>Profile image</Form.Label>
+          <br />
+          {profileImg
+            ? (
+              <>
+                <img src={profileImg} />
+                <Button onClick={handleClick} variant='light'>
+                  Cambiar imagen
+                </Button>
+              </>
+              )
+            : (
+              <Button onClick={handleClick} variant='light'>
+                Subir imagen
+              </Button>
+              )}
+        </Form.Group>
+        <br />
         <Button onClick={handleRegister} id='form-login-button'>
           Register
         </Button>
       </Form>
+
+      <CropImageModal show={show} setShow={setShow} setProfileImg={setProfileImg} />
+
     </Container>
   )
 }

@@ -27,7 +27,8 @@
     },
     "plugins": [
       "cypress"
-    ]
+    ],
+    "parser": "babel-eslint"
   },
   "devDependencies": {
     "eslint-plugin-cypress": "2.12.1",

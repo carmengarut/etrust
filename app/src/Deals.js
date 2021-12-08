@@ -29,7 +29,7 @@ function Deals () {
 
       <br />
       <br />
-      <ListGroup>{console.log(deals)}
+      <ListGroup>
         {deals.filter(deal => {
           if (deal.createdBy.id) return (deal.createdBy.id === user.id || deal.members.find(member => member.id === user.id))
           return (deal.createdBy === user.id || deal.members.find(member => member.id === user.id))

@@ -47,7 +47,6 @@ export const sign = (id, users) => {
   const newObject = {
     users
   }
-  console.log(newObject)
   const request = axios.put(`${baseUrl}/${id}/sign`, newObject, config)
   return request.then(response => response.data)
 }

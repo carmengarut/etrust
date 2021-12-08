@@ -96,7 +96,6 @@ dealsRouter.post('/', userExtractor, async (request, response, next) => {
   }
 
   const { userId } = request
-  console.log(userId)
   const user = await User.findById(userId)
   if (!user) {
     return response.status(400).json({
@@ -196,7 +195,6 @@ dealsRouter.post('/:id/rate', userExtractor, async (request, response, next) => 
 
   try {
     const savedRating = await newRating.save()
-    console.log(savedRating)
     deal.ratings = deal.ratings.concat(savedRating._id)
     await deal.save()
 

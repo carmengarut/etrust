@@ -71,7 +71,7 @@ export const userRegister = (userToRegister) => {
     } catch (e) {
       console.log(e.name)
       console.log(e.message)
-      dispatch(setNotification('Wrong credentials'))
+      dispatch(setNotification('User couldn´t be created'))
       setTimeout(() => {
         dispatch(removeNotification())
       }, 5000)

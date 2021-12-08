@@ -26,7 +26,6 @@ const RatingForm = () => {
       recipientId: recipient
     }
 
-    console.log(ratingObject)
     dispatch(addNewRating(id, ratingObject))
     setFulfilled('')
     setContent('')

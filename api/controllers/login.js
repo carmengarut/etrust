@@ -35,6 +35,7 @@ loginRouter.post('/', async (request, response) => {
     response.send({
       name: user.name,
       email: user.email,
+      profileImg: user.profileImg,
       id: user.id,
       token
     })

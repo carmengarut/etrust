@@ -8,6 +8,10 @@ const connectionString = NODE_ENV === 'test'
 
 // conexion a mongodb
 
+// mongoose.connect(connectionString, {
+//   useNewUrlParser: true
+// })
+
 mongoose.connect(connectionString)
   .then(() => {
     console.log('Database connected')
