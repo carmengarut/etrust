@@ -35,7 +35,6 @@ const CropImageModal = ({ show, setShow, setProfileImg }) => {
 
       const base64Image = canvas.toDataURL('image/jpeg', 1)
       setResult(base64Image)
-      console.log(result)
     } catch (e) {
       console.log('crop the image')
     }

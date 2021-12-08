@@ -22,7 +22,7 @@ export default function LoginForm () {
     <Container>
       <Notification />
       <Form>
-        <Form.Group id='email'>
+        <Form.Group id='email' className='mb-3'>
           <Form.Label>Email</Form.Label>
           <Form.Control
             type='email'
@@ -32,7 +32,7 @@ export default function LoginForm () {
             onChange={({ target }) => setEmail(target.value)}
           />
         </Form.Group>
-        <Form.Group id='password'>
+        <Form.Group id='password' className='mb-3'>
           <Form.Label>Password</Form.Label>
           <Form.Control
             type='password'

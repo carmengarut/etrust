@@ -45,7 +45,7 @@ export default function RegistrationForm () {
     <Container>
       <Notification />
       <Form>
-        <Form.Group id='name'>
+        <Form.Group id='name' className='mb-3'>
           <Form.Label>Name</Form.Label>
           <Form.Control
             type='text'
@@ -55,7 +55,7 @@ export default function RegistrationForm () {
             onChange={({ target }) => setName(target.value)}
           />
         </Form.Group>
-        <Form.Group id='surname'>
+        <Form.Group id='surname' className='mb-3'>
           <Form.Label>Surname</Form.Label>
           <Form.Control
             type='text'
@@ -65,7 +65,7 @@ export default function RegistrationForm () {
             onChange={({ target }) => setSurname(target.value)}
           />
         </Form.Group>
-        <Form.Group id='email'>
+        <Form.Group id='email' className='mb-3'>
           <Form.Label>Email</Form.Label>
           <Form.Control
             type='text'
@@ -75,7 +75,7 @@ export default function RegistrationForm () {
             onChange={({ target }) => setEmail(target.value)}
           />
         </Form.Group>
-        <Form.Group id='password'>
+        <Form.Group id='password' className='mb-3'>
           <Form.Label>Password</Form.Label>
           <Form.Control
             type='password'
@@ -85,7 +85,7 @@ export default function RegistrationForm () {
             onChange={({ target }) => setPassword(target.value)}
           />
         </Form.Group>
-        <Form.Group id='profileImg'>
+        <Form.Group id='profileImg' className='mb-3'>
           <Form.Label>Profile image</Form.Label>
           <br />
           {profileImg
