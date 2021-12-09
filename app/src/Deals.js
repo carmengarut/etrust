@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import Notification from './components/Notification'
 import Deal from './components/Deal'
 import LoginForm from './components/LoginForm'
-import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { dealInit } from './reducers/dealReducer'
 import { ListGroup, Button } from 'react-bootstrap'
@@ -13,6 +13,7 @@ function Deals () {
   const deals = useSelector(state => state.deals)
 
   const dispatch = useDispatch()
+  const history = useHistory()
 
   useEffect(() => {
     dispatch(dealInit())
@@ -25,7 +26,7 @@ function Deals () {
       <Notification />
       {
         user.email
-          ? <Button><Link to='/create-deal' style={{ color: '#FFFFFF' }}>New Deal</Link></Button>
+          ? <Button onClick={() => history.push('/create-deal')}>New Deal</Button>
           : <LoginForm />
       }
 

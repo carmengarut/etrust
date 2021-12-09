@@ -32,8 +32,8 @@ const RatingForm = () => {
     let newTrustRate
 
     ratingObject.fulfilled === 'True'
-      ? newTrustRate = 100 * (ratings.filter(rating => (rating.fulfilled === 'True') && (rating.recipient.id === recipient)).length + 1) / (ratings.filter(rating => rating.recipient.id === recipient).length + 1)
-      : newTrustRate = 100 * ratings.filter(rating => (rating.fulfilled === 'True') && (rating.recipient.id === recipient)).length / (ratings.filter(rating => rating.recipient.id === recipient).length + 1)
+      ? newTrustRate = Math.round(100 * (ratings.filter(rating => (rating.fulfilled === 'True') && (rating.recipient.id === recipient)).length + 1) / (ratings.filter(rating => rating.recipient.id === recipient).length + 1))
+      : newTrustRate = Math.round(100 * ratings.filter(rating => (rating.fulfilled === 'True') && (rating.recipient.id === recipient)).length / (ratings.filter(rating => rating.recipient.id === recipient).length + 1))
 
     dispatch(addNewRating(ratingObject, newTrustRate))
     setFulfilled('')

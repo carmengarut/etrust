@@ -8,8 +8,7 @@ import Deals from './Deals'
 import Profile from './Profile'
 import { useSelector } from 'react-redux'
 import Container from 'react-bootstrap/Container'
-
-const Home = () => <h1>Home Page</h1>
+import Users from './Users'
 
 export default function RouterApp () {
   const user = useSelector(state => state.user)
@@ -29,6 +28,10 @@ export default function RouterApp () {
 
         <Route path='/deals'>
           <Deals />
+        </Route>
+
+        <Route path='/users'>
+          <Users />
         </Route>
 
         <Route path='/create-deal'>
@@ -52,7 +55,7 @@ export default function RouterApp () {
         />
 
         <Route path='/'>
-          <Home />
+          <Deals />
         </Route>
       </Switch>
     </Container>

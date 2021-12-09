@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Navbar, Container, Nav } from 'react-bootstrap'
+import { Navbar, Container, Nav, Form, Button } from 'react-bootstrap'
 import { userLogout } from '../reducers/userReducer'
 import { useSelector, useDispatch } from 'react-redux'
 import logo from '../public/white-logo-grande.png'
@@ -25,13 +25,13 @@ export default function Header () {
         <Navbar.Toggle />
         <Nav>
           <Nav.Link href='#' as='span'>
-            <Link to='/' style={{ color: '#FFFFFF' }}>
-              Home
+            <Link to='/deals' style={{ color: '#FFFFFF' }}>
+              Deals
             </Link>
           </Nav.Link>
           <Nav.Link href='#' as='span'>
-            <Link to='/deals' style={{ color: '#FFFFFF' }}>
-              Deals
+            <Link to='/users' style={{ color: '#FFFFFF' }}>
+              Users
             </Link>
           </Nav.Link>
           <Nav.Link href='#' as='span'>
@@ -40,6 +40,9 @@ export default function Header () {
             </Link>
           </Nav.Link>
         </Nav>
+        <Form.Control className='me-auto' placeholder='Search...' style={{ width: '400px', marginLeft: '70px' }} />
+        {' '}{' '}
+        <Button variant='light' style={{ marginLeft: '2px', color: '#0B5ED7' }}>Search</Button>
         <Navbar.Collapse className='justify-content-end'>
           {
               user.email

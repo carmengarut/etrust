@@ -80,3 +80,8 @@ export const updateTrustRate = (id, trustRate) => {
   const request = axios.put(`/api/users/${id}`, newObject, config)
   return request.then(response => response.data)
 }
+
+export const getAllUsers = () => {
+  const request = axios.get('/api/users')
+  return request.then(response => response.data)
+}

@@ -20,7 +20,7 @@ const Profile = () => {
             />
             <div>
               <Card.Title>{user.name} {user.surname}
-                <Badge bg='info'>{user.trustRate} % trust</Badge>
+                {' '}<Badge bg='info'>{user.trustRate} % trust</Badge>
               </Card.Title>
               <Card.Text>Email: {user.email}</Card.Text>
               <Button>Change password</Button>

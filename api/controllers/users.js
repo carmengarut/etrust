@@ -31,13 +31,7 @@ const userExtractor = require('../middleware/userExtractor')
 // })
 
 usersRouter.get('/', async (request, response) => {
-  const users = await User.find({}).populate('deals', {
-    content: 1,
-    date: 1,
-    status: 1,
-    createdBy: 1,
-    signedBy: 1
-  })
+  const users = await User.find({})
   response.json(users)
 })
 
@@ -95,10 +89,6 @@ usersRouter.post('/', async (request, response) => {
 usersRouter.put('/:id', userExtractor, async (request, response) => {
   const { id } = request.params
   const newObject  = request.body
-
-  console.log('newobject')
-  console.log(newObject)
-
 
   try{
     const result = await User.findByIdAndUpdate(id, newObject, { new: true })
