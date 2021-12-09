@@ -46,7 +46,7 @@ export const DealDetails = ({ deals }) => {
             <Card.Body>
               <Card.Text>By {rating.createdBy.email}</Card.Text>
               <Card.Text>{rating.content}</Card.Text>
-              <Card.Text>To </Card.Text>
+              <Card.Text>To {rating.recipient.email}</Card.Text>
             </Card.Body>
           </Card>
         ))}

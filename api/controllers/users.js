@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt')
 const usersRouter = require('express').Router()
 const User = require('../models/User')
 const jwt = require('jsonwebtoken')
+const userExtractor = require('../middleware/userExtractor')
 // const multer = require('multer')
 // const  { v4: uuidv4 } = require('uuid')
 
@@ -88,6 +89,23 @@ usersRouter.post('/', async (request, response) => {
     console.log(error.name)
     console.log(error.message)
     response.status(400).json(error)
+  }
+})
+
+usersRouter.put('/:id', userExtractor, async (request, response) => {
+  const { id } = request.params
+  const newObject  = request.body
+
+  console.log('newobject')
+  console.log(newObject)
+
+
+  try{
+    const result = await User.findByIdAndUpdate(id, newObject, { new: true })
+    response.json(result)
+  } catch(e) {
+    console.error(e.name)
+    console.error(e.message)
   }
 })
 

@@ -44,7 +44,7 @@ export default function RegistrationForm () {
   return (
     <Container>
       <br />
-      <h2>Register</h2>
+      <h3>Create your eTrust account</h3>
       <Notification />
       <Form>
         <Form.Group id='name' className='mb-3'>
@@ -105,10 +105,11 @@ export default function RegistrationForm () {
               </Button>
               )}
         </Form.Group>
-        <br />
+
         <Button onClick={handleRegister} id='form-login-button'>
-          Register
+          Create account
         </Button>
+        {' '}{' '}Have an account? <a onClick={() => history.push('/login')} href='#'>Sign in</a>
       </Form>
 
       <CropImageModal show={show} setShow={setShow} setProfileImg={setProfileImg} />

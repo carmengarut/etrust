@@ -1,4 +1,4 @@
-import { Container, Card, Stack, Button } from 'react-bootstrap'
+import { Container, Card, Stack, Button, Badge } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 
 const Profile = () => {
@@ -19,7 +19,9 @@ const Profile = () => {
               alt={user.name}
             />
             <div>
-              <Card.Title>{user.name} {user.surname}</Card.Title>
+              <Card.Title>{user.name} {user.surname}
+                <Badge bg='info'>{user.trustRate} % trust</Badge>
+              </Card.Title>
               <Card.Text>Email: {user.email}</Card.Text>
               <Button>Change password</Button>
             </div>

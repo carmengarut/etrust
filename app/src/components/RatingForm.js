@@ -12,12 +12,14 @@ const RatingForm = () => {
 
   const { id } = useParams()
   const deals = useSelector(state => state.deals)
+  const ratings = useSelector(state => state.ratings)
+  const user = useSelector(state => state.user)
 
   const deal = deals.find(deal => deal.id === id)
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
 
     const ratingObject = {
@@ -27,7 +29,13 @@ const RatingForm = () => {
       dealId: id
     }
 
-    dispatch(addNewRating(ratingObject))
+    let newTrustRate
+
+    ratingObject.fulfilled === 'True'
+      ? newTrustRate = 100 * (ratings.filter(rating => (rating.fulfilled === 'True') && (rating.recipient.id === recipient)).length + 1) / (ratings.filter(rating => rating.recipient.id === recipient).length + 1)
+      : newTrustRate = 100 * ratings.filter(rating => (rating.fulfilled === 'True') && (rating.recipient.id === recipient)).length / (ratings.filter(rating => rating.recipient.id === recipient).length + 1)
+
+    dispatch(addNewRating(ratingObject, newTrustRate))
     setFulfilled('')
     setContent('')
     setRecipient('')
@@ -45,7 +53,7 @@ const RatingForm = () => {
             value={recipient}
           >
             <option>-</option>
-            {deal.members.map(member => <option key={member.id} value={member.id}>{member.email}</option>)}
+            {deal.signedBy.filter(member => member.id !== user.id).map(member => <option key={member.id} value={member.id}>{member.email}</option>)}
 
           </Form.Select>
         </Form.Group>

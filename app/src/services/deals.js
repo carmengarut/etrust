@@ -65,3 +65,18 @@ export const getAllRatings = () => {
   const request = axios.get('/api/ratings/')
   return request.then(response => response.data)
 }
+
+export const updateTrustRate = (id, trustRate) => {
+  const config = {
+    headers: {
+      Authorization: token
+    }
+  }
+
+  const newObject = {
+    trustRate
+  }
+  console.log(newObject)
+  const request = axios.put(`/api/users/${id}`, newObject, config)
+  return request.then(response => response.data)
+}

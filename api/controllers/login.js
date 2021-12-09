@@ -36,6 +36,7 @@ loginRouter.post('/', async (request, response) => {
       name: user.name,
       email: user.email,
       profileImg: user.profileImg,
+      trustRate: user.trustRate,
       id: user.id,
       token
     })

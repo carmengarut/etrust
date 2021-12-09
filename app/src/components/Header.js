@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { Navbar, Container, Nav } from 'react-bootstrap'
 import { userLogout } from '../reducers/userReducer'
 import { useSelector, useDispatch } from 'react-redux'
+import logo from '../public/white-logo-grande.png'
 
 export default function Header () {
   const user = useSelector(state => state.user)
@@ -12,6 +13,13 @@ export default function Header () {
     <Navbar sticky='top' bg='primary' variant='dark'>
       <Container>
         <Navbar.Brand href='/'>
+          <img
+            alt=''
+            src={logo}
+            width='30'
+            height='30'
+            className='d-inline-block align-top'
+          />{' '}
           eTrust
         </Navbar.Brand>
         <Navbar.Toggle />

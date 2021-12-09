@@ -25,7 +25,7 @@ ratingsRouter.post('/', userExtractor, async (request, response, next) => {
       status: 'New',
       createdBy: userId,
       recipient: recipientId,
-      deal: id
+      deal: dealId
     })
   
     try {

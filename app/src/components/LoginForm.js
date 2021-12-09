@@ -5,12 +5,14 @@ import { useDispatch } from 'react-redux'
 import { useState } from 'react'
 import { userLogin } from '../reducers/userReducer'
 import Notification from './Notification'
+import { useHistory } from 'react-router-dom'
 
 export default function LoginForm () {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   const dispatch = useDispatch()
+  const history = useHistory()
 
   const handleLogin = (event) => {
     dispatch(userLogin({ email, password }))
@@ -47,6 +49,7 @@ export default function LoginForm () {
         <Button onClick={handleLogin} id='form-login-button'>
           Login
         </Button>
+        {' '}{' '}Don't have an account? <a onClick={() => history.push('/register')} href='#'>Sign up</a>
       </Form>
     </Container>
   )

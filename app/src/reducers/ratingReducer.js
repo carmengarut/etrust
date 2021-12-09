@@ -1,4 +1,4 @@
-import { addRating, getAllRatings } from '../services/deals'
+import { addRating, getAllRatings, updateTrustRate } from '../services/deals'
 import { setNotification, removeNotification } from './notificationReducer'
 
 const compareFunction = (objectA, objectB) => {
@@ -56,9 +56,10 @@ export const ratingInit = () => {
   }
 }
 
-export const addNewRating = (ratingObject) => {
+export const addNewRating = (ratingObject, newTrustRate) => {
   return async (dispatch) => {
     const savedRating = await addRating(ratingObject)
+    await updateTrustRate(ratingObject.recipientId, newTrustRate)
     dispatch(setNotification('Rating added.'))
     setTimeout(() => {
       dispatch(removeNotification())
