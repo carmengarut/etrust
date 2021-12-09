@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Navbar, Container, Nav, Form, Button } from 'react-bootstrap'
+import { Navbar, Container, Nav } from 'react-bootstrap'
 import { userLogout } from '../reducers/userReducer'
 import { useSelector, useDispatch } from 'react-redux'
 import logo from '../public/white-logo-grande.png'
@@ -10,7 +10,7 @@ export default function Header () {
   const dispatch = useDispatch()
 
   return (
-    <Navbar sticky='top' bg='primary' variant='dark'>
+    <Navbar collapseOnSelect expand='lg' sticky='top' bg='primary' variant='dark'>
       <Container>
         <Navbar.Brand href='/'>
           <img
@@ -22,28 +22,26 @@ export default function Header () {
           />{' '}
           eTrust
         </Navbar.Brand>
-        <Navbar.Toggle />
-        <Nav>
-          <Nav.Link href='#' as='span'>
-            <Link to='/deals' style={{ color: '#FFFFFF' }}>
-              Deals
-            </Link>
-          </Nav.Link>
-          <Nav.Link href='#' as='span'>
-            <Link to='/users' style={{ color: '#FFFFFF' }}>
-              Users
-            </Link>
-          </Nav.Link>
-          <Nav.Link href='#' as='span'>
-            <Link to='/profile' style={{ color: '#FFFFFF' }}>
-              My Profile
-            </Link>
-          </Nav.Link>
-        </Nav>
-        <Form.Control className='me-auto' placeholder='Search...' style={{ width: '400px', marginLeft: '70px' }} />
-        {' '}{' '}
-        <Button variant='light' style={{ marginLeft: '2px', color: '#0B5ED7' }}>Search</Button>
-        <Navbar.Collapse className='justify-content-end'>
+        <Navbar.Toggle aria-controls='responsive-navbar-nav' />
+        <Navbar.Collapse id='responsive-navbar-nav'>
+          <Nav className='me-auto'>
+            <Nav.Link href='#' as='span'>
+              <Link to='/deals' style={{ color: '#FFFFFF' }}>
+                Deals
+              </Link>
+            </Nav.Link>
+            <Nav.Link href='#' as='span'>
+              <Link to='/users' style={{ color: '#FFFFFF' }}>
+                Users
+              </Link>
+            </Nav.Link>
+            <Nav.Link href='#' as='span'>
+              <Link to='/profile' style={{ color: '#FFFFFF' }}>
+                My Profile
+              </Link>
+            </Nav.Link>
+          </Nav>
+
           {
               user.email
                 ? (
