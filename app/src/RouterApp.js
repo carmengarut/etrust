@@ -9,6 +9,7 @@ import Profile from './Profile'
 import { useSelector } from 'react-redux'
 import Container from 'react-bootstrap/Container'
 import Users from './Users'
+import LandingPage from './LandingPage'
 
 export default function RouterApp () {
   const user = useSelector(state => state.user)
@@ -36,6 +37,10 @@ export default function RouterApp () {
 
         <Route path='/create-deal'>
           <DealForm />
+        </Route>
+
+        <Route path='/landing'>
+          <LandingPage />
         </Route>
 
         <Route path='/rate/:id'>

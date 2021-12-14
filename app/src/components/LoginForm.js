@@ -21,37 +21,45 @@ export default function LoginForm () {
   }
 
   return (
-    <Container>
-      <br />
-      <h2>Login</h2>
+    <>
       <Notification />
-      <Form>
-        <Form.Group id='email' className='mb-3'>
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            type='email'
-            value={email}
-            name='Email'
-            placeholder='Email'
-            onChange={({ target }) => setEmail(target.value)}
-          />
-        </Form.Group>
-        <Form.Group id='password' className='mb-3'>
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type='password'
-            value={password}
-            name='Password'
-            placeholder='Password'
-            onChange={({ target }) => setPassword(target.value)}
-          />
-        </Form.Group>
-        <Button onClick={handleLogin} id='form-login-button'>
-          Login
-        </Button>
-        {' '}{' '}Don't have an account? <a onClick={() => history.push('/register')} href='#'>Sign up</a>
-      </Form>
-    </Container>
+      <Container className='Container'>
+
+        <br />
+        <h2 className='Title'>Login</h2>
+
+        <Form>
+          <Form.Group id='email' className='mb-3'>
+            <Form.Label className='EmailLabel'>Email</Form.Label>
+            <Form.Control
+              className='EmailField'
+              type='email'
+              value={email}
+              name='Email'
+              placeholder='Email'
+              onChange={({ target }) => setEmail(target.value)}
+            />
+          </Form.Group>
+
+          <Form.Group id='password' className='mb-3'>
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type='password'
+              value={password}
+              name='Password'
+              placeholder='Password'
+              onChange={({ target }) => setPassword(target.value)}
+            />
+          </Form.Group>
+
+          <Button onClick={handleLogin} id='form-login-button'>
+            Login
+          </Button>
+          {' '}{' '}Don't have an account? <a onClick={() => history.push('/register')} href='#'>Sign up</a>
+        </Form>
+
+      </Container>
+    </>
   )
 }
 

@@ -1,0 +1,91 @@
+@import url('./fonts.css');
+
+.Navbar {
+    background: #FFFFFF;
+}
+
+.BrandName {
+    /* Heading / 4 */
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 140%;
+
+    /* or 34px */
+
+    color: #000000;
+    
+}
+
+.SignUpButton {
+    /* Auto Layout */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 5.76486px 17.2946px;
+    border: none;
+    position: absolute;
+    right: 160px;
+    
+    
+    /* Blue / 500 */
+    
+    background: #4E8AF4;
+    border-radius: 4.32365px;
+    
+    /* Inside Auto Layout */
+    
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 11.5297px;
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 10.0885px;
+    line-height: 17px;
+
+    color: #FFFFFF;
+    
+}
+
+.SignInButton{
+    /* Auto Layout */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 5.76486px 17.2946px;
+    position: absolute;
+   right: 80px;
+    
+    /* Grayscale 900 Opacity / 12% */
+    background: #FFFFFF;
+    border: 0.720608px solid rgba(18, 17, 39, 0.12);
+    border-radius: 4.32365px;
+    
+    /* Inside Auto Layout */
+    
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin: 0px 11.5297px;
+
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 10.0885px;
+    line-height: 17px;
+    /* identical to box height, or 171% */
+
+
+    /* Grayscale / 900 */
+
+    color: #121127;
+    }

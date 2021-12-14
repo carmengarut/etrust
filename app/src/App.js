@@ -6,6 +6,8 @@ import Header from './components/Header'
 import RouterApp from './RouterApp'
 import LoginForm from './components/LoginForm'
 import RegistrationForm from './components/RegistrationForm'
+import LandingPage from './LandingPage'
+import HeaderWeb from './components/HeaderWeb'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -28,20 +30,27 @@ const App = () => {
             <RouterApp />
           </>)
         : (
-          <Switch>
+          <>
+            <HeaderWeb />
+            <Switch>
 
-            <Route path='/login'>
-              <LoginForm />
-            </Route>
+              <Route path='/login'>
+                <LoginForm />
+              </Route>
 
-            <Route path='/register'>
-              <RegistrationForm />
-            </Route>
+              <Route path='/register'>
+                <RegistrationForm />
+              </Route>
 
-            <Route path='/'>
-              <LoginForm />
-            </Route>
-          </Switch>
+              <Route path='/landing'>
+                <LandingPage />
+              </Route>
+
+              <Route path='/'>
+                <LoginForm />
+              </Route>
+            </Switch>
+          </>
           )}
     </BrowserRouter>
   )
