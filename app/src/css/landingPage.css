@@ -253,6 +253,51 @@ color: #000000;
      
 }
 
+footer {
+    border-top: 1px solid rgba(18, 17, 39, 0.12);
+    padding: 40px 20px;
+    margin-top: 40px;
+    color: rgba(18, 17, 39, 0.56);
+
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 180%;
+}
+
+.FooterBlock{
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+
+}
+
+@media (max-width: 1000px) {
+    footer {
+        padding: 30px 10px;
+        margin-top: 20px;
+    }
+    .FooterBlock {
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+     
+}
+
+@media (max-width: 290px) {
+    .FooterBlock {
+      
+      justify-content: center;
+    }  
+}
+
+
+
 
 
 

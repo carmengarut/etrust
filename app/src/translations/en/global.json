@@ -1,0 +1,24 @@
+{
+    "header_web": {
+        "brand_name": "eTrust",
+        "sign_up": "Sign Up",
+        "sign_in": "Sign In",
+        "es": "Spanish",
+        "en": "English"
+    },
+    "landing_page": {
+        "h1": "Build trustworthy agreements",
+        "h2": "Ensure the reliability of the other party and get your agreements fulfilled.",
+        "button_1": "How we do it?",
+        "button_2": "Start Now",
+        "box_1_title": "Understand other party’s reliability",
+        "box_1_content":"Search other parties profile to look at their trust rate. We calculate it based on the perfectage of agreements fulfilled.",
+        "box_2_title": "Ensuring immutability through blockchain technology",
+        "box_2_content": "Once signed by both parts, the agreement will be encrypted and stored in the blockchain, ensuring its immutability.",
+        "box_3_title": "Enforce the fulfillment of your agreements",
+        "box_3_content": "You will evaluate the fullfilment of the other part when the agreement is completed. This feedback will be public, enforcing good behaviour."
+    },
+    "footer": {
+        "contact_details": "Contact +34 617 99 85 94"
+    }
+}

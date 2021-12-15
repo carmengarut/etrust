@@ -47,7 +47,7 @@ const App = () => {
               </Route>
 
               <Route path='/'>
-                <LoginForm />
+                <LandingPage />
               </Route>
             </Switch>
           </>

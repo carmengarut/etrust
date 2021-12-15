@@ -1,20 +1,24 @@
+
 import { Container } from 'react-bootstrap'
 import './css/landingPage.css'
 import headingImage from './public/heading-img.svg'
 import coin from './public/coin.svg'
 import standings from './public/standings.svg'
 import eye from './public/eye.svg'
+import logo from './public/logo-transparent.svg'
+import { useTranslation } from 'react-i18next'
 
 const LandingPage = () => {
+  const { t } = useTranslation('global')
   return (
     <Container>
       <div className='HeadingBlock'>
         <div className='flex-item-left'>
-          <h1 className='H1'>Build trustworthy agreements</h1>
-          <h2 className='H2'>Ensure the reliability of the other party and get your agreements fulfilled.</h2>
+          <h1 className='H1'>{t('landing_page.h1')}</h1>
+          <h2 className='H2'>{t('landing_page.h2')}</h2>
           <div>
-            <button className='ButtonLeft'>How we do it?</button>
-            <button className='ButtonRight'>Start Now</button>
+            <button className='ButtonLeft'>{t('landing_page.button_1')}</button>
+            <button className='ButtonRight'>{t('landing_page.button_2')}</button>
           </div>
         </div>
 
@@ -36,10 +40,10 @@ const LandingPage = () => {
             height='48px'
           />
           <h3 className='BoxTitle'>
-            Understand other party’s reliability
+            {t('landing_page.box_1_title')}
           </h3>
           <div className='BoxText'>
-            Search other parties profile to look at their trust rate. We calculate it based on the perfectage of agreements fulfilled.
+            {t('landing_page.box_1_content')}
           </div>
         </div>
         <div className='Box'>
@@ -50,10 +54,10 @@ const LandingPage = () => {
             height='48px'
           />
           <h3 className='BoxTitle'>
-            Ensuring immutability through blockchain technology
+            {t('landing_page.box_2_title')}
           </h3>
           <div className='BoxText'>
-            Once signed by both parts, the agreement will be encrypted and stored in the blockchain, ensuring its immutability.
+            {t('landing_page.box_2_content')}
           </div>
         </div>
         <div className='Box'>
@@ -64,13 +68,29 @@ const LandingPage = () => {
             height='48px'
           />
           <h3 className='BoxTitle'>
-            Enforce the fulfillment of your agreements
+            {t('landing_page.box_3_title')}
           </h3>
           <div className='BoxText'>
-            You will evaluate the fullfilment of the other part when the agreement is completed. This feedback will be public, enforcing good behaviour.
+            {t('landing_page.box_3_content')}
           </div>
         </div>
       </div>
+      <footer>
+        <div className='FooterBlock'>
+          <div classname='BrandFooter'>
+            <img
+              alt=''
+              src={logo}
+              width='40px'
+              height='40px'
+            />
+            eTrust
+          </div>
+
+          <div className='ContactFooter'>{t('footer.contact_details')}</div>
+        </div>
+
+      </footer>
     </Container>
 
   )

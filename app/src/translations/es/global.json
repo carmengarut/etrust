@@ -1,0 +1,25 @@
+{
+    "header_web": {
+        "brand_name": "eTrust",
+        "sign_up": "Regístrate",
+        "sign_in": "Iniciar Sesión",
+        "es": "Español",
+        "en": "Inglés"
+    },
+    "landing_page": {
+        "h1": "Construye acuerdos fiables",
+        "h2": "Asegura la fiabilidad de la otra parte y consigue que tus contratos se cumplan.",
+        "button_1": "¿Cómo lo hacemos?",
+        "button_2": "Empieza Ahora",
+        "box_1_title": "Entiende la fiabiabilidad de la otra parte",
+        "box_1_content":"Busca el perfil de otras personas para comprobar su porcentaje de fiabilidad. Lo calculamos en base al porcentaje de acuerdos cumplidos.",
+        "box_2_title": "Aseguramos la inmutabilidad a través de la tecnología blockchain",
+        "box_2_content": "Una vez firmado por ambas partes, el acuerdo es encriptado y almacenado en el blockchain, asegurando su inmutabilidad.",
+        "box_3_title": "Haz que tus contratos se cumplan",
+        "box_3_content": "Evaluarás el cumplimiento del contrato por la otra parte cuando este haya terminado. Tu feedback será público, asegurando buena conducta."
+    },
+    "footer": {
+        "contact_details": "Contacto +34 617 99 85 94"
+    }
+    
+}
