@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
@@ -55,8 +56,8 @@ export const DealDetails = ({ deals }) => {
           ? <Button onClick={() => history.push(`/rate/${id}`)}>Submit Rating</Button>
           : deal.signedBy[0].name
             ? deal.signedBy.find(userSigned => userSigned.id === user.id)
-              ? <Card.Text>Signed</Card.Text>
-              : <Button onClick={handleSign}>Sign Now</Button>
+                ? <Card.Text>Signed</Card.Text>
+                : <Button onClick={handleSign}>Sign Now</Button>
             : <Button onClick={handleSign}>Sign Now</Button>}
       </Card.Body>
     </Card>
