@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUrl = '/api/deals'
+const baseUrl = 'https://etrust-backend.herokuapp.com/api/deals'
 
 let token = null
 
@@ -57,12 +57,12 @@ export const addRating = (newObject) => {
       Authorization: token
     }
   }
-  const request = axios.post('/api/ratings/', newObject, config)
+  const request = axios.post('https://etrust-backend.herokuapp.com/api/ratings/', newObject, config)
   return request.then(response => response.data)
 }
 
 export const getAllRatings = () => {
-  const request = axios.get('/api/ratings/')
+  const request = axios.get('https://etrust-backend.herokuapp.com/api/ratings/')
   return request.then(response => response.data)
 }
 
@@ -77,11 +77,11 @@ export const updateTrustRate = (id, trustRate) => {
     trustRate
   }
   console.log(newObject)
-  const request = axios.put(`/api/users/${id}`, newObject, config)
+  const request = axios.put(`https://etrust-backend.herokuapp.com/api/users/${id}`, newObject, config)
   return request.then(response => response.data)
 }
 
 export const getAllUsers = () => {
-  const request = axios.get('/api/users')
+  const request = axios.get('https://etrust-backend.herokuapp.com/api/users')
   return request.then(response => response.data)
 }

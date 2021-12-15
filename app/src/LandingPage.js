@@ -77,7 +77,7 @@ const LandingPage = () => {
       </div>
       <footer>
         <div className='FooterBlock'>
-          <div classname='BrandFooter'>
+          <div>
             <img
               alt=''
               src={logo}
