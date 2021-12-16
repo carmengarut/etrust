@@ -21,7 +21,7 @@ app.use(cors())
 app.use(express.json())
 app.use(logger)
 
-app.use('/public', express.static('public'))
+app.use(express.static('public'))
 
 Sentry.init({
   dsn: 'https://d67d64d4595c432683cc5e9ade2e8a5a@o1037870.ingest.sentry.io/6006005',

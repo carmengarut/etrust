@@ -7,8 +7,10 @@ import standings from './public/standings.svg'
 import eye from './public/eye.svg'
 import logo from './public/logo-transparent.svg'
 import { useTranslation } from 'react-i18next'
+import { useHistory } from 'react-router-dom'
 
 const LandingPage = () => {
+  const history = useHistory()
   const { t } = useTranslation('global')
   return (
     <Container>
@@ -17,8 +19,8 @@ const LandingPage = () => {
           <h1 className='H1'>{t('landing_page.h1')}</h1>
           <h2 className='H2'>{t('landing_page.h2')}</h2>
           <div>
-            <button className='ButtonLeft'>{t('landing_page.button_1')}</button>
-            <button className='ButtonRight'>{t('landing_page.button_2')}</button>
+            <button className='ButtonLeft' onClick={() => { history.push('/register') }}>{t('landing_page.button_1')}</button>
+            <button className='ButtonRight' onClick={() => { history.push('/register') }}>{t('landing_page.button_2')}</button>
           </div>
         </div>
 

@@ -57,13 +57,14 @@ export default function HeaderWeb () {
           <Navbar.Toggle aria-controls='responsive-navbar-nav' />
           <Navbar.Collapse id='responsive-navbar-nav'>
 
-            <button className='SignUpButton' onClick={() => history.push('/register')}>
-              {t('header_web.sign_up')}
-            </button>
-            <button className='SignInButton' onClick={() => history.push('/login')}>
-              {t('header_web.sign_in')}
-            </button>
-
+            <div className='ActionButtons'>
+              <button className='SignUpButton' onClick={() => history.push('/register')}>
+                {t('header_web.sign_up')}
+              </button>
+              <button className='SignInButton' onClick={() => history.push('/login')}>
+                {t('header_web.sign_in')}
+              </button>
+            </div>
           </Navbar.Collapse>
         </div>
       </Container>

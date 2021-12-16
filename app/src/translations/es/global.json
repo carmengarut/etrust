@@ -4,14 +4,14 @@
         "sign_up": "Regístrate",
         "sign_in": "Iniciar Sesión",
         "es": "Español",
-        "en": "Inglés"
+        "en": "English"
     },
     "landing_page": {
         "h1": "Construye acuerdos fiables",
         "h2": "Asegura la fiabilidad de la otra parte y consigue que tus contratos se cumplan.",
         "button_1": "Saber Más",
         "button_2": "Empieza Ahora",
-        "box_1_title": "Entiende la fiabiabilidad de la otra parte",
+        "box_1_title": "Entiende la fiabilidad de la otra parte",
         "box_1_content":"Busca el perfil de otras personas para comprobar su porcentaje de fiabilidad. Lo calculamos en base al porcentaje de acuerdos cumplidos.",
         "box_2_title": "Aseguramos la inmutabilidad a través de la tecnología blockchain",
         "box_2_content": "Una vez firmado por ambas partes, el acuerdo es encriptado y almacenado en el blockchain, asegurando su inmutabilidad.",

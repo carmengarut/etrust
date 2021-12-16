@@ -69,8 +69,11 @@ li {
     cursor:pointer;
   }
 
+.ActionButtons{
+    display: -webkit-flex;
+    display: flex;
 
-
+}
 
 .SignUpButton {
     height: 35px;
@@ -121,5 +124,32 @@ li {
 @media (max-width: 1000px) {
     .FlagDropdown{
         right: 14%;
+    }
+}
+
+@media (max-width: 991px) {
+    .ActionButtons {
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 8%;
+
+        background: #FFFFFF;
+        box-shadow: 0px 20px 50px rgba(18, 17, 39, 0.08);
+        border-radius: 12px;
+    }
+
+    .SignUpButton {
+        margin: 20px 20px 20px 20px;
+    }
+
+    .SignInButton {
+        margin: 0px 20px 20px 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .ActionButtons{
+        right: 3%;
     }
 }

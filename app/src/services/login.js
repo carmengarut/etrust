@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUrl = 'https://etrust-backend.herokuapp.com/api/login/'
+const baseUrl = '/api/login/'
 
 export const login = async credentials => {
   const { data } = await axios.post(baseUrl, credentials)
