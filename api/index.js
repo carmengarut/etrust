@@ -22,6 +22,11 @@ app.use(express.json())
 app.use(logger)
 
 app.use(express.static('public'))
+app.use('/login', express.static('public'))
+app.use('/register', express.static('public'))
+app.use('/deals', express.static('public'))
+app.use('/users', express.static('public'))
+app.use('/profile', express.static('public'))
 
 Sentry.init({
   dsn: 'https://d67d64d4595c432683cc5e9ade2e8a5a@o1037870.ingest.sentry.io/6006005',

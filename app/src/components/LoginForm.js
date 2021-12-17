@@ -1,11 +1,14 @@
 
 import propTypes from 'prop-types'
-import { Form, Button, Container } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
 import { userLogin } from '../reducers/userReducer'
 import Notification from './Notification'
 import { useHistory } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+
+import logo from '../public/blue-logo.png'
+import '../css/loginForm.css'
 
 export default function LoginForm () {
   const [email, setEmail] = useState('')
@@ -13,8 +16,9 @@ export default function LoginForm () {
 
   const dispatch = useDispatch()
   const history = useHistory()
+  const { t } = useTranslation('global')
 
-  const handleLogin = (event) => {
+  const handleLogin = () => {
     dispatch(userLogin({ email, password }))
     setEmail('')
     setPassword('')
@@ -23,42 +27,49 @@ export default function LoginForm () {
   return (
     <>
       <Notification />
-      <Container className='Container'>
+      <div className='LoginComponent'>
 
-        <br />
-        <h2 className='Title'>Login</h2>
+        <img
+          src={logo}
+          width='80'
+          height='80'
+          className='Flag'
+        />
+        <div className='LoginContainer'>
+          <h3 className='LoginTitle'>{t('sign_in.title')}</h3>
 
-        <Form>
-          <Form.Group id='email' className='mb-3'>
-            <Form.Label className='EmailLabel'>Email</Form.Label>
-            <Form.Control
-              className='EmailField'
-              type='email'
-              value={email}
-              name='Email'
-              placeholder='Email'
-              onChange={({ target }) => setEmail(target.value)}
-            />
-          </Form.Group>
+          <form>
+            <div className='LoginFieldGroup'>
+              <label>{t('sign_in.email')}</label>
+              <input
+                className='LoginField'
+                type='email'
+                value={email}
+                name='Email'
+                placeholder={t('sign_in.email')}
+                onChange={({ target }) => setEmail(target.value)}
+              />
+            </div>
 
-          <Form.Group id='password' className='mb-3'>
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type='password'
-              value={password}
-              name='Password'
-              placeholder='Password'
-              onChange={({ target }) => setPassword(target.value)}
-            />
-          </Form.Group>
+            <div className='LoginFieldGroup'>
+              <label>{t('sign_in.password')}</label>
+              <input
+                className='LoginField'
+                type='password'
+                value={password}
+                name='Password'
+                placeholder={t('sign_in.password')}
+                onChange={({ target }) => setPassword(target.value)}
+              />
+            </div>
 
-          <Button onClick={handleLogin} id='form-login-button'>
-            Login
-          </Button>
-          {' '}{' '}Don't have an account? <a onClick={() => history.push('/register')} href='#'>Sign up</a>
-        </Form>
-
-      </Container>
+            <button className='LoginButton' onClick={handleLogin} id='form-login-button'>
+              {t('sign_in.login')}
+            </button>
+            {' '}{' '}{t('sign_in.dont_have_account')}<a onClick={() => history.push('/register')} href=''>{t('sign_in.sign_up')}</a>
+          </form>
+        </div>
+      </div>
     </>
   )
 }

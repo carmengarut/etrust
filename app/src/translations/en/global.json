@@ -20,5 +20,25 @@
     },
     "footer": {
         "contact_details": "Contact +34 617 99 85 94"
+    },
+    "sign_up": {
+        "title": "Let's get started",
+        "name": "Name",
+        "surname": "Surname",
+        "email": "Email",
+        "password": "Password",
+        "terms_and_conditions": "I agree to terms and conditions",
+        "create_account": "Create Account",
+        "have_account": "Have an account? ",
+        "sign_in": "Sign In"
+
+    },
+    "sign_in": {
+        "title": "Log in to your account",
+        "email": "Email",
+        "password": "Password",
+        "login": "Log In",
+        "dont_have_account": "Don't have an account? ",
+        "sign_up": "Sign Up"
     }
 }

@@ -1,10 +1,14 @@
 import propTypes from 'prop-types'
-import { Form, Button, Container } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
 import { userRegister } from '../reducers/userReducer'
 import Notification from './Notification'
-import CropImageModal from './CropImageModal'
+
+import { useHistory } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+
+import logo from '../public/blue-logo.png'
+import '../css/registrationForm.css'
 
 export default function RegistrationForm () {
   const [email, setEmail] = useState('')
@@ -13,13 +17,15 @@ export default function RegistrationForm () {
   const [surname, setSurname] = useState('')
   const [profileImg, setProfileImg] = useState(null)
 
-  const [show, setShow] = useState(false)
+  // const [show, setShow] = useState(false)
 
   const dispatch = useDispatch()
+  const history = useHistory()
+  const { t } = useTranslation('global')
 
-  const handleClick = ({ target }) => {
-    setShow(true)
-  }
+  // const handleClick = ({ target }) => {
+  //   setShow(true)
+  // }
 
   const handleRegister = async () => {
     // const formData = new FormData()
@@ -42,79 +48,107 @@ export default function RegistrationForm () {
   }
 
   return (
-    <Container>
-      <br />
-      <h3>Create your eTrust account</h3>
-      <Notification />
-      <Form>
-        <Form.Group id='name' className='mb-3'>
-          <Form.Label>Name</Form.Label>
-          <Form.Control
-            type='text'
-            value={name}
-            name='Name'
-            placeholder='Name'
-            onChange={({ target }) => setName(target.value)}
-          />
-        </Form.Group>
-        <Form.Group id='surname' className='mb-3'>
-          <Form.Label>Surname</Form.Label>
-          <Form.Control
-            type='text'
-            value={surname}
-            name='Surname'
-            placeholder='Surname'
-            onChange={({ target }) => setSurname(target.value)}
-          />
-        </Form.Group>
-        <Form.Group id='email' className='mb-3'>
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            type='text'
-            value={email}
-            name='Email'
-            placeholder='Email'
-            onChange={({ target }) => setEmail(target.value)}
-          />
-        </Form.Group>
-        <Form.Group id='password' className='mb-3'>
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type='password'
-            value={password}
-            name='Password'
-            placeholder='Password'
-            onChange={({ target }) => setPassword(target.value)}
-          />
-        </Form.Group>
-        <Form.Group id='profileImg' className='mb-3'>
-          <Form.Label>Profile image</Form.Label>
-          <br />
-          {profileImg
-            ? (
-              <>
-                <img src={profileImg} />
+    <div className='LoginComponent'>
+      <img
+        src={logo}
+        width='80'
+        height='80'
+      />
+      <div className='Container'>
+        <h3 className='H3'>{t('sign_up.title')}</h3>
+        <Notification />
+        <form>
+          <div className='Row1'>
+            <div className='FieldGroup'>
+              <label>{t('sign_up.name')}</label>
+              <input
+                className='Field'
+                type='text'
+                value={name}
+                name='Name'
+                placeholder={t('sign_up.name')}
+                onChange={({ target }) => setName(target.value)}
+              />
+            </div>
+            <div className='FieldGroup'>
+              <label>{t('sign_up.surname')}</label>
+              <input
+                className='Field'
+                type='text'
+                value={surname}
+                name='Surname'
+                placeholder={t('sign_up.surname')}
+                onChange={({ target }) => setSurname(target.value)}
+              />
+
+            </div>
+          </div>
+          <div className='Row2'>
+            <div className='FieldGroup'>
+              <label>{t('sign_up.email')}</label>
+              <input
+                className='Field'
+                type='text'
+                value={email}
+                name='Email'
+                placeholder={t('sign_up.email')}
+                onChange={({ target }) => setEmail(target.value)}
+              />
+            </div>
+            <div className='FieldGroup'>
+              <label>{t('sign_up.password')}</label>
+              <input
+                className='Field'
+                type='password'
+                value={password}
+                name='Password'
+                placeholder={t('sign_up.password')}
+                onChange={({ target }) => setPassword(target.value)}
+              />
+            </div>
+          </div>
+          <label class='CheckboxContainer'><span className='Label'>{t('sign_up.terms_and_conditions')}</span>
+            <input type='checkbox' />
+            <span class='Checkbox' />
+          </label>
+          {/* <div className='CheckboxContainer'>
+            <input
+              type='checkbox'
+              name='terms and conditions'
+              required
+            />
+            <span className='Checkbox' />
+            <label>I agree to terms and conditions</label>
+          </div> */}
+          {/* <Form.Group id='profileImg' className='mb-3'>
+            <Form.Label>Profile image (Optional)</Form.Label>
+            <br />
+            {profileImg
+              ? (
+                <>
+                  <img src={profileImg} />
+                  <Button onClick={handleClick} variant='light'>
+                    Cambiar imagen
+                  </Button>
+                </>
+                )
+              : (
                 <Button onClick={handleClick} variant='light'>
-                  Cambiar imagen
+                  Subir imagen
                 </Button>
-              </>
-              )
-            : (
-              <Button onClick={handleClick} variant='light'>
-                Subir imagen
-              </Button>
-              )}
-        </Form.Group>
+                )}
+          </Form.Group> */}
 
-        <Button onClick={handleRegister} id='form-login-button'>
-          Create account
-        </Button>
-        {' '}{' '}Have an account? <a onClick={() => history.push('/login')} href='#'>Sign in</a>
-      </Form>
+          <button className='Button' onClick={handleRegister} id='form-login-button'>
+            {t('sign_up.create_account')}
+          </button>
+          {' '}{' '}{t('sign_up.have_account')}<a onClick={() => history.push('/login')} href=''>{t('sign_up.sign_in')}</a>
+        </form>
 
-      <CropImageModal show={show} setShow={setShow} setProfileImg={setProfileImg} />
+      </div>
+      {/* <CropImageModal show={show} setShow={setShow} setProfileImg={setProfileImg} /> */}
 
-    </Container>
+    </div>
   )
 }
 

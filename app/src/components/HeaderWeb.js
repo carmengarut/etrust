@@ -4,16 +4,31 @@ import '../css/headerWeb.css'
 import logo from '../public/blue-logo.png'
 import spainFlag from '../public/spain-flag.svg'
 import ukFlag from '../public/uk-flag.svg'
+
 import { useTranslation } from 'react-i18next'
 
 export default function HeaderWeb () {
   const [t, i18n] = useTranslation('global')
   const history = useHistory()
 
+  const changeLanguageEn = () => {
+    i18n.changeLanguage('en')
+    window.localStorage.setItem(
+      'language', 'en'
+    )
+  }
+
+  const changeLanguageEs = () => {
+    i18n.changeLanguage('es')
+    window.localStorage.setItem(
+      'language', 'es'
+    )
+  }
+
   return (
     <Navbar collapseOnSelect expand='lg' sticky='top' className='Navbar'>
       <Container>
-        <Navbar.Brand href='/' className='BrandName'>
+        <Navbar.Brand href='' className='BrandName' onClick={() => { history.push('/') }}>
           <img
             alt=''
             src={logo}
@@ -27,12 +42,14 @@ export default function HeaderWeb () {
           <div className='FlagBlock'>
             <img
               alt=''
-              src={spainFlag}
+              src={i18n.language === 'es'
+                ? spainFlag
+                : ukFlag}
               width='30'
               height='30'
             />
             <div className='FlagDropdown'>
-              <li onClick={() => { i18n.changeLanguage('en') }}>
+              <li onClick={changeLanguageEn}>
                 <img
                   alt=''
                   src={ukFlag}
@@ -42,7 +59,7 @@ export default function HeaderWeb () {
                 /> {' '} {' '}
                 {t('header_web.en')}
               </li>
-              <li className='LastLanguage' onClick={() => { i18n.changeLanguage('es') }}>
+              <li className='LastLanguage' onClick={changeLanguageEs}>
                 <img
                   alt=''
                   src={spainFlag}

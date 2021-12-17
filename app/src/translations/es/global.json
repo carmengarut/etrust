@@ -20,6 +20,26 @@
     },
     "footer": {
         "contact_details": "Contacto +34 617 99 85 94"
+    },
+    "sign_up": {
+        "title": "Vamos a empezar",
+        "name": "Nombre",
+        "surname": "Apellidos",
+        "email": "Email",
+        "password": "Contraseña",
+        "terms_and_conditions": "Acepto los términos y condiciones",
+        "create_account": "Crear Cuenta",
+        "have_account": "¿Ya tienes una cuenta? ",
+        "sign_in": "Iniciar sesión"
+
+    },
+    "sign_in": {
+        "title": "Inicia sesión en tu cuenta",
+        "email": "Email",
+        "password": "Contraseña",
+        "login": "Iniciar Sesión",
+        "dont_have_account": "¿No tienes cuenta? ",
+        "sign_up": "Regístrate"
     }
     
 }
