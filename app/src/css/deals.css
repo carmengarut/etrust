@@ -1,0 +1,300 @@
+.DealsContainer { 
+    padding: 0px 30px;
+}
+.DealsTitle {
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+
+    margin: 10px;
+}
+.Title {
+    margin-left: 10px;
+    margin-bottom: 0px;
+
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 21px;
+
+    color: #283252;
+}
+
+.ButtonContainer {
+    display: -webkit-flex;
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+.Button {
+    height: 40px;
+    width: 150px;
+
+    padding: 6px 18px;
+    border: none;
+    text-align: center;
+
+
+    background: #4E8AF4;
+    border-radius: 4.32365px;
+    
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+
+    color: #FFFFFF;
+    
+}
+
+.TableHeader {
+    display: -webkit-flex;
+    display: flex;
+
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 19px;
+    margin-bottom: 20px;
+
+    color: #82868C;
+}
+
+.ColumnTitleDeal {
+    margin: 0px 20px 0px 50px;
+    width: 35%;
+}
+
+.ColumnTitle {
+    margin: 0 20px 0 0px;
+    width: 50%;
+}
+
+
+
+.BatchesTitleContainer, .Columns2TitleContainer {
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+
+    width: 30%;
+}
+
+.TableRow {
+
+    display: -webkit-flex;
+    display: flex;
+    background: #FFFFFF;
+    align-items: center;
+
+    box-shadow: 0px 7px 20px rgba(40, 41, 61, 0.08);
+    border-radius: 8px;
+    height: 85px;
+    padding: 40px 0px;
+    margin: 10px 0px;
+}
+
+.Avatar { 
+    background: #FFFFFF;
+    margin-right: 5px;
+}
+
+.ColumnMemberTitle {
+
+    margin: 0 20px 0 50px;
+
+    width: 35%;
+
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 19px;
+    /* identical to box height */
+
+
+    /* Grey/500 */
+
+    color: #3A3C40;
+    background: #FFFFFF;
+}
+
+
+.ColumnsContainer1 {
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+
+    width: 30%;
+    background: #FFFFFF;
+
+}
+
+.ColumnMember {
+    width: 50%;
+    margin: 0px 20px 0px 0px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+    /* identical to box height */
+
+
+    /* Grey/400 */
+
+    color: #82868C;
+    background: #FFFFFF;
+
+}
+
+.ColumnsContainer2 {
+    display: -webkit-flex;
+    display: flex;
+    background: #FFFFFF;
+    align-items: center;
+    width: 30%;
+}
+
+.ColumnSignedContainer, .ColumnStatusContainer {
+    background: #FFFFFF;
+    width: 50%;
+    margin: 0 20px 0 0;
+}
+
+.ColumnSigned {
+
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    width: fit-content;
+
+
+    color: #FFFFFF;
+
+    padding: 4.5px 17px;
+
+    background: #2CC5BD;
+    border-radius: 20px;
+
+}
+
+.ColumnStatus {
+    margin: 0 0px 0 0px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    width: fit-content;
+
+    /* identical to box height */
+
+
+    /* Grey/400 */
+    color: #FFFFFF;
+
+    padding: 4.5px 17px;
+    /* Green / 500 */
+
+    background: #2CC5BD;
+    border-radius: 20px;
+
+}
+
+@media (max-width: 800px) {
+    .DealsTitle {
+        margin-top: 0px;
+    }
+    .TableHeader { 
+        display: none;
+    }
+    .TableRow { 
+        flex-direction: column;
+        align-items: flex-start;
+        height: 160px;
+        padding: 30px;
+        margin-top: 0px;
+    }
+
+    .ColumnsContainer1{
+        display: -webkit-flex;
+        display: flex;
+        flex-direction: column;
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        width: 40%;
+
+    }
+    .ColumnMemberTitle {
+        width: 100%;
+        margin-left: 0px;
+    }
+
+    .ColumnMember {
+        width: 100%;
+        margin-left: 0px;
+        margin-top: 20px;
+    }
+
+    /* .ColumnStatusContainer {
+        position: relative;
+        bottom: 140px;
+        left: 260px;
+        width: 50px;
+    }
+
+    .ColumnSignedContainer {
+        position: relative;
+        left: 260px;
+        width: 50px;
+    } */
+
+    .ColumnsContainer2 {
+        display: -webkit-flex;
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: flex-end;
+        background: #FFFFFF;
+        position: relative;
+        left: 75%;
+        bottom: 105px;
+    }
+
+    .ColumnSignedContainer, .ColumnStatusContainer {
+        width: 80px;
+        display: -webkit-flex;
+        display: flex;
+        justify-content: right;
+        
+    }
+
+    .ColumnSignedContainer {
+        margin-top: 55px;
+    }
+
+    .DealsContainer {
+        margin-top: 70px;
+        padding: 0px;
+    }
+}
+
+@media (max-width: 325px) {
+
+    .TableRow { 
+        padding: 20px 20px;
+        height: 140px;
+
+    }
+
+    .ColumnsContainer2 {
+        left: 80%;
+    }
+
+    
+
+}

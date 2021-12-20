@@ -23,7 +23,6 @@ const LandingPage = () => {
             <button className='ButtonRight' onClick={() => { history.push('/register') }}>{t('landing_page.button_2')}</button>
           </div>
         </div>
-
         <img
           alt=''
           src={headingImage}

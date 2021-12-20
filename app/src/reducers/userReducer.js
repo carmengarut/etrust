@@ -20,6 +20,7 @@ export const userReducer = (state = initialState, action) => {
 export const userLogin = (credentials) => {
   return async (dispatch) => {
     try {
+      console.log('entra reducer')
       const userToSet = await login(credentials)
       window.localStorage.setItem(
         'loggedNoteAppUser', JSON.stringify(userToSet)

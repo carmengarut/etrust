@@ -1,70 +1,95 @@
-import { Link } from 'react-router-dom'
-import { Navbar, Container, Nav } from 'react-bootstrap'
-import { userLogout } from '../reducers/userReducer'
-import { useSelector, useDispatch } from 'react-redux'
-import logo from '../public/white-logo-grande.png'
+import { useHistory } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+// import { userLogout } from '../reducers/userReducer'
+// import { useSelector, useDispatch } from 'react-redux'
+import logo from '../public/blue-logo.png'
+import '../css/header.css'
+import contractsIcon from '../public/contracts-icon.svg'
+import usersIcon from '../public/users-icon.svg'
+import profileIcon from '../public/profile-icon.svg'
+import menuIcon from '../public/menu-icon.svg'
 
 export default function Header () {
-  const user = useSelector(state => state.user)
+  // const user = useSelector(state => state.user)
 
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
+  const history = useHistory()
+  const { t } = useTranslation('global')
 
   return (
-    <Navbar collapseOnSelect expand='lg' sticky='top' bg='primary' variant='dark'>
-      <Container>
-        <Navbar.Brand href='/'>
-          <img
-            alt=''
-            src={logo}
-            width='30'
-            height='30'
-            className='d-inline-block align-top'
-          />{' '}
-          eTrust
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls='responsive-navbar-nav' />
-        <Navbar.Collapse id='responsive-navbar-nav'>
-          <Nav className='me-auto'>
-            <Nav.Link href='#' as='span'>
-              <Link to='/deals' style={{ color: '#FFFFFF' }}>
-                Deals
-              </Link>
-            </Nav.Link>
-            <Nav.Link href='#' as='span'>
-              <Link to='/users' style={{ color: '#FFFFFF' }}>
-                Users
-              </Link>
-            </Nav.Link>
-            <Nav.Link href='#' as='span'>
-              <Link to='/profile' style={{ color: '#FFFFFF' }}>
-                My Profile
-              </Link>
-            </Nav.Link>
-          </Nav>
-
-          {
+    <header className='Header'>
+      <img
+        alt=''
+        src={logo}
+        width='45'
+        height='45'
+        onClick={() => { history.push('/') }}
+        className='HeaderLogo'
+      />{' '}
+      <div className='Block'>
+        <img
+          alt=''
+          src={menuIcon}
+          width='30'
+          height='30'
+          className='MenuButton'
+        />
+        <div className='ToggleSection'>
+          <nav className='NavigationMenu'>
+            <div className='Section' onClick={() => { history.push('/deals') }}>
+              <img
+                alt=''
+                src={contractsIcon}
+                width='30'
+                height='30'
+                className='SectionIcon'
+              />
+              <div className='SectionTitle'>{t('header.agreements')}</div>
+            </div>
+            <div className='Section' onClick={() => { history.push('/users') }}>
+              <img
+                alt=''
+                src={usersIcon}
+                width='30'
+                height='30'
+                className='SectionIcon'
+              />
+              <div className='SectionTitle'>{t('header.users')}</div>
+            </div>
+            {/* <Link to='/users'>
+              Users
+            </Link>
+            <Link to='/profile'>
+              My Profile
+            </Link> */}
+          </nav>
+          {/* {
               user.email
                 ? (
-
-                  <Navbar.Text>
+                  <div>
                     Signed in as: {user.name} <a onClick={() => { dispatch(userLogout()) }} variant='link' style={{ color: '#FFFFFF' }} href='#'>Logout</a>
-                  </Navbar.Text>
-
+                  </div>
                   )
                 : (
                   <>
-                    <Nav.Link href='#' as='span'>
-                      <Link to='/login' style={{ color: '#FFFFFF' }}>Login</Link>
-                    </Nav.Link>
-                    <Nav.Link href='#' as='span'>
-                      <Link to='/register' style={{ color: '#FFFFFF' }}>Register</Link>
-                    </Nav.Link>
+                    <Link to='/login'>Login</Link>
+                    <Link to='/register'>Register</Link>
                   </>
                   )
-            }
-        </Navbar.Collapse>
+            } */}
 
-      </Container>
-    </Navbar>
+          <div className='ProfileSection' onClick={() => { history.push('/profile') }}>
+            <img
+              alt=''
+              src={profileIcon}
+              width='40'
+              height='40'
+              className='SectionIcon'
+            />
+            <div className='SectionTitle'>{t('header.profile')}</div>
+          </div>
+        </div>
+      </div>
+    </header>
   )
 }

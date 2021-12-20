@@ -40,6 +40,20 @@
         "login": "Iniciar Sesión",
         "dont_have_account": "¿No tienes cuenta? ",
         "sign_up": "Regístrate"
+    },
+    "agreements_page": {
+        "agreements": "Contratos",
+        "new_deal": "Nuevo Contrato",
+        "title": "Título",
+        "user": "Usuario",
+        "creation_date": "Fecha de Creación",
+        "signed": "Firmado",
+        "status": "Estado"
+    },
+    "header": {
+        "agreements": "Contratos",
+        "users": "Usuarios",
+        "profile": "Perfil"   
     }
     
 }

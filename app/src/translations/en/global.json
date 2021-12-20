@@ -40,5 +40,19 @@
         "login": "Log In",
         "dont_have_account": "Don't have an account? ",
         "sign_up": "Sign Up"
+    },
+    "agreements_page": {
+        "agreements": "Contracts",
+        "new_deal": "New Contract",
+        "title": "Title",
+        "user": "User",
+        "creation_date": "Creation Date",
+        "signed": "Signed",
+        "status": "Status"
+    },
+    "header": {
+        "agreements": "Contracts",
+        "users": "Users",
+        "profile": "Profile"   
     }
 }

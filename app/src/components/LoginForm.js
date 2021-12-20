@@ -18,7 +18,8 @@ export default function LoginForm () {
   const history = useHistory()
   const { t } = useTranslation('global')
 
-  const handleLogin = () => {
+  const handleLogin = (event) => {
+    event.preventDefault()
     dispatch(userLogin({ email, password }))
     setEmail('')
     setPassword('')
