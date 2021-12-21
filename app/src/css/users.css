@@ -1,5 +1,5 @@
 .UsersContainer { 
-    padding: 0px 30px;
+    padding: 20px 100px;
 }
 
 .UsersTitle {
@@ -97,7 +97,8 @@
 
 @media (max-width: 800px) {
     .UsersContainer { 
-        padding: 0px 10px;
+        padding: 80px 20px 40px 20px;  
+       
     }
 
     .Name {

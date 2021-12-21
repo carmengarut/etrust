@@ -80,6 +80,10 @@ export default function Header () {
 
           <div className='ProfileSection' onClick={() => { history.push('/profile') }}>
             <img
+              style={{
+                resizeMode: 'contain',
+                borderRadius: '50%'
+              }}
               alt=''
               src={user.profileImg || profileIcon}
               width='40'

@@ -1,5 +1,6 @@
 .DealsContainer { 
-    padding: 0px 30px;
+    padding: 20px 100px;
+
 }
 .DealsTitle {
     display: -webkit-flex;
@@ -135,7 +136,7 @@
 
 .ColumnMember {
     width: 50%;
-    margin: 0px 20px 0px 0px;
+    margin: 0px 5px 0px 0px;
     font-family: Poppins;
     font-style: normal;
     font-weight: 500;
@@ -162,7 +163,7 @@
 .ColumnSignedContainer, .ColumnStatusContainer {
     background: #FFFFFF;
     width: 50%;
-    margin: 0 20px 0 0;
+    margin: 0;
 }
 
 .ColumnSigned {
@@ -207,10 +208,17 @@
 
 }
 
+@media (max-width: 1000px) {
+    .DealsContainer {
+        padding: 20px 90px;
+        margin-top: 70px;
+        margin: 0;
+    }
+}
+
 @media (max-width: 800px) {
     .DealsContainer {
-        margin-top: 70px;
-        padding: 0px;
+        padding: 80px 20px 40px 20px;  
     }
     
     .DealsTitle {
@@ -267,12 +275,13 @@
         align-items: flex-end;
         background: #FFFFFF;
         position: relative;
-        left: 75%;
+        left: 60%;
+        width: 40%;
         bottom: 105px;
     }
 
     .ColumnSignedContainer, .ColumnStatusContainer {
-        width: 80px;
+        width: fit-content;
         display: -webkit-flex;
         display: flex;
         justify-content: right;
@@ -286,6 +295,10 @@
 
 @media (max-width: 325px) {
 
+    .DealsContainer {
+        padding: 90px 10px 40px 10px;  
+    }
+
     .TableRow { 
         padding: 20px 20px;
         height: 140px;
@@ -293,7 +306,8 @@
     }
 
     .ColumnsContainer2 {
-        left: 80%;
+        left: 50%;
+        width: 50%;
     }
 
     

@@ -1,5 +1,3 @@
-
-import { Container } from 'react-bootstrap'
 import './css/landingPage.css'
 import headingImage from './public/heading-img.svg'
 import coin from './public/coin.svg'
@@ -13,7 +11,7 @@ const LandingPage = () => {
   const history = useHistory()
   const { t } = useTranslation('global')
   return (
-    <Container>
+    <div className='LandingPageContainer'>
       <div className='HeadingBlock'>
         <div className='flex-item-left'>
           <h1 className='H1'>{t('landing_page.h1')}</h1>
@@ -92,7 +90,7 @@ const LandingPage = () => {
         </div>
 
       </footer>
-    </Container>
+    </div>
 
   )
 }
