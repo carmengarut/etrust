@@ -1,8 +1,10 @@
 import { Container, Card, Stack, Button, Badge } from 'react-bootstrap'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { userLogout } from './reducers/userReducer'
 
 const Profile = () => {
   const user = useSelector(state => state.user)
+  const dispatch = useDispatch()
   return (
     <Container>
       <h1>Profile</h1>
@@ -28,6 +30,7 @@ const Profile = () => {
           </Stack>
         </Card.Body>
       </Card>
+      <button onClick={() => { dispatch(userLogout()) }}>Logout</button>
     </Container>
   )
 }

@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Container, Card, Stack, Badge, Form } from 'react-bootstrap'
 import { usersInit } from './reducers/usersReducers'
+import './css/users.css'
+
+import titleIcon from './public/deals-icon.svg'
+import avatar from './public/avatar.svg'
 
 export default function Users () {
   const users = useSelector(state => state.users)
@@ -14,42 +17,47 @@ export default function Users () {
   }, [])
 
   return (
-    <Container>
-      <h1>Users</h1>
-      <br />
-      <Form.Group>
-        <Stack direction='horizontal' gap={2}>
-          <Form.Control onChange={({ target }) => { setSearch(target.value) }} value={search} className='me-auto' placeholder='Search...' />
-        </Stack>
-      </Form.Group>
-      <br />
+    <div className='UsersContainer'>
+      <div className='DealsTitle'>
+        <img
+          alt=''
+          src={titleIcon}
+          width='30px'
+          height='30px'
+        />
+        <h1 className='Title'>Users</h1>
+      </div>
+
+      <input
+        className='SearchField'
+        type='text'
+        value={search}
+        name='Search'
+        placeholder='Search'
+        onChange={({ target }) => { setSearch(target.value) }}
+      />
+
       {!users[0]
         ? <div />
         : users.filter(user => {
           const fullname = user.name + ' ' + user.surname
           return fullname.toLowerCase().includes(search.toLowerCase())
         }).map(user => (
-          <Card key={user.id}>
-            <Card.Body>
-              <Stack direction='horizontal' gap={2}>
-                <img
-                  style={{
-                    width: '150px',
-                    height: '150px',
-                    resizeMode: 'contain'
-                  }}
-                  src={user.profileImg}
-                  alt={user.name}
-                />
-                <div>
-                  <Card.Title>{user.name} {user.surname}
-                    {' '}<Badge bg='info'>{user.trustRate} % trust</Badge>
-                  </Card.Title>
-                  <Card.Text>Email: {user.email}</Card.Text>
-                </div>
-              </Stack>
-            </Card.Body>
-          </Card>))}
-    </Container>
+          <div key={user.id} className='TableRow'>
+            <img
+              style={{
+                width: '60px',
+                height: '60px',
+                resizeMode: 'contain',
+                borderRadius: '50%'
+              }}
+              src={user.profileImg || avatar}
+              alt={user.name}
+            />
+            <div className='Name'>{user.name} {user.surname}</div>
+            <div className='TrustRate'>{user.trustRate} % trust</div>
+
+          </div>))}
+    </div>
   )
 }

@@ -13,6 +13,11 @@
     box-shadow: 0px 7px 20px rgba(40, 41, 61, 0.08);
     border-radius: 12px;
 
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
 }
 
 .H3 {
@@ -37,7 +42,7 @@ color: #121625;
 .Row2 {
     display: -webkit-flex;
     display: flex;
-    margin-top: 20px;
+    margin: 20px 0 30px 0;
 }
 
 .FieldGroup {
@@ -148,10 +153,11 @@ background-color: #4E8AF4;
     transform: rotate(45deg);
   }
 
-  .Button {
+  .CreateAccountButton {
     width: 96%;
     margin: 10px;
     margin-bottom: 30px;
+    
 
     padding: 10px 20px;
     

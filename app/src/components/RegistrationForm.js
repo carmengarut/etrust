@@ -107,9 +107,9 @@ export default function RegistrationForm () {
               />
             </div>
           </div>
-          <label class='CheckboxContainer'><span className='Label'>{t('sign_up.terms_and_conditions')}</span>
+          <label className='CheckboxContainer'><span className='Label'>{t('sign_up.terms_and_conditions')}</span>
             <input type='checkbox' />
-            <span class='Checkbox' />
+            <span className='Checkbox' />
           </label>
           {/* <div className='CheckboxContainer'>
             <input
@@ -139,10 +139,12 @@ export default function RegistrationForm () {
                 )}
           </Form.Group> */}
 
-          <button className='Button' onClick={handleRegister} id='form-login-button'>
+          <button className='CreateAccountButton' onClick={handleRegister} id='form-login-button'>
             {t('sign_up.create_account')}
           </button>
-          {' '}{' '}{t('sign_up.have_account')}<a onClick={() => history.push('/login')} href=''>{t('sign_up.sign_in')}</a>
+
+          {t('sign_up.have_account')}<a onClick={() => history.push('/login')} href=''>{t('sign_up.sign_in')}</a>
+
         </form>
 
       </div>
