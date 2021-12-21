@@ -24,6 +24,7 @@
     display: -webkit-flex;
     display: flex;
     justify-content: flex-end;
+    margin-bottom: 25px;
 
 }
 
@@ -207,6 +208,11 @@
 }
 
 @media (max-width: 800px) {
+    .DealsContainer {
+        margin-top: 70px;
+        padding: 0px;
+    }
+    
     .DealsTitle {
         margin-top: 0px;
     }
@@ -275,11 +281,6 @@
 
     .ColumnSignedContainer {
         margin-top: 55px;
-    }
-
-    .DealsContainer {
-        margin-top: 70px;
-        padding: 0px;
     }
 }
 

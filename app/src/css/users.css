@@ -45,7 +45,7 @@
     
 }
 
-.TableRow {
+.UsersTableRow {
 
     display: -webkit-flex;
     display: flex;
@@ -61,6 +61,10 @@
 }
 
 .Name {
+
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
     margin: 0 10px 0 20px;
 
     font-family: Poppins;
@@ -83,9 +87,27 @@
     color: #FFFFFF;
 
     padding: 4.5px 17px;
+    margin-left: 10px;
 
     background: #2CC5BD;
     border-radius: 20px;
 
 }
 
+
+@media (max-width: 800px) {
+    .UsersContainer { 
+        padding: 0px 10px;
+    }
+
+    .Name {
+        flex-direction: column;
+        align-items: flex-start;
+
+    }
+
+    .TrustRate { 
+        margin-top: 10px;
+        margin-left: 0;
+    }
+}

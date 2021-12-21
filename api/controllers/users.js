@@ -35,6 +35,12 @@ usersRouter.get('/', async (request, response) => {
   response.json(users)
 })
 
+usersRouter.get('/:id', async (request, response) => {
+  const { id } = request.params
+  const user = await User.findById(id)
+  response.json(user)
+})
+
 // usersRouter.post('/', upload.single('profileImg'), async (request, response) => {
 usersRouter.post('/', async (request, response) => {
   try {

@@ -54,6 +54,21 @@
         "agreements": "Contratos",
         "users": "Usuarios",
         "profile": "Perfil"   
+    },
+    "users_page": {
+        "users": "Usuarios",
+        "search": "Buscar usuario...",
+        "trust_rate": "% confianza"
+    },
+    "profile_page": {
+        "profile": "Perfil",
+        "edit_your_account_info": "Edita la información de tu cuenta:",
+        "name": "Nombre",
+        "surname": "Apellidos",
+        "email": "Email",
+        "logout": "Cerrar Sesión",
+        "save_changes": "Guardar Cambios"
+        
     }
     
 }

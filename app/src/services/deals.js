@@ -85,3 +85,18 @@ export const getAllUsers = () => {
   const request = axios.get('/api/users')
   return request.then(response => response.data)
 }
+
+export const getUser = (id) => {
+  const request = axios.get(`/api/users/${id}`)
+  return request.then(response => response.data)
+}
+
+export const editUser = (id, user) => {
+  const config = {
+    headers: {
+      Authorization: token
+    }
+  }
+  const request = axios.put(`/api/users/${id}`, user, config)
+  return request.then(response => response.data)
+}

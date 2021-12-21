@@ -1,7 +1,7 @@
 import { useHistory } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 // import { userLogout } from '../reducers/userReducer'
-// import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import logo from '../public/blue-logo.png'
 import '../css/header.css'
 import contractsIcon from '../public/contracts-icon.svg'
@@ -10,7 +10,7 @@ import profileIcon from '../public/profile-icon.svg'
 import menuIcon from '../public/menu-icon.svg'
 
 export default function Header () {
-  // const user = useSelector(state => state.user)
+  const user = useSelector(state => state.user)
 
   // const dispatch = useDispatch()
   const history = useHistory()
@@ -81,10 +81,10 @@ export default function Header () {
           <div className='ProfileSection' onClick={() => { history.push('/profile') }}>
             <img
               alt=''
-              src={profileIcon}
+              src={user.profileImg || profileIcon}
               width='40'
               height='40'
-              className='SectionIcon'
+              className='ProfileIcon'
             />
             <div className='SectionTitle'>{t('header.profile')}</div>
           </div>
