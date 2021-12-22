@@ -3,7 +3,6 @@ const usersRouter = require('express').Router()
 const User = require('../models/User')
 const jwt = require('jsonwebtoken')
 const userExtractor = require('../middleware/userExtractor')
-const isUser = require('../middleware/isUser')
 
 // const multer = require('multer')
 // const  { v4: uuidv4 } = require('uuid')
