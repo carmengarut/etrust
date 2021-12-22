@@ -1,6 +1,6 @@
 import { getAllUsers } from '../services/deals'
 
-const initialState = {}
+const initialState = []
 
 export const usersReducer = (state = initialState, action) => {
   if (action.type === '@users/init') {

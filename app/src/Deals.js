@@ -59,7 +59,6 @@ function Deals () {
           deal={deal}
         />
       )}
-
     </div>
   )
 }

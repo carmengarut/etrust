@@ -73,15 +73,20 @@ export const dealInit = () => {
 
 export const addNewDeal = deal => {
   return async (dispatch) => {
-    const newDeal = await create(deal)
-    dispatch(setNotification('Deal successfully created.'))
-    setTimeout(() => {
-      dispatch(removeNotification())
-    }, 5000)
-    dispatch({
-      type: '@deals/created',
-      payload: newDeal
-    })
+    try {
+      const newDeal = await create(deal)
+      dispatch(setNotification('Deal successfully created.'))
+      setTimeout(() => {
+        dispatch(removeNotification())
+      }, 5000)
+      dispatch({
+        type: '@deals/created',
+        payload: newDeal
+      })
+    } catch (e) {
+      console.error(e)
+      console.error(e.message)
+    }
   }
 }
 

@@ -98,7 +98,7 @@ dealsRouter.post('/', userExtractor, async (request, response, next) => {
   const user = await User.findById(userId)
   if (!user) {
     return response.status(400).json({
-      error: 'User does´t exist, please login and try again'
+      error: 'User does´t exist'
     })
   }
 

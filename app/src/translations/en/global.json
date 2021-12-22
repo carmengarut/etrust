@@ -67,7 +67,17 @@
         "surname": "Surname",
         "email": "Email",
         "logout": "Logout",
-        "save_changes": "Save Changes"
-        
+        "save_changes": "Save Changes"  
+    },
+    "create_contract_page": {
+        "contracts": "Contracts",
+        "title": "Create a new contract:",
+        "contract_title": "Contract Title",
+        "contract_title_placeholder": "Introduce the title of the contract",
+        "content": "Contract Content (Describe all the details and clauses of the contract)",
+        "content_placeholder": "Introduce the content of the contract",
+        "email": "Invite member to sign the contract",
+        "email_placeholder": "Introduce the email of the person you want to send the contract",
+        "save": "Create Contract"
     }
 }

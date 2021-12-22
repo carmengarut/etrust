@@ -39,7 +39,7 @@ export default function LoginForm () {
         <div className='LoginContainer'>
           <h3 className='LoginTitle'>{t('sign_in.title')}</h3>
 
-          <form>
+          <form onSubmit={handleLogin}>
             <div className='LoginFieldGroup'>
               <label>{t('sign_in.email')}</label>
               <input
@@ -49,6 +49,7 @@ export default function LoginForm () {
                 name='Email'
                 placeholder={t('sign_in.email')}
                 onChange={({ target }) => setEmail(target.value)}
+                required
               />
             </div>
 
@@ -61,10 +62,11 @@ export default function LoginForm () {
                 name='Password'
                 placeholder={t('sign_in.password')}
                 onChange={({ target }) => setPassword(target.value)}
+                required
               />
             </div>
 
-            <button className='LoginButton' onClick={handleLogin} id='form-login-button'>
+            <button className='LoginButton' id='form-login-button'>
               {t('sign_in.login')}
             </button>
             {' '}{' '}{t('sign_in.dont_have_account')}<a onClick={() => history.push('/register')} href=''>{t('sign_in.sign_up')}</a>

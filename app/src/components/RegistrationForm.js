@@ -27,7 +27,8 @@ export default function RegistrationForm () {
   //   setShow(true)
   // }
 
-  const handleRegister = async () => {
+  const handleRegister = (event) => {
+    event.preventDefault()
     // const formData = new FormData()
     // formData.append('email', email)
     // formData.append('name', name)
@@ -57,7 +58,7 @@ export default function RegistrationForm () {
       <div className='Container'>
         <h3 className='H3'>{t('sign_up.title')}</h3>
         <Notification />
-        <form>
+        <form onSubmit={handleRegister}>
           <div className='Row1'>
             <div className='FieldGroup'>
               <label>{t('sign_up.name')}</label>
@@ -68,6 +69,7 @@ export default function RegistrationForm () {
                 name='Name'
                 placeholder={t('sign_up.name')}
                 onChange={({ target }) => setName(target.value)}
+                required
               />
             </div>
             <div className='FieldGroup'>
@@ -79,6 +81,7 @@ export default function RegistrationForm () {
                 name='Surname'
                 placeholder={t('sign_up.surname')}
                 onChange={({ target }) => setSurname(target.value)}
+                required
               />
 
             </div>
@@ -88,11 +91,12 @@ export default function RegistrationForm () {
               <label>{t('sign_up.email')}</label>
               <input
                 className='Field'
-                type='text'
+                type='email'
                 value={email}
                 name='Email'
                 placeholder={t('sign_up.email')}
                 onChange={({ target }) => setEmail(target.value)}
+                required
               />
             </div>
             <div className='FieldGroup'>
@@ -104,11 +108,12 @@ export default function RegistrationForm () {
                 name='Password'
                 placeholder={t('sign_up.password')}
                 onChange={({ target }) => setPassword(target.value)}
+                required
               />
             </div>
           </div>
           <label className='CheckboxContainer'><span className='Label'>{t('sign_up.terms_and_conditions')}</span>
-            <input type='checkbox' />
+            <input type='checkbox' required />
             <span className='Checkbox' />
           </label>
           {/* <div className='CheckboxContainer'>
@@ -139,7 +144,7 @@ export default function RegistrationForm () {
                 )}
           </Form.Group> */}
 
-          <button className='CreateAccountButton' onClick={handleRegister} id='form-login-button'>
+          <button className='CreateAccountButton' id='form-login-button' type='submit'>
             {t('sign_up.create_account')}
           </button>
 

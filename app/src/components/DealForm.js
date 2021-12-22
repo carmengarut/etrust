@@ -1,69 +1,118 @@
-import React, { useState } from 'react'
-import { Button, Container, Form } from 'react-bootstrap'
+import React, { useEffect } from 'react'
 import { addNewDeal } from '../reducers/dealReducer'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import Modal from './Modal'
+import { showModal } from '../reducers/modalReducer'
+import { usersInit } from '../reducers/usersReducers'
+
+import inviteUserIcon from '../public/invite-user-icon.svg'
+import dealsIcon from '../public/deals-icon.svg'
+
+import '../css/dealForm.css'
+import useForm from '../hooks/useForm'
 
 export default function DealForm () {
-  const [title, setTitle] = useState('')
-  const [content, setContent] = useState('')
-  const [email, setEmail] = useState('')
+  const users = useSelector(state => state.users)
+
+  const { handleChange, values, errors } = useForm()
 
   const dispatch = useDispatch()
   const history = useHistory()
+  const { t } = useTranslation('global')
 
-  const handleSubmit = (event) => {
+  useEffect(() => {
+    dispatch(usersInit())
+  }, [])
+
+  const handleSubmit = async (event) => {
     event.preventDefault()
 
-    const dealObject = {
-      title,
-      content,
-      memberEmail: email
-    }
+    const isUser = users.some(user => user.email === values.email)
 
-    dispatch(addNewDeal(dealObject))
-    setTitle('')
-    setContent('')
-    setEmail('')
-    history.push('/deals')
+    if (isUser) {
+      const dealObject = {
+        title: values.title,
+        content: values.content,
+        memberEmail: values.email
+      }
+
+      dispatch(addNewDeal(dealObject))
+
+      history.push('/deals')
+    } else {
+      dispatch(showModal())
+    }
   }
 
   return (
-    <Container>
-      <h3>Create a new deal</h3>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group className='mb-3'>
-          <Form.Label>Title</Form.Label>
-          <Form.Control
-            type='text'
-            placeholder='Introduce the title of your deal'
-            onChange={({ target }) => setTitle(target.value)}
-            value={title}
-          />
-        </Form.Group>
-        <Form.Group className='mb-3'>
-          <Form.Label>Content</Form.Label>
-          <Form.Control
-            as='textarea'
-            rows={3}
-            placeholder='Introduce the content of your deal'
-            onChange={({ target }) => setContent(target.value)}
-            value={content}
-          />
-        </Form.Group>
-        <Form.Group className='mb-3'>
-          <Form.Label>Invite member to sign the deal</Form.Label>
-          <Form.Control
-            type='email'
-            placeholder='Introduce the email of the member'
-            onChange={({ target }) => setEmail(target.value)}
-            value={email}
-          />
-        </Form.Group>
-        <Button type='submit'>
-          Save
-        </Button>
-      </Form>
-    </Container>
+    <div className='DealsFormContainer'>
+      <div className='DealsFormTitle'>
+        <img
+          alt=''
+          src={dealsIcon}
+          width='30px'
+          height='30px'
+        />
+        <h1 className='Title'>{t('create_contract_page.contracts')}</h1>
+      </div>
+      <div className='DealsFormCard'>
+        <div>{t('create_contract_page.title')}</div>
+        <form onSubmit={handleSubmit} className='DealsFormForm'>
+          <div className='DealsFormFieldGroup'>
+            <label>{t('create_contract_page.contract_title')}</label>
+            <input
+              className='DealsFormField'
+              type='text'
+              name='title'
+              placeholder={t('create_contract_page.contract_title_placeholder')}
+              onChange={handleChange}
+              required
+            />
+            {errors.title && <span>{errors.title}</span>}
+          </div>
+
+          <div className='DealsFormFieldGroup'>
+            <label>{t('create_contract_page.content')}</label>
+            <textarea
+              className='DealsFormTextarea'
+              name='content'
+              placeholder={t('create_contract_page.content_placeholder')}
+              onChange={handleChange}
+              required
+            />
+            {errors.content && <span>{errors.content}</span>}
+          </div>
+
+          <div className='DealsFormFieldGroup'>
+            <label>{t('create_contract_page.email')}</label>
+            <input
+              className='DealsFormField'
+              type='email'
+              name='email'
+              placeholder={t('create_contract_page.email_placeholder')}
+              onChange={handleChange}
+              required
+            />
+            {errors.email && <span>{errors.email}</span>}
+          </div>
+
+          <button type='submit' className='DealsFormSaveButton'>
+            {t('create_contract_page.save')}
+          </button>
+        </form>
+      </div>
+      <Modal buttonName='Invite User'>
+        <img
+          alt=''
+          src={inviteUserIcon}
+          width='100'
+          height='100'
+        />
+        <h6>User doesn't have an eTrust account</h6>
+        {values.email} doesn't have an eTrust account. Do you want to send him and invitation?
+      </Modal>
+    </div>
   )
 }

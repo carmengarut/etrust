@@ -8,6 +8,8 @@ const userSchema = new Schema({
   passwordHash: String,
   profileImg: String,
   trustRate: Number,
+  creationDate: Date,
+  status: String,
   deals: [{
     type: Schema.Types.ObjectId,
     ref: 'Deal'
