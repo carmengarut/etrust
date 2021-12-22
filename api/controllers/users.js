@@ -51,41 +51,120 @@ usersRouter.post('/', async (request, response) => {
 
     const saltRounds = 10 // coste de generar el hash, mientras mas alto mas seguro
     const passwordHash = await bcrypt.hash(password, saltRounds)
-    const user = new User({
-      email,
-      name,
-      surname,
-      passwordHash,
-      profileImg
-      //profileImg: url + '/public/' + request.file.filename
-    })
 
-    const savedUser = await user.save()
+    const existingUser = await User.findOne({email: email})
 
-    const userForToken = {
-      id: user._id,
-      email: user.email
-    }
+    if (!existingUser) {
+      
+      const user = new User({
+        email,
+        name,
+        surname,
+        passwordHash,
+        profileImg,
+        status: 'active',
+        creationDate: new Date().toISOString(),
+        //profileImg: url + '/public/' + request.file.filename
+      })
 
-    const token = jwt.sign(
-      userForToken,
-      process.env.SECRET,
-      {
-        expiresIn: 60 * 60 * 24 * 7
+      const savedUser = await user.save()
+
+      const userForToken = {
+        id: user._id,
+        email: user.email
       }
-    )
 
-    const userReturned = {
-      email: savedUser.email,
-      name: savedUser.name,
-      surname: savedUser.surname,
-      profileImg: savedUser.profileImg,
-      deals: savedUser.deals,
-      id: savedUser._id,
-      token
+      const token = jwt.sign(
+        userForToken,
+        process.env.SECRET,
+        {
+          expiresIn: 60 * 60 * 24 * 7
+        }
+      )
+
+      const userReturned = {
+        email: savedUser.email,
+        name: savedUser.name,
+        surname: savedUser.surname,
+        profileImg: savedUser.profileImg,
+        deals: savedUser.deals,
+        status: savedUser.status,
+        id: savedUser._id,
+        token
+      }
+
+      response.status(201).json(userReturned)
+    } else if (existingUser.status === 'inactive') {
+
+      const updatedUser = await User.findOneAndUpdate({email: email}, {name, surname, passwordHash, profileImg, status: 'active', creationDate: new Date().toISOString()}, { new: true })
+
+        const userForToken = {
+          id: updatedUser._id,
+          email: updatedUser.email
+        }
+  
+        const token = jwt.sign(
+          userForToken,
+          process.env.SECRET,
+          {
+            expiresIn: 60 * 60 * 24 * 7
+          }
+        )
+  
+        const userReturned = {
+          email: updatedUser.email,
+          name: updatedUser.name,
+          surname: updatedUser.surname,
+          profileImg: updatedUser.profileImg,
+          deals: updatedUser.deals,
+          status: updatedUser.status,
+          id: updatedUser._id,
+          token
+        }
+
+        response.status(201).json(userReturned)
+    } else {
+      throw 'Error: User already exists'
     }
+    
+  } catch (error) {
+    console.log(error.name)
+    console.log(error.message)
+    response.status(400).json(error)
+  }
+})
 
-    response.status(201).json(userReturned)
+usersRouter.post('/invite', async (request, response) => {
+  try {
+    //const url = request.protocol + '://' + request.get('host')
+    const { body } = request
+    const { email } = body
+
+    
+
+    const existingUser = await User.findOne( {email: email})
+
+    console.log(existingUser)
+    if (!existingUser) {
+      const user = new User({
+        email,
+        status: 'inactive',
+        invitationDate: new Date().toISOString()
+      })
+
+      const savedUser = await user.save()
+
+      const userReturned = {
+        email: savedUser.email,
+        status: savedUser.status,
+        id: savedUser._id,
+      }
+
+      response.status(201).json(userReturned)
+    } else {
+      throw 'Error: User already exists'
+    }
+    
   } catch (error) {
     console.log(error.name)
     console.log(error.message)

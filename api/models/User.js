@@ -9,6 +9,7 @@ const userSchema = new Schema({
   profileImg: String,
   trustRate: Number,
   creationDate: Date,
+  invitationDate: Date,
   status: String,
   deals: [{
     type: Schema.Types.ObjectId,

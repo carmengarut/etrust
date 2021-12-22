@@ -100,3 +100,13 @@ export const editUser = (id, user) => {
   const request = axios.put(`/api/users/${id}`, user, config)
   return request.then(response => response.data)
 }
+
+export const inviteUser = (newObject) => {
+  const config = {
+    headers: {
+      Authorization: token
+    }
+  }
+  const request = axios.post('/api/users/invite', newObject, config)
+  return request.then(response => response.data)
+}

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import Modal from './Modal'
-import { showModal } from '../reducers/modalReducer'
+import { hideModal, showModal } from '../reducers/modalReducer'
 import { usersInit } from '../reducers/usersReducers'
 
 import inviteUserIcon from '../public/invite-user-icon.svg'
@@ -12,6 +12,8 @@ import dealsIcon from '../public/deals-icon.svg'
 
 import '../css/dealForm.css'
 import useForm from '../hooks/useForm'
+import { inviteUser } from '../services/deals'
+import { removeNotification, setNotification } from '../reducers/notificationReducer'
 
 export default function DealForm () {
   const users = useSelector(state => state.users)
@@ -43,6 +45,27 @@ export default function DealForm () {
       history.push('/deals')
     } else {
       dispatch(showModal())
+    }
+  }
+
+  const handleInviteUser = async () => {
+    try {
+      await inviteUser({ email: values.email })
+      dispatch(hideModal())
+      dispatch(setNotification('User Invited'))
+      setTimeout(() => {
+        dispatch(removeNotification())
+      }, 5000)
+      const dealObject = {
+        title: values.title,
+        content: values.content,
+        memberEmail: values.email
+      }
+      dispatch(addNewDeal(dealObject))
+      history.push('/deals')
+    } catch (e) {
+      console.error(e)
+      console.error(e.message)
     }
   }
 
@@ -103,7 +126,7 @@ export default function DealForm () {
           </button>
         </form>
       </div>
-      <Modal buttonName='Invite User'>
+      <Modal action={handleInviteUser} buttonName='Invite User'>
         <img
           alt=''
           src={inviteUserIcon}
