@@ -3,6 +3,7 @@ const usersRouter = require('express').Router()
 const User = require('../models/User')
 const jwt = require('jsonwebtoken')
 const userExtractor = require('../middleware/userExtractor')
+const sendEmail = require('../middleware/emailNotifications')
 
 // const multer = require('multer')
 // const  { v4: uuidv4 } = require('uuid')
@@ -138,7 +139,7 @@ usersRouter.post('/invite', async (request, response) => {
   try {
     //const url = request.protocol + '://' + request.get('host')
     const { body } = request
-    const { email } = body
+    const { email, senderName, contractTitle } = body
 
     
 
@@ -154,6 +155,7 @@ usersRouter.post('/invite', async (request, response) => {
 
       const savedUser = await user.save()
 
+      sendEmail(senderName, email, 3451333, contractTitle, contractTitle, '')
       const userReturned = {
         email: savedUser.email,
         status: savedUser.status,

@@ -17,6 +17,7 @@ import { removeNotification, setNotification } from '../reducers/notificationRed
 
 export default function DealForm () {
   const users = useSelector(state => state.users)
+  const user = useSelector(state => state.user)
 
   const { handleChange, values, errors } = useForm()
 
@@ -50,7 +51,12 @@ export default function DealForm () {
 
   const handleInviteUser = async () => {
     try {
-      await inviteUser({ email: values.email })
+      const invitationDetails = {
+        email: values.email,
+        senderName: `${user.name} ${user.surname}`,
+        contractTitle: values.title
+      }
+      await inviteUser(invitationDetails)
       dispatch(hideModal())
       dispatch(setNotification('User Invited'))
       setTimeout(() => {
@@ -126,15 +132,15 @@ export default function DealForm () {
           </button>
         </form>
       </div>
-      <Modal action={handleInviteUser} buttonName='Invite User'>
+      <Modal action={handleInviteUser} buttonName={t('create_contract_page.invite_user')} cancelButtonName={t('create_contract_page.cancel')}>
         <img
           alt=''
           src={inviteUserIcon}
           width='100'
           height='100'
         />
-        <h6>User doesn't have an eTrust account</h6>
-        {values.email} doesn't have an eTrust account. Do you want to send him and invitation?
+        <h6>{t('create_contract_page.dont_have_account')}</h6>
+        {values.email} {t('create_contract_page.want_to_send_invitation')}
       </Modal>
     </div>
   )

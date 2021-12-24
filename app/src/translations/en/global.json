@@ -76,8 +76,12 @@
         "contract_title_placeholder": "Introduce the title of the contract",
         "content": "Contract Content (Describe all the details and clauses of the contract)",
         "content_placeholder": "Introduce the content of the contract",
-        "email": "Invite member to sign the contract",
+        "email": "Email of the person you want to send the contract",
         "email_placeholder": "Introduce the email of the person you want to send the contract",
-        "save": "Create Contract"
+        "save": "Create Contract",
+        "dont_have_account": "User doesn't have an eTrust account",
+        "want_to_send_invitation": " doesn't have an eTrust account. Do you want to send him and invitation?",
+        "invite_user": "Invite User",
+        "cancel": "Cancel"
     }
 }
