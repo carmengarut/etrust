@@ -1,8 +1,11 @@
+import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
+
+import SectionTitle from './components/SectionTitle'
+
 import { userEdit, userLogout } from './reducers/userReducer'
-import { useState } from 'react'
-import titleIcon from './public/deals-icon.svg'
+
 import avatar from './public/avatar.svg'
 import './css/profile.css'
 
@@ -16,20 +19,9 @@ const Profile = () => {
 
   return (
     <div className='ProfileContainer'>
-      <div className='ProfileHeader'>
-        <div className='ProfileTitle'>
-          <img
-            alt=''
-            src={titleIcon}
-            width='30px'
-            height='30px'
-          />
-          <h1 className='Title'>{t('profile_page.profile')}</h1>
-        </div>
-        <button className='LogoutButton' onClick={() => { dispatch(userLogout()) }}>
-          {t('profile_page.logout')}
-        </button>
-      </div>
+      <SectionTitle>
+        {t('profile_page.profile')}
+      </SectionTitle>
       <div className='ProfileCard'>
         <div>{t('profile_page.edit_your_account_info')}</div>
         <div className='ProfileSubcontainer1'>
@@ -93,10 +85,16 @@ const Profile = () => {
         </form>
 
       </div>
-      <button className='SaveButton' onClick={() => { dispatch(userEdit(user.id, { email, name, surname })) }}>
-        {t('profile_page.save_changes')}
-      </button>
 
+      <div className='ProfileButtonsContainer'>
+        <button className='LogoutButton' onClick={() => { dispatch(userLogout()) }}>
+          {t('profile_page.logout')}
+        </button>
+        <button className='SaveButton' onClick={() => { dispatch(userEdit(user.id, { email, name, surname })) }}>
+          {t('profile_page.save_changes')}
+        </button>
+
+      </div>
     </div>
   )
 }

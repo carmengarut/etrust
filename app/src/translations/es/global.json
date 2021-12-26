@@ -83,6 +83,31 @@
         "want_to_send_invitation": " no tiene cuenta de eTrust. ¿Quieres enviarle una invitación?",
         "invite_user": "Invitar Usuario",
         "cancel": "Cancelar"
+    },
+    "deal_details": {
+        "contract_details": "Detalles del Contrato - ",
+        "contract_status": "Estatus del contrato: ",
+        "contract_members": "Miembros del contrato:",
+        "saved": "¡Guardado!",
+        "contract_successfully_edited_1": "El contrato ",
+        "contract_successfully_edited_2": " se ha editado correctamente. El otro miembro del contrato ha sido notificado del cambio.",
+        "go_to_contracts": "Ir a contratos",
+        "continue_editing": "Continuar editando"
+    },
+    "deal_details_member_card": {
+        "creator": "Creador",
+        "signed": "Firmado",
+        "not_signed": "No Firmado"
+    },
+    "deal_details_form": {
+        "contract_details": "Detalles del contrato :",
+        "title": "Título del contrato",
+        "title_placeholder": "Introduce el título del contrato",
+        "content": "Contenido del contrato (Describe los detalles y cláusulas del contrato)",
+        "content_placeholder": "Introduce el contenido del contrato",
+        "creation_date": "Fecha de creación: ",
+        "propose_changes": "Proponer Cambios",
+        "sign_now": "Firmar Ahora"
     }
     
 }

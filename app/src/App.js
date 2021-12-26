@@ -8,6 +8,9 @@ import LoginForm from './components/LoginForm'
 import RegistrationForm from './components/RegistrationForm'
 import LandingPage from './LandingPage'
 import HeaderWeb from './components/HeaderWeb'
+import { dealInit } from './reducers/dealReducer'
+import { ratingInit } from './reducers/ratingReducer'
+import { usersInit } from './reducers/usersReducers'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -19,6 +22,10 @@ const App = () => {
       const userToSet = JSON.parse(loggedUserJSON)
       dispatch(userSet(userToSet))
     }
+
+    dispatch(dealInit())
+    dispatch(ratingInit())
+    dispatch(usersInit())
   }, [])
 
   return (

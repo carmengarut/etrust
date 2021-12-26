@@ -2,31 +2,12 @@
     padding: 20px 100px;
 
 }
-.DealsTitle {
-    display: -webkit-flex;
-    display: flex;
-    align-items: center;
-
-    margin: 10px;
-}
-.Title {
-    margin-left: 10px;
-    margin-bottom: 0px;
-
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 21px;
-
-    color: #283252;
-}
 
 .ButtonContainer {
     display: -webkit-flex;
     display: flex;
     justify-content: flex-end;
     margin-bottom: 25px;
-
 }
 
 .Button {
@@ -98,6 +79,11 @@
     margin: 10px 0px;
 }
 
+.TableRow:hover {
+    cursor: pointer;
+    background: rgba(225, 245, 255, 0.2);
+}
+
 .Avatar { 
     background: #FFFFFF;
     margin-right: 5px;
@@ -120,7 +106,7 @@
     /* Grey/500 */
 
     color: #3A3C40;
-    background: #FFFFFF;
+  
 }
 
 
@@ -130,7 +116,6 @@
     align-items: center;
 
     width: 30%;
-    background: #FFFFFF;
 
 }
 
@@ -148,25 +133,25 @@
     /* Grey/400 */
 
     color: #82868C;
-    background: #FFFFFF;
+
 
 }
 
 .ColumnsContainer2 {
     display: -webkit-flex;
     display: flex;
-    background: #FFFFFF;
+
     align-items: center;
     width: 30%;
 }
 
 .ColumnSignedContainer, .ColumnStatusContainer {
-    background: #FFFFFF;
+
     width: 50%;
     margin: 0;
 }
 
-.ColumnSigned {
+.ColumnSignedGreen {
 
     font-family: Poppins;
     font-style: normal;
@@ -181,6 +166,25 @@
     padding: 4.5px 17px;
 
     background: #2CC5BD;
+    border-radius: 20px;
+
+}
+
+.ColumnSignedRed {
+
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    width: fit-content;
+
+
+    color: #FFFFFF;
+
+    padding: 4.5px 17px;
+
+    background: #FF6B93;
     border-radius: 20px;
 
 }
@@ -221,9 +225,6 @@
         padding: 80px 20px 40px 20px;  
     }
     
-    .DealsTitle {
-        margin-top: 0px;
-    }
     .TableHeader { 
         display: none;
     }
@@ -234,6 +235,8 @@
         padding: 30px;
         margin-top: 0px;
     }
+
+    
 
     .ColumnsContainer1{
         display: -webkit-flex;

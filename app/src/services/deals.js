@@ -27,7 +27,7 @@ export const create = (newObject) => {
   return request.then(response => response.data)
 }
 
-export const update = (id, newObject) => {
+export const updateContract = (id, newObject) => {
   const config = {
     headers: {
       Authorization: token

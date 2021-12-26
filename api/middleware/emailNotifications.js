@@ -1,7 +1,7 @@
 const mailjet = require ('node-mailjet')
- .connect('d4be5b2783645893af69dec0b0ce2283', 'c1b163d2c706cfd00e77b78d8a9bb4f9')
+ .connect(process.env.MJ_APIKEY_PUBLIC, process.env.MJ_APIKEY_PRIVATE)
 
-const sendEmail = (senderName, receiverEmail, templateId, subject, contractTitle, receiverName) => {
+const sendInviteUserEmail = (senderName, receiverEmail, contractTitle) => {
     const request = mailjet
  .post("send", {'version': 'v3.1'})
  .request({
@@ -14,12 +14,12 @@ const sendEmail = (senderName, receiverEmail, templateId, subject, contractTitle
              "To": [
                  {
                      "Email": receiverEmail,
-                     "Name": receiverName || ''
+                     "Name": ''
                  }
              ],
-             "TemplateID": templateId,
+             "TemplateID": 3451333,
              "TemplateLanguage": true,
-             "Subject": subject,
+             "Subject": contractTitle,
              "Variables": {
    "contract_title": contractTitle,
    "email": receiverEmail,
@@ -38,6 +38,44 @@ const sendEmail = (senderName, receiverEmail, templateId, subject, contractTitle
 	})
 }
 
+const sendProposeChangeEmail = (senderName, receiverName, receiverEmail,  contractTitle) => {
+    const request = mailjet
+ .post("send", {'version': 'v3.1'})
+ .request({
+     "Messages":[
+         {
+             "From": {
+                 "Email": "contracts@etrustapp.com",
+                 "Name": senderName
+             },
+             "To": [
+                 {
+                     "Email": receiverEmail,
+                     "Name": receiverName
+                 }
+             ],
+             "TemplateID": 3455877,
+             "TemplateLanguage": true,
+             "Subject": contractTitle,
+             "Variables": {
+   "contract_title": contractTitle,
+   "receiver_name": receiverName,
+   "modifier_name": senderName
+ }
+         }
+     ]
+ })
+request
+ .then((result) => {
+     console.log(result.body)
+ })
+ .catch((err) => {
+     console.log(err.statusCode)
+ })
+}
 
 
-module.exports = sendEmail
+
+
+
+module.exports = {sendInviteUserEmail, sendProposeChangeEmail}

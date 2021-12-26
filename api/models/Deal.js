@@ -9,10 +9,10 @@ const dealSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
-  members: [{
+  member: {
     type: Schema.Types.ObjectId,
     ref: 'User'
-  }],
+  },
   signedBy: [{
     type: Schema.Types.ObjectId,
     ref: 'User'

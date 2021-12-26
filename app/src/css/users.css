@@ -2,26 +2,6 @@
     padding: 20px 100px;
 }
 
-.UsersTitle {
-    display: -webkit-flex;
-    display: flex;
-    align-items: center;
-
-    margin: 10px;
-}
-
-.Title {
-    margin-left: 10px;
-    margin-bottom: 0px;
-
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 21px;
-
-    color: #283252;
-}
-
 .SearchField {
     margin: 10px 0px;
     width: 100%;
@@ -41,8 +21,6 @@
     font-weight: 500;
     font-size: 13px;
 
-
-    
 }
 
 .UsersTableRow {

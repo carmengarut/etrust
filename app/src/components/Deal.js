@@ -17,12 +17,18 @@ const Deal = ({ deal }) => {
       <div className='ColumnsContainer1'>
         <div className='ColumnMember'>
           <img
-            src={avatar}
+            src={(user.email === deal.member.email
+              ? deal.createdBy.profileImg
+              : deal.member.profileImg) || avatar}
             width='30px'
             height='30px'
             className='Avatar'
           /> {' '}
-          {deal.members[0].name}
+          {
+          user.email === deal.member.email
+            ? deal.createdBy.name
+            : deal.member.name
+}
         </div>
         <div className='ColumnMember'>
           {deal.date.slice(0, 10)}
@@ -30,7 +36,12 @@ const Deal = ({ deal }) => {
       </div>
       <div className='ColumnsContainer2'>
         <div className='ColumnSignedContainer'>
-          <div className='ColumnSigned'>
+          <div className={deal.signedBy.find(member => member.id === user.id)
+            ? 'ColumnSignedGreen'
+            : deal.signedBy.find(member => member === user.id)
+              ? 'ColumnSignedGreen'
+              : 'ColumnSignedRed'}
+          >
 
             {deal.signedBy.find(member => member.id === user.id)
               ? 'Signed'

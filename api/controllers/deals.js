@@ -2,6 +2,7 @@ const dealsRouter = require('express').Router()
 const Deal = require('../models/Deal')
 const User = require('../models/User.js')
 const userExtractor = require('../middleware/userExtractor')
+const { sendProposeChangeEmail } = require('../middleware/emailNotifications')
 
 dealsRouter.get('/', async (request, response) => {
   const deals = await Deal.find({})
@@ -10,7 +11,7 @@ dealsRouter.get('/', async (request, response) => {
       name: 1,
       surname: 1
     })
-    .populate('members', {
+    .populate('member', {
       email: 1,
       name: 1,
       surname: 1
@@ -38,7 +39,7 @@ dealsRouter.get('/:id', (request, response, next) => {
       name: 1,
       surname: 1
     })
-    .populate('members', {
+    .populate('member', {
       email: 1,
       name: 1,
       surname: 1
@@ -108,7 +109,7 @@ dealsRouter.post('/', userExtractor, async (request, response, next) => {
     date: new Date().toISOString(),
     status: 'New',
     createdBy: user._id,
-    members: [member._id],
+    member: member._id,
     signedBy: [user.id]
   })
 
@@ -123,24 +124,34 @@ dealsRouter.post('/', userExtractor, async (request, response, next) => {
   }
 })
 
-dealsRouter.put('/:id', userExtractor, (request, response) => {
+dealsRouter.put('/:id', userExtractor, async (request, response, next) => {
   const { id } = request.params
-  const { content } = request.body
+  const { title, content, senderName, receiverName, receiverEmail } = request.body
   const newDeal = {
-    content
+    title,
+    content,
+    signedBy: []
   }
-  Deal.findByIdAndUpdate(id, newDeal, { new: true }).then(result =>
-    response.json(result))
-})
+  try {
+    const result = await Deal.findByIdAndUpdate(id, newDeal, { new: true })
+  
+    if (result === null) {
+      return response.status(400).json({
+        error: 'Deal does´t exist'
+      })
+    }
+      
+    sendProposeChangeEmail(senderName, receiverName, receiverEmail, title)
+    response.json(result)
 
-dealsRouter.put('/:id', userExtractor, (request, response) => {
-  const { id } = request.params
-  const { content } = request.body
-  const newDeal = {
-    content
-  }
-  Deal.findByIdAndUpdate(id, newDeal, { new: true }).then(result =>
-    response.json(result))
+} catch(e) {
+  next(e)
+}
+  
+
+  
+
+
 })
 
 dealsRouter.put('/:id/sign', userExtractor, async (request, response) => {

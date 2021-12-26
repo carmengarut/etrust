@@ -8,12 +8,12 @@ import { hideModal, showModal } from '../reducers/modalReducer'
 import { usersInit } from '../reducers/usersReducers'
 
 import inviteUserIcon from '../public/invite-user-icon.svg'
-import dealsIcon from '../public/deals-icon.svg'
 
 import '../css/dealForm.css'
 import useForm from '../hooks/useForm'
 import { inviteUser } from '../services/deals'
 import { removeNotification, setNotification } from '../reducers/notificationReducer'
+import SectionTitle from './SectionTitle'
 
 export default function DealForm () {
   const users = useSelector(state => state.users)
@@ -77,15 +77,9 @@ export default function DealForm () {
 
   return (
     <div className='DealsFormContainer'>
-      <div className='DealsFormTitle'>
-        <img
-          alt=''
-          src={dealsIcon}
-          width='30px'
-          height='30px'
-        />
-        <h1 className='Title'>{t('create_contract_page.contracts')}</h1>
-      </div>
+      <SectionTitle>
+        {t('create_contract_page.contracts')}
+      </SectionTitle>
       <div className='DealsFormCard'>
         <div>{t('create_contract_page.title')}</div>
         <form onSubmit={handleSubmit} className='DealsFormForm'>

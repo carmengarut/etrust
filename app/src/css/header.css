@@ -23,7 +23,7 @@
     cursor:pointer;
 }
 
-.SectionTitle {
+.ToggleSectionTitle {
     display: none;
     font-family: Poppins;
     font-style: normal;
@@ -81,7 +81,7 @@
         flex-direction: column;
       }
 
-    .SectionTitle {
+    .ToggleSectionTitle {
         display: inline-block;
     }
 

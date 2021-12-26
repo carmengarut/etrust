@@ -1,5 +1,5 @@
 import { Route, Switch, Redirect } from 'react-router-dom'
-import { DealDetails } from './components/DealDetails'
+
 import LoginForm from './components/LoginForm'
 import RegistrationForm from './components/RegistrationForm'
 import DealForm from './components/DealForm'
@@ -9,16 +9,16 @@ import Profile from './Profile'
 import { useSelector } from 'react-redux'
 import Users from './Users'
 import LandingPage from './LandingPage'
+import DealDetailsHello from './components/DealDetail'
 
 export default function RouterApp () {
   const user = useSelector(state => state.user)
-  const deals = useSelector(state => state.deals)
 
   return (
 
     <Switch>
       <Route path='/deals/:id'>
-        <DealDetails deals={deals} />
+        <DealDetailsHello />
       </Route>
 
       <Route path='/profile'>

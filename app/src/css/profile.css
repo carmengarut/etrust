@@ -2,61 +2,7 @@
     padding: 20px 100px;
 }
 
-.ProfileHeader {
-    display: -webkit-flex;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 0 0 20px 0;
-}
 
-.ProfileTitle {
-    display: -webkit-flex;
-    display: flex;
-    align-items: center;
-
-    margin: 0 10px;
-}
-
-.Title {
-    margin-left: 10px;
-
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 21px;
-
-    color: #283252;
-}
-
-.LogoutButton {
-    /* Auto Layout */
-    width: 232px;
-    height: 45px;
-
-    justify-content: center;
-    margin-right: 10px;
-    
-    /* Grayscale 900 Opacity / 12% */
-    background: #FFFFFF;
-    border: 1px solid rgba(18, 17, 39, 0.12);
-    border-radius: 8px;
-    
-
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 24px;
-    /* identical to box height, or 171% */
-
-    text-align: center;
-
-    /* Grayscale / 900 */
-
-    color: #121127;
-
-}
 
 .ProfileCard {
     display: -webkit-flex;
@@ -156,6 +102,42 @@
     
 }
 
+.ProfileButtonsContainer {
+    display: -webkit-flex;
+    display: flex;
+    justify-content: flex-end;
+    margin: 25px 10px;
+}
+
+.LogoutButton {
+    /* Auto Layout */
+    width: 232px;
+    height: 45px;
+
+    justify-content: center;
+    margin-right: 10px;
+    
+    /* Grayscale 900 Opacity / 12% */
+    background: #FFFFFF;
+    border: 1px solid rgba(18, 17, 39, 0.12);
+    border-radius: 8px;
+    
+
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    /* identical to box height, or 171% */
+
+    text-align: center;
+
+    /* Grayscale / 900 */
+
+    color: #121127;
+
+}
+
 .SaveButton {
 
     width: 232px;
@@ -166,7 +148,6 @@
     background: #4E8AF4;
     border-radius: 8px;
     border: none;
-    margin-top: 40px;
     margin-left: 10px;
 
     font-family: Poppins;
@@ -195,6 +176,7 @@
 
     .LogoutButton {
         width: 150px;
+        margin: 0px;
     }
 
     .ProfileCard {

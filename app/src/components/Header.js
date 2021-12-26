@@ -44,7 +44,7 @@ export default function Header () {
                 height='30'
                 className='SectionIcon'
               />
-              <div className='SectionTitle'>{t('header.agreements')}</div>
+              <div className='ToggleSectionTitle'>{t('header.agreements')}</div>
             </div>
             <div className='Section' onClick={() => { history.push('/users') }}>
               <img
@@ -54,7 +54,7 @@ export default function Header () {
                 height='30'
                 className='SectionIcon'
               />
-              <div className='SectionTitle'>{t('header.users')}</div>
+              <div className='ToggleSectionTitle'>{t('header.users')}</div>
             </div>
             {/* <Link to='/users'>
               Users
@@ -90,7 +90,7 @@ export default function Header () {
               height='40'
               className='ProfileIcon'
             />
-            <div className='SectionTitle'>{t('header.profile')}</div>
+            <div className='ToggleSectionTitle'>{t('header.profile')}</div>
           </div>
         </div>
       </div>

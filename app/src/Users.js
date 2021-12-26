@@ -1,34 +1,23 @@
-import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
-import { usersInit } from './reducers/usersReducers'
+
 import './css/users.css'
 
-import titleIcon from './public/deals-icon.svg'
 import avatar from './public/avatar.svg'
+import SectionTitle from './components/SectionTitle'
 
 export default function Users () {
   const users = useSelector(state => state.users)
   const [search, setSearch] = useState('')
 
-  const dispatch = useDispatch()
   const { t } = useTranslation('global')
-
-  useEffect(() => {
-    dispatch(usersInit())
-  }, [])
 
   return (
     <div className='UsersContainer'>
-      <div className='UsersTitle'>
-        <img
-          alt=''
-          src={titleIcon}
-          width='30px'
-          height='30px'
-        />
-        <h1 className='Title'>{t('users_page.users')}</h1>
-      </div>
+      <SectionTitle>
+        {t('users_page.users')}
+      </SectionTitle>
 
       <input
         className='SearchField'

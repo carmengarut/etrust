@@ -1,4 +1,5 @@
-import { create, getAll, sign } from '../services/deals'
+import { create, getAll, sign, updateContract } from '../services/deals'
+import { showModal } from './modalReducer'
 import { setNotification, removeNotification } from './notificationReducer'
 
 const compareFunction = (objectA, objectB) => {
@@ -25,6 +26,21 @@ export const dealReducer = (state = initialState, action) => {
         return {
           ...deal,
           signedBy: dealUpdated.signedBy
+        }
+      }
+      return deal
+    })
+    deals.sort(compareFunction)
+    return deals
+  }
+
+  if (action.type === '@deals/edit') {
+    const dealUpdated = action.payload
+    const deals = state.map(deal => {
+      if (deal.id === dealUpdated.id) {
+        return {
+          ...deal,
+          ...dealUpdated
         }
       }
       return deal
@@ -95,6 +111,17 @@ export const signDeal = (id, users) => {
     const dealUpdated = await sign(id, users)
     dispatch({
       type: '@deals/sign',
+      payload: dealUpdated
+    })
+  }
+}
+
+export const editDeal = (id, object) => {
+  return async (dispatch) => {
+    const dealUpdated = await updateContract(id, object)
+    dispatch(showModal())
+    dispatch({
+      type: '@deals/edit',
       payload: dealUpdated
     })
   }
