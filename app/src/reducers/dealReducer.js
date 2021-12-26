@@ -3,7 +3,7 @@ import { showModal } from './modalReducer'
 import { setNotification, removeNotification } from './notificationReducer'
 
 const compareFunction = (objectA, objectB) => {
-  return objectB.date - objectA.date
+  return new Date(objectB.date).getTime() - new Date(objectA.date).getTime()
 }
 
 const initialState = []

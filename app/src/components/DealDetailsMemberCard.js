@@ -9,6 +9,7 @@ export default function DealDetailsMemberCard ({ deal, user }) {
   const users = useSelector(state => state.users)
   const { t } = useTranslation('global')
 
+  console.log(user)
   return (
     <div className='DDMC-container'>
       <div className='DDMC-member-container'>
@@ -21,8 +22,10 @@ export default function DealDetailsMemberCard ({ deal, user }) {
         <div className='DDMC-member-name'>
           <div>
             {
-            user.name
-              ? `${user.name} ${user.surname}`
+            user.id
+              ? user.name
+                ? `${user.name} ${user.surname}`
+                : `${user.email} ${t('deal_details_member_card.invitation_pending')}`
               : `${users.find(userElem => userElem.id === user).name} ${users.find(userElem => userElem.id === user).surname}`
             }
           </div>

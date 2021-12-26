@@ -101,7 +101,8 @@
     "deal_details_member_card": {
         "creator": "Creador",
         "signed": "Firmado",
-        "not_signed": "No Firmado"
+        "not_signed": "No Firmado",
+        "invitation_pending": "(Invitation pending)"
     },
     "deal_details_form": {
         "contract_details": "Detalles del contrato :",

@@ -31,7 +31,6 @@ const Deal = ({ deal }) => {
             height='30px'
             className='Avatar'
           /> {' '}
-          {console.log(deal.member.id)}
           {deal.member.id
             ? user.id === deal.member.id
               ? deal.createdBy.name
