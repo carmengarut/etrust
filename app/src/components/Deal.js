@@ -24,17 +24,22 @@ const Deal = ({ deal }) => {
       <div className='ColumnsContainer1'>
         <div className='ColumnMember'>
           <img
-            src={(user.email === deal.member.email
-              ? deal.createdBy.profileImg
-              : deal.member.profileImg) || avatar}
+            src={(user.id === deal.member.id)
+              ? deal.createdBy.profileImg || avatar
+              : deal.member.profileImg || avatar}
             width='30px'
             height='30px'
             className='Avatar'
           /> {' '}
-          {deal.member.id
+          {console.log(deal.member.id === false)}
+          {deal.member.id !== 'undefined'
             ? user.id === deal.member.id
               ? deal.createdBy.name
+                ? deal.createdBy.name
+                : deal.createdBy.email
               : deal.member.name
+                ? deal.member.name
+                : deal.member.email
             : user.id === deal.member
               ? users.find(user => user.id === deal.createdBy).name
               : users.find(user => user.id === deal.member).name}
