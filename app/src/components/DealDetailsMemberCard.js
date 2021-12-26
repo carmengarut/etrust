@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 
 import '../css/dealDetailsMemberCard.css'
@@ -5,6 +6,7 @@ import '../css/dealDetailsMemberCard.css'
 import avatar from '../public/avatar.svg'
 
 export default function DealDetailsMemberCard ({ deal, user }) {
+  const users = useSelector(state => state.users)
   const { t } = useTranslation('global')
 
   return (
@@ -17,8 +19,16 @@ export default function DealDetailsMemberCard ({ deal, user }) {
           className='Avatar'
         /> {' '}
         <div className='DDMC-member-name'>
-          <div>{user.name} {user.surname}</div>
-          <div className='DDMC-creator'>{t('deal_details_member_card.creator')}</div>
+          <div>
+            {
+            user.name
+              ? `${user.name} ${user.surname}`
+              : `${users.find(userElem => userElem.id === user).name} ${users.find(userElem => userElem.id === user).surname}`
+            }
+          </div>
+          {deal.createdBy === user
+            ? <div className='DDMC-creator'>{t('deal_details_member_card.creator')}</div>
+            : ''}
         </div>
       </div>
       <div className='DDMC-signed-container'>

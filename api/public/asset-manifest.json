@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.d8902bc9.chunk.css",
-    "main.js": "/static/js/main.b3d1357e.chunk.js",
-    "main.js.map": "/static/js/main.b3d1357e.chunk.js.map",
+    "main.css": "/static/css/main.3660db73.chunk.css",
+    "main.js": "/static/js/main.5747fe52.chunk.js",
+    "main.js.map": "/static/js/main.5747fe52.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.f5eb4aec.js",
     "runtime-main.js.map": "/static/js/runtime-main.f5eb4aec.js.map",
-    "static/css/2.73a4b9c4.chunk.css": "/static/css/2.73a4b9c4.chunk.css",
-    "static/js/2.b0101cf5.chunk.js": "/static/js/2.b0101cf5.chunk.js",
-    "static/js/2.b0101cf5.chunk.js.map": "/static/js/2.b0101cf5.chunk.js.map",
+    "static/css/2.d8cb5cde.chunk.css": "/static/css/2.d8cb5cde.chunk.css",
+    "static/js/2.92bebb53.chunk.js": "/static/js/2.92bebb53.chunk.js",
+    "static/js/2.92bebb53.chunk.js.map": "/static/js/2.92bebb53.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/2.73a4b9c4.chunk.css.map": "/static/css/2.73a4b9c4.chunk.css.map",
-    "static/css/main.d8902bc9.chunk.css.map": "/static/css/main.d8902bc9.chunk.css.map",
-    "static/js/2.b0101cf5.chunk.js.LICENSE.txt": "/static/js/2.b0101cf5.chunk.js.LICENSE.txt",
+    "static/css/2.d8cb5cde.chunk.css.map": "/static/css/2.d8cb5cde.chunk.css.map",
+    "static/css/main.3660db73.chunk.css.map": "/static/css/main.3660db73.chunk.css.map",
+    "static/js/2.92bebb53.chunk.js.LICENSE.txt": "/static/js/2.92bebb53.chunk.js.LICENSE.txt",
     "static/media/headerWeb.css": "/static/media/Poppins-SemiBold.cce5625b.ttf",
     "static/media/avatar.87d416e1.svg": "/static/media/avatar.87d416e1.svg",
     "static/media/coin.4e275288.svg": "/static/media/coin.4e275288.svg",
@@ -26,14 +26,15 @@
     "static/media/users.css": "/static/media/search-icon.11650434.svg",
     "static/media/spain-flag.5ddb8905.svg": "/static/media/spain-flag.5ddb8905.svg",
     "static/media/standings.b87a0d7c.svg": "/static/media/standings.b87a0d7c.svg",
+    "static/media/success-icon.8c56c784.svg": "/static/media/success-icon.8c56c784.svg",
     "static/media/uk-flag.e1e9e606.svg": "/static/media/uk-flag.e1e9e606.svg",
     "static/media/users-icon.2e2d193c.svg": "/static/media/users-icon.2e2d193c.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.f5eb4aec.js",
-    "static/css/2.73a4b9c4.chunk.css",
-    "static/js/2.b0101cf5.chunk.js",
-    "static/css/main.d8902bc9.chunk.css",
-    "static/js/main.b3d1357e.chunk.js"
+    "static/css/2.d8cb5cde.chunk.css",
+    "static/js/2.92bebb53.chunk.js",
+    "static/css/main.3660db73.chunk.css",
+    "static/js/main.5747fe52.chunk.js"
   ]
 }

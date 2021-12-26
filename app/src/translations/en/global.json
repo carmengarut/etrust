@@ -50,6 +50,10 @@
         "signed": "Signed",
         "status": "Status"
     },
+    "deal": {
+        "signed": "Signed",
+        "not_signed": "Not Signed"
+    },
     "header": {
         "agreements": "Contracts",
         "users": "Users",

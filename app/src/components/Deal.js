@@ -1,13 +1,20 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+
+import { useTranslation } from 'react-i18next'
+
 import '../css/deals.css'
+
 import avatar from '../public/avatar.svg'
 
 const Deal = ({ deal }) => {
   const user = useSelector(state => state.user)
+  const users = useSelector(state => state.users)
 
   const history = useHistory()
+  const { t } = useTranslation('global')
+
   return (
     <div className='TableRow' key={deal.id} onClick={() => { history.push(`/deals/${deal.id}`) }}>
 
@@ -24,11 +31,14 @@ const Deal = ({ deal }) => {
             height='30px'
             className='Avatar'
           /> {' '}
-          {
-          user.email === deal.member.email
-            ? deal.createdBy.name
-            : deal.member.name
-}
+          {console.log(deal.member.id)}
+          {deal.member.id
+            ? user.id === deal.member.id
+              ? deal.createdBy.name
+              : deal.member.name
+            : user.id === deal.member
+              ? users.find(user => user.id === deal.createdBy).name
+              : users.find(user => user.id === deal.member).name}
         </div>
         <div className='ColumnMember'>
           {deal.date.slice(0, 10)}
@@ -44,10 +54,10 @@ const Deal = ({ deal }) => {
           >
 
             {deal.signedBy.find(member => member.id === user.id)
-              ? 'Signed'
+              ? t('deal.signed')
               : deal.signedBy.find(member => member === user.id)
-                ? 'Signed'
-                : 'Not signed'}
+                ? t('deal.signed')
+                : t('deal.not_signed')}
 
           </div>
         </div>
