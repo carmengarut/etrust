@@ -90,7 +90,7 @@
     },
     "deal_details": {
         "contract_details": "Detalles del Contrato - ",
-        "contract_status": "Estatus del contrato: ",
+        "contract_status": "Estado del contrato: ",
         "contract_members": "Miembros del contrato:",
         "saved": "¡Guardado!",
         "contract_successfully_edited_1": "El contrato ",
@@ -113,6 +113,25 @@
         "creation_date": "Fecha de creación: ",
         "propose_changes": "Proponer Cambios",
         "sign_now": "Firmar Ahora"
+    },
+    "ratings": {
+        "contract_ratings": "Evaluaciones del contrato: ",
+        "submit_rating": "Evaluar contrato",
+        "no_ratings": "No hay evaluaciones añadidas"
+    },
+    "rating_form": {
+        "contracts": "Contratos",
+        "rate_contract": "Evalua el cumplimiento del contrato por la otra parte:",
+        "yes": "Sí",
+        "no": "No",
+        "did_person_fulfill_1": "¿Cumplió ",
+        "did_person_fulfill_2": " el contrato?",
+        "description": "Comentarios",
+        "description_placeholder": "Introduce tus comentarios",
+        "save": "Añadir evaluación",
+        "rating_added": "¡Evaluación añadida!",
+        "successfully_added": "Tu evaluación ha sido añadida correctamente.",
+        "accept": "Aceptar"
     }
     
 }

@@ -113,5 +113,24 @@
         "creation_date": "Creation date: ",
         "propose_changes": "Propose Changes",
         "sign_now": "Sign Now"
+    },
+    "ratings": {
+        "contract_ratings": "Contract ratings: ",
+        "submit_rating": "Submit Rating",
+        "no_ratings": "No ratings added"
+    },
+    "rating_form": {
+        "contracts": "Contracts",
+        "rate_contract": "Rate the fulfillment of the contract:",
+        "yes": "Yes",
+        "no": "No",
+        "did_person_fulfill_1": "Did ",
+        "did_person_fulfill_2": " fulfill the contract?",
+        "description": "Comments",
+        "description_placeholder": "Introduce comments",
+        "save": "Add rating",
+        "rating_added": "Rating added!",
+        "successfully_added": "Your rating has been successfully added.",
+        "accept": "Accept"
     }
 }

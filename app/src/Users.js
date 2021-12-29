@@ -32,7 +32,7 @@ export default function Users () {
         ? <div />
         : users.filter(user => {
           const fullname = user.name + ' ' + user.surname
-          return fullname.toLowerCase().includes(search.toLowerCase())
+          return (fullname.toLowerCase().includes(search.toLowerCase()) && user.status !== 'inactive')
         }).map(user => (
           <div key={user.id} className='UsersTableRow'>
             <img
