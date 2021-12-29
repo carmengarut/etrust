@@ -68,7 +68,7 @@
 
     display: -webkit-flex;
     display: flex;
-    background: #FFFFFF;
+    
     align-items: center;
 
     box-shadow: 0px 7px 20px rgba(40, 41, 61, 0.08);
@@ -76,6 +76,7 @@
     height: 85px;
     padding: 40px 0px;
     margin: 10px 0px;
+    background: #FFFFFF;
 }
 
 .TableRow:hover {
@@ -211,11 +212,39 @@
 
 }
 
+.D-no-deals-container {
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 100px 0;
+
+    box-shadow: 0px 7px 20px rgba(40, 41, 61, 0.08);
+    border-radius: 8px;
+ 
+    
+
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 21px;
+    color: #283252;
+
+    background: #FFFFFF;
+}
+
+.D-no-deals-text {
+    margin-bottom: 10px;
+}
+
 @media (max-width: 1000px) {
     .DealsContainer {
         padding: 20px 90px;
         margin-top: 70px;
         margin: 0;
+        text-align: center;
     }
 }
 

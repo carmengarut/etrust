@@ -48,7 +48,8 @@
         "user": "Usuario",
         "creation_date": "Fecha de Creación",
         "signed": "Firmado",
-        "status": "Estado"
+        "status": "Estado",
+        "no_deals": "No hay contratos añadidos"
     },
     "deal": {
         "signed": "Firmado",

@@ -48,7 +48,8 @@
         "user": "User",
         "creation_date": "Creation Date",
         "signed": "Signed",
-        "status": "Status"
+        "status": "Status",
+        "no_deals": "No contracts added"
     },
     "deal": {
         "signed": "Signed",

@@ -6,6 +6,8 @@ import { useTranslation } from 'react-i18next'
 import { useHistory } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
+import addContractIcon from './public/add-contract-icon.svg'
+
 import './css/deals.css'
 
 import SectionTitle from './components/SectionTitle'
@@ -41,12 +43,27 @@ function Deals () {
       {deals.filter(deal => {
         if (deal.createdBy.id) return (deal.createdBy.id === user.id || deal.member.id === user.id)
         return (deal.createdBy === user.id || deal.member.id === user.id)
-      }).map((deal, i) =>
-        <Deal
-          key={i}
-          deal={deal}
-        />
-      )}
+      }).length > 0
+        ? deals.filter(deal => {
+          if (deal.createdBy.id) return (deal.createdBy.id === user.id || deal.member.id === user.id)
+          return (deal.createdBy === user.id || deal.member.id === user.id)
+        }).map((deal, i) =>
+          <Deal
+            key={i}
+            deal={deal}
+          />
+        )
+        : (
+          <div className='D-no-deals-container'>
+            <img
+              alt=''
+              src={addContractIcon}
+              width='100'
+              height='100'
+            />
+            <div className='D-no-deals-text'>{t('agreements_page.no_deals')}</div>
+            <button onClick={() => history.push('/create-deal')} className='Button'>{t('agreements_page.new_deal')}</button>
+          </div>)}
     </div>
   )
 }
