@@ -31,18 +31,24 @@ const Deal = ({ deal }) => {
               height='30px'
               className='Avatar'
             /> {' '}
-            {console.log(deal.member.id === false)}
+            {console.log(deal.member.id)}
             {deal.member.id !== 'undefined'
               ? user.id === deal.member.id
-                ? deal.createdBy.name
+                ? deal.createdBy.name !== 'undefined'
                   ? deal.createdBy.name
-                  : deal.createdBy.email
+                  : deal.createdBy.email !== 'undefined'
+                    ? deal.createdBy.email
+                    : users.find(user => user.id === deal.createdBy).email
                 : deal.member.name
                   ? deal.member.name
                   : deal.member.email
               : user.id === deal.member
-                ? users.find(user => user.id === deal.createdBy).name
-                : users.find(user => user.id === deal.member).name}
+                ? users.find(user => user.id === deal.createdBy).name !== 'undefined'
+                  ? users.find(user => user.id === deal.createdBy).name
+                  : users.find(user => user.id === deal.createdBy).email
+                : users.find(user => user.id === deal.member).name !== 'undefined'
+                  ? users.find(user => user.id === deal.member).name
+                  : users.find(user => user.id === deal.member).email}
           </div>
           <div className='d-column-member'>
             {deal.date.slice(0, 10)}

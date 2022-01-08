@@ -1,4 +1,3 @@
-
 import { useParams, useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
@@ -14,12 +13,10 @@ import { hideModal } from '../reducers/modalReducer'
 import successIcon from '../public/success-icon.svg'
 
 import '../css/dealDetails.css'
+
 export default function DealDetailsHello () {
-  const deals = useSelector(state => state.deals)
-
   const { id } = useParams()
-
-  const deal = deals.find(deal => deal.id === id.toString())
+  const deal = useSelector(state => state.deals).find(deal => deal.id === id.toString())
 
   const dispatch = useDispatch()
   const history = useHistory()

@@ -16,19 +16,28 @@ export const dealReducer = (state = initialState, action) => {
   }
 
   if (action.type === '@deals/created') {
-    return [...state, action.payload]
+    return [...state, action.payload].sort(compareFunction)
   }
 
   if (action.type === '@deals/sign') {
     const dealUpdated = action.payload
     const deals = state.map(deal => {
       if (deal.id === dealUpdated.id) {
-        return {
-          ...deal,
-          signedBy: dealUpdated.signedBy
+        if (dealUpdated.signedBy.length >= 2) {
+          return {
+            ...deal,
+            signedBy: dealUpdated.signedBy,
+            status: 'Signed'
+          }
+        } else {
+          return {
+            ...deal,
+            signedBy: dealUpdated.signedBy
+          }
         }
+      } else {
+        return deal
       }
-      return deal
     })
     deals.sort(compareFunction)
     return deals
