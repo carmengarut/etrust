@@ -45,18 +45,35 @@
 }
 
 .ColumnTitleDeal {
+    text-align: left;
+
     margin: 0px 20px 0px 50px;
-    width: 35%;
+    width: 50%;
 }
 
 .ColumnTitle {
     margin: 0 20px 0 0px;
     width: 50%;
+    
+}
+
+.ColumnsContainer0 {
+    display: -webkit-flex;
+    display: flex;
+    width: 70%;
 }
 
 
 
-.BatchesTitleContainer, .Columns2TitleContainer {
+.Columns2TitleContainer {
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+
+    width: 50%;
+}
+
+.BatchesTitleContainer {
     display: -webkit-flex;
     display: flex;
     flex-direction: row;
@@ -64,153 +81,16 @@
     width: 30%;
 }
 
-.TableRow {
 
-    display: -webkit-flex;
-    display: flex;
-    
-    align-items: center;
 
-    box-shadow: 0px 7px 20px rgba(40, 41, 61, 0.08);
-    border-radius: 8px;
-    height: 85px;
-    padding: 40px 0px;
-    margin: 10px 0px;
-    background: #FFFFFF;
-}
 
-.TableRow:hover {
-    cursor: pointer;
-    background: rgba(225, 245, 255, 0.2);
-}
 
 .Avatar { 
     background: #FFFFFF;
     margin-right: 5px;
 }
 
-.ColumnMemberTitle {
 
-    margin: 0 20px 0 50px;
-
-    width: 35%;
-
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 13px;
-    line-height: 19px;
-    /* identical to box height */
-
-
-    /* Grey/500 */
-
-    color: #3A3C40;
-  
-}
-
-
-.ColumnsContainer1 {
-    display: -webkit-flex;
-    display: flex;
-    align-items: center;
-
-    width: 30%;
-
-}
-
-.ColumnMember {
-    width: 50%;
-    margin: 0px 5px 0px 0px;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 13px;
-    line-height: 16px;
-    /* identical to box height */
-
-
-    /* Grey/400 */
-
-    color: #82868C;
-
-
-}
-
-.ColumnsContainer2 {
-    display: -webkit-flex;
-    display: flex;
-
-    align-items: center;
-    width: 30%;
-}
-
-.ColumnSignedContainer, .ColumnStatusContainer {
-
-    width: 50%;
-    margin: 0;
-}
-
-.ColumnSignedGreen {
-
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 15px;
-    width: fit-content;
-
-
-    color: #FFFFFF;
-
-    padding: 4.5px 17px;
-
-    background: #2CC5BD;
-    border-radius: 20px;
-
-}
-
-.ColumnSignedRed {
-
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 15px;
-    width: fit-content;
-
-
-    color: #FFFFFF;
-
-    padding: 4.5px 17px;
-
-    background: #FF6B93;
-    border-radius: 20px;
-
-}
-
-.ColumnStatus {
-    margin: 0 0px 0 0px;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 15px;
-    width: fit-content;
-
-    /* identical to box height */
-
-
-    /* Grey/400 */
-    color: #FFFFFF;
-
-    padding: 4.5px 17px;
-    /* Green / 500 */
-
-    background: #2CC5BD;
-    border-radius: 20px;
-
-}
 
 .D-no-deals-container {
     display: -webkit-flex;
@@ -256,72 +136,7 @@
     .TableHeader { 
         display: none;
     }
-    .TableRow { 
-        flex-direction: column;
-        align-items: flex-start;
-        height: 160px;
-        padding: 30px;
-        margin-top: 0px;
-    }
 
-    
-
-    .ColumnsContainer1{
-        display: -webkit-flex;
-        display: flex;
-        flex-direction: column;
-        flex-direction: column-reverse;
-        align-items: flex-start;
-        width: 40%;
-
-    }
-    .ColumnMemberTitle {
-        width: 100%;
-        margin-left: 0px;
-    }
-
-    .ColumnMember {
-        width: 100%;
-        margin-left: 0px;
-        margin-top: 20px;
-    }
-
-    /* .ColumnStatusContainer {
-        position: relative;
-        bottom: 140px;
-        left: 260px;
-        width: 50px;
-    }
-
-    .ColumnSignedContainer {
-        position: relative;
-        left: 260px;
-        width: 50px;
-    } */
-
-    .ColumnsContainer2 {
-        display: -webkit-flex;
-        display: flex;
-        flex-direction: column-reverse;
-        align-items: flex-end;
-        background: #FFFFFF;
-        position: relative;
-        left: 60%;
-        width: 40%;
-        bottom: 105px;
-    }
-
-    .ColumnSignedContainer, .ColumnStatusContainer {
-        width: fit-content;
-        display: -webkit-flex;
-        display: flex;
-        justify-content: right;
-        
-    }
-
-    .ColumnSignedContainer {
-        margin-top: 55px;
-    }
 }
 
 @media (max-width: 325px) {
@@ -329,18 +144,5 @@
     .DealsContainer {
         padding: 90px 10px 40px 10px;  
     }
-
-    .TableRow { 
-        padding: 20px 20px;
-        height: 140px;
-
-    }
-
-    .ColumnsContainer2 {
-        left: 50%;
-        width: 50%;
-    }
-
-    
 
 }

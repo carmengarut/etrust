@@ -30,10 +30,12 @@ function Deals () {
       </div>
 
       <div className='TableHeader'>
-        <div className='ColumnTitleDeal'>{t('agreements_page.title')}</div>
-        <div className='Columns2TitleContainer'>
-          <div className='ColumnTitle'>{t('agreements_page.user')}</div>
-          <div className='ColumnTitle'>{t('agreements_page.creation_date')}</div>
+        <div className='ColumnsContainer0'>
+          <div className='ColumnTitleDeal'>{t('agreements_page.title')}</div>
+          <div className='Columns2TitleContainer'>
+            <div className='ColumnTitle'>{t('agreements_page.user')}</div>
+            <div className='ColumnTitle'>{t('agreements_page.creation_date')}</div>
+          </div>
         </div>
         <div className='BatchesTitleContainer'>
           <div className='ColumnTitle'>{t('agreements_page.signed')}</div>

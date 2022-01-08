@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 
 import { useTranslation } from 'react-i18next'
 
-import '../css/deals.css'
+import '../css/deal.css'
 
 import avatar from '../public/avatar.svg'
 
@@ -16,45 +16,46 @@ const Deal = ({ deal }) => {
   const { t } = useTranslation('global')
 
   return (
-    <div className='TableRow' key={deal.id} onClick={() => { history.push(`/deals/${deal.id}`) }}>
-
-      <div className='ColumnMemberTitle'>
-        {deal.title}
-      </div>
-      <div className='ColumnsContainer1'>
-        <div className='ColumnMember'>
-          <img
-            src={(user.id === deal.member.id)
-              ? deal.createdBy.profileImg || avatar
-              : deal.member.profileImg || avatar}
-            width='30px'
-            height='30px'
-            className='Avatar'
-          /> {' '}
-          {console.log(deal.member.id === false)}
-          {deal.member.id !== 'undefined'
-            ? user.id === deal.member.id
-              ? deal.createdBy.name
+    <div className='d-container' key={deal.id} onClick={() => { history.push(`/deals/${deal.id}`) }}>
+      <div className='d-columns-container-1'>
+        <div className='d-column-title'>
+          {deal.title}
+        </div>
+        <div className='d-columns-subcontainer'>
+          <div className='d-column-member'>
+            <img
+              src={(user.id === deal.member.id)
+                ? deal.createdBy.profileImg || avatar
+                : deal.member.profileImg || avatar}
+              width='30px'
+              height='30px'
+              className='Avatar'
+            /> {' '}
+            {console.log(deal.member.id === false)}
+            {deal.member.id !== 'undefined'
+              ? user.id === deal.member.id
                 ? deal.createdBy.name
-                : deal.createdBy.email
-              : deal.member.name
-                ? deal.member.name
-                : deal.member.email
-            : user.id === deal.member
-              ? users.find(user => user.id === deal.createdBy).name
-              : users.find(user => user.id === deal.member).name}
-        </div>
-        <div className='ColumnMember'>
-          {deal.date.slice(0, 10)}
+                  ? deal.createdBy.name
+                  : deal.createdBy.email
+                : deal.member.name
+                  ? deal.member.name
+                  : deal.member.email
+              : user.id === deal.member
+                ? users.find(user => user.id === deal.createdBy).name
+                : users.find(user => user.id === deal.member).name}
+          </div>
+          <div className='d-column-member'>
+            {deal.date.slice(0, 10)}
+          </div>
         </div>
       </div>
-      <div className='ColumnsContainer2'>
-        <div className='ColumnSignedContainer'>
+      <div className='d-columns-container-2'>
+        <div className='d-column-signed-container'>
           <div className={deal.signedBy.find(member => member.id === user.id)
-            ? 'ColumnSignedGreen'
+            ? 'd-column-signed-green'
             : deal.signedBy.find(member => member === user.id)
-              ? 'ColumnSignedGreen'
-              : 'ColumnSignedRed'}
+              ? 'd-column-signed-green'
+              : 'd-column-signed-red'}
           >
 
             {deal.signedBy.find(member => member.id === user.id)
@@ -65,8 +66,8 @@ const Deal = ({ deal }) => {
 
           </div>
         </div>
-        <div className='ColumnStatusContainer'>
-          <div className='ColumnStatus'>
+        <div className='d-column-status-container'>
+          <div className='d-column-status'>
 
             {deal.status}
 
