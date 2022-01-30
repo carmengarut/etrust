@@ -53,7 +53,7 @@ dealsRouter.get('/:id', (request, response, next) => {
       fulfilled: 1,
       content: 1,
       recipient: 1,
-      createdBy: 1,
+      createdBy: 1
     })
     .then(deal => {
       if (deal) {
@@ -134,24 +134,18 @@ dealsRouter.put('/:id', userExtractor, async (request, response, next) => {
   }
   try {
     const result = await Deal.findByIdAndUpdate(id, newDeal, { new: true })
-  
+
     if (result === null) {
       return response.status(400).json({
         error: 'Deal does´t exist'
       })
     }
-      
+
     sendProposeChangeEmail(senderName, receiverName, receiverEmail, title)
     response.json(result)
-
-} catch(e) {
-  next(e)
-}
-  
-
-  
-
-
+  } catch (e) {
+    next(e)
+  }
 })
 
 dealsRouter.put('/:id/sign', userExtractor, async (request, response) => {
@@ -178,6 +172,5 @@ dealsRouter.put('/:id/sign', userExtractor, async (request, response) => {
   })
   response.json(savedDeal)
 })
-
 
 module.exports = dealsRouter
