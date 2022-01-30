@@ -1,6 +1,8 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
+import ReactGA from 'react-ga'
+
 import { userSet } from './reducers/userReducer'
 import Header from './components/Header'
 import RouterApp from './RouterApp'
@@ -26,6 +28,7 @@ const App = () => {
     dispatch(dealInit())
     dispatch(ratingInit())
     dispatch(usersInit())
+    ReactGA.initialize('G-LC9XYJTPPD')
   }, [])
 
   return (
