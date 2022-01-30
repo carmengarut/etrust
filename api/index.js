@@ -1,5 +1,6 @@
 require('dotenv').config()
 require('./mongo.js') // Esto ejecuta el fichero de mongo.js
+const path = require('path')
 
 const Sentry = require('@sentry/node')
 const Tracing = require('@sentry/tracing')
@@ -53,6 +54,10 @@ app.use('/api/deals', dealsRouter)
 app.use('/api/users', usersRouter)
 app.use('/api/login', loginRouter)
 app.use('/api/ratings', ratingsRouter)
+
+app.use((req, res, next) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
 
 if (process.env.NODE_ENV === 'test') {
   const testingRouter = require('./controllers/testing')
