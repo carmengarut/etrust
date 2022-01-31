@@ -23,6 +23,9 @@ app.use(express.json())
 app.use(logger)
 
 app.use(express.static('public'))
+app.use(express.static(path.join(__dirname, "public")));
+app.use('/static', express.static(path.join(__dirname, "public/static")));
+app.use('/manifest.json', express.static(path.join(__dirname, "public", "manifest.json")));
 app.use('/login', express.static('public'))
 app.use('/register', express.static('public'))
 app.use('/deals', express.static('public'))
