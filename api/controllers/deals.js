@@ -3,7 +3,7 @@ const Deal = require('../models/Deal')
 const User = require('../models/User.js')
 const userExtractor = require('../middleware/userExtractor')
 const { sendProposeChangeEmail } = require('../middleware/emailNotifications')
-
+//
 dealsRouter.get('/', async (request, response) => {
   const deals = await Deal.find({})
     .populate('createdBy', {
