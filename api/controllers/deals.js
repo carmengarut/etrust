@@ -2,7 +2,7 @@ const dealsRouter = require('express').Router()
 const Deal = require('../models/Deal')
 const User = require('../models/User.js')
 const userExtractor = require('../middleware/userExtractor')
-const { sendProposeChangeEmail } = require('../middleware/emailNotifications')
+const { sendProposeChangeEmail, sendContractCreatedEmail, sendContractSignedEmail } = require('../middleware/emailNotifications')
 //
 dealsRouter.get('/', async (request, response) => {
   const deals = await Deal.find({})
@@ -64,7 +64,7 @@ dealsRouter.get('/:id', (request, response, next) => {
     })
     .catch(err => {
       next(err)
-    })
+    }) 
 })
 
 dealsRouter.delete('/:id', userExtractor, async (request, response, next) => {
@@ -118,6 +118,8 @@ dealsRouter.post('/', userExtractor, async (request, response, next) => {
     user.deals = user.deals.concat(savedDeal._id)
     await user.save()
 
+    sendContractCreatedEmail(title, member.name, member.email, user.name, user.surname)
+
     response.status(201).json(savedDeal)
   } catch (error) {
     next(error)
@@ -170,6 +172,8 @@ dealsRouter.put('/:id/sign', userExtractor, async (request, response) => {
     name: 1,
     surname: 1
   })
+
+  sendContractSignedEmail(savedDeal.signedBy[0].email, savedDeal.signedBy[0].name, savedDeal.signedBy[1].name, savedDeal.signedBy[1].surname, savedDeal.title)
   response.json(savedDeal)
 })
 

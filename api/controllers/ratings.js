@@ -3,6 +3,7 @@ const Deal = require('../models/Deal')
 const User = require('../models/User.js')
 const Rating = require('../models/Rating')
 const userExtractor = require('../middleware/userExtractor')
+const { sendRatingReceivedEmail } = require('../middleware/emailNotifications')
 
 ratingsRouter.post('/', userExtractor, async (request, response, next) => {
   const { fulfilled, content, recipientId, dealId } = request.body
@@ -11,6 +12,7 @@ ratingsRouter.post('/', userExtractor, async (request, response, next) => {
 
   const deal = await Deal.findById(dealId)
   const recipient = await User.findById(recipientId)
+  const user = await User.findById(userId)
 
   if (deal.status !== 'Signed') {
     return response.status(400).json({
@@ -34,6 +36,8 @@ ratingsRouter.post('/', userExtractor, async (request, response, next) => {
     await deal.save()
     recipient.ratings = recipient.ratings.concat(savedRating._id)
     await recipient.save()
+
+    sendRatingReceivedEmail(recipient.email, recipient.name, user.name, user.surname, deal.title)
 
     response.status(201).json(savedRating)
   } catch (error) {

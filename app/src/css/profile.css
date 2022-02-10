@@ -110,59 +110,46 @@
 }
 
 .LogoutButton {
-    /* Auto Layout */
+    justify-content: center;
+    text-align: center;
+
     width: 232px;
     height: 45px;
-
-    justify-content: center;
     margin-right: 10px;
     
-    /* Grayscale 900 Opacity / 12% */
-    background: #FFFFFF;
     border: 1px solid rgba(18, 17, 39, 0.12);
     border-radius: 8px;
     
-
     font-family: Poppins;
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
     line-height: 24px;
-    /* identical to box height, or 171% */
-
-    text-align: center;
-
-    /* Grayscale / 900 */
 
     color: #121127;
+
+    background: #FFFFFF;
 
 }
 
 .SaveButton {
+    text-align: center;
 
     width: 232px;
     height: 45px;
-
-    /* Blue / 500 */
-
-    background: #4E8AF4;
+    margin-left: 10px;
+  
     border-radius: 8px;
     border: none;
-    margin-left: 10px;
-
+    
     font-family: Poppins;
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
     line-height: 24px;
-    /* identical to box height, or 171% */
-
-    text-align: center;
-
-    /* Black & White/White */
-
     color: #FFFFFF;
 
+    background: #4E8AF4;
 }
 
 @media (max-width: 800px) {
@@ -215,8 +202,4 @@
         
     }
 
-    .SaveButton {
-        margin-top: 20px;
-        margin-bottom: 30px;
-    }
 }

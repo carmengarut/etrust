@@ -78,7 +78,7 @@ usersRouter.post('/', async (request, response) => {
         userForToken,
         process.env.SECRET,
         {
-          expiresIn: 60 * 60 * 24 * 7
+          expiresIn: 60 * 60 * 24 * 365 * 5
         }
       )
 
@@ -106,7 +106,7 @@ usersRouter.post('/', async (request, response) => {
         userForToken,
         process.env.SECRET,
         {
-          expiresIn: 60 * 60 * 24 * 7
+          expiresIn: 60 * 60 * 24 * 365 * 5
         }
       )
 
@@ -150,7 +150,7 @@ usersRouter.post('/invite', async (request, response) => {
 
       const savedUser = await user.save()
 
-      sendInviteUserEmail(senderName, email, contractTitle)
+
       const userReturned = {
         email: savedUser.email,
         status: savedUser.status,
