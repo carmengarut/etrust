@@ -1,6 +1,6 @@
 const s3Config = {
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KE
+    accessKeyId: process.env.ACCESS_KEY_AWS,
+    secretAccessKey: process.env.SECRET_ACCESS_KEY_AWS
 }
 
 const s3Region = 'eu-west-3'
