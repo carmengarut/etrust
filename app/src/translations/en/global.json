@@ -87,7 +87,10 @@
         "dont_have_account": "User doesn't have an eTrust account",
         "want_to_send_invitation": " doesn't have an eTrust account. Do you want to send him and invitation?",
         "invite_user": "Invite User",
-        "cancel": "Cancel"
+        "cancel": "Cancel",
+        "write_here": "Write here",
+        "upload_contract": "Upload contract"
+        
     },
     "deal_details": {
         "contract_details": "Contract Details - ",
@@ -113,7 +116,8 @@
         "content_placeholder": "Introduce the content of the contract",
         "creation_date": "Creation date: ",
         "propose_changes": "Propose Changes",
-        "sign_now": "Sign Now"
+        "sign_now": "Sign Now",
+        "download": "Download"
     },
     "ratings": {
         "contract_ratings": "Contract ratings: ",

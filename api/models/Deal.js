@@ -2,6 +2,8 @@ const { Schema, model } = require('mongoose')
 
 const dealSchema = new Schema({
   title: String,
+  type: String,
+  file: String,
   content: String, // En un futuro metemos aqui otro modelo que seria el contrato
   date: Date,
   status: String,

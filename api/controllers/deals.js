@@ -80,13 +80,13 @@ dealsRouter.delete('/:id', userExtractor, async (request, response, next) => {
 
 // en el siguiente post, primerto ejecuta el user extractor y luego la funcion async
 dealsRouter.post('/', userExtractor, async (request, response, next) => {
-  const { title, content, memberEmail } = request.body
+  const { title, type, content, file, memberEmail } = request.body
 
-  if (!content) {
-    return response.status(400).json({
-      error: 'Deal content is missing'
-    })
-  }
+  // if (!content) {
+  //   return response.status(400).json({
+  //     error: 'Deal content is missing'
+  //   })
+  // }
 
   const member = await User.findOne({ email: memberEmail })
   if (!member) {
@@ -105,6 +105,8 @@ dealsRouter.post('/', userExtractor, async (request, response, next) => {
 
   const newDeal = new Deal({
     title,
+    type,
+    file,
     content,
     date: new Date().toISOString(),
     status: 'New',
@@ -128,9 +130,11 @@ dealsRouter.post('/', userExtractor, async (request, response, next) => {
 
 dealsRouter.put('/:id', userExtractor, async (request, response, next) => {
   const { id } = request.params
-  const { title, content, senderName, receiverName, receiverEmail } = request.body
+  const { title, type, content, file, senderName, receiverName, receiverEmail } = request.body
   const newDeal = {
     title,
+    type,
+    file,
     content,
     signedBy: []
   }

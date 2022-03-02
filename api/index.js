@@ -16,6 +16,7 @@ const usersRouter = require('./controllers/users')
 const loginRouter = require('./controllers/login')
 const dealsRouter = require('./controllers/deals')
 const ratingsRouter = require('./controllers/ratings.js')
+const filesRouter = require('./controllers/files.js')
 
 // app.use(express.urlencoded({extended: true})); 
 app.use(cors())
@@ -47,6 +48,8 @@ Sentry.init({
   tracesSampleRate: 1.0
 })
 
+
+
 // RequestHandler creates a separate execution context using domains, so that every
 // transaction/span/breadcrumb is attached to its own Hub instance
 app.use(Sentry.Handlers.requestHandler())
@@ -57,6 +60,7 @@ app.use('/api/deals', dealsRouter)
 app.use('/api/users', usersRouter)
 app.use('/api/login', loginRouter)
 app.use('/api/ratings', ratingsRouter)
+app.use('/api/files', filesRouter)
 
 app.use((req, res, next) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));

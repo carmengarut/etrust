@@ -1,0 +1,17 @@
+.cc-container { 
+    padding: 20px 100px;
+
+}
+
+@media (max-width: 800px) {
+    .cc-container {
+        padding: 80px 20px 40px 20px;  
+    }
+}
+
+@media (max-width: 325px) {
+    .cc-container {
+        padding: 80px 10px 40px 10px;  
+    }
+
+}

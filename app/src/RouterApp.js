@@ -2,14 +2,14 @@ import { Route, Switch, Redirect } from 'react-router-dom'
 
 import LoginForm from './components/LoginForm'
 import RegistrationForm from './components/RegistrationForm'
-import DealForm from './components/DealForm'
 import RatingForm from './components/RatingForm'
 import Deals from './Deals'
 import Profile from './Profile'
 import { useSelector } from 'react-redux'
 import Users from './Users'
 import LandingPage from './LandingPage'
-import DealDetailsHello from './components/DealDetail'
+import CreateContract from './pages/CreateContract'
+import ContractDetails from './pages/ContractDetails'
 
 export default function RouterApp () {
   const user = useSelector(state => state.user)
@@ -18,7 +18,7 @@ export default function RouterApp () {
 
     <Switch>
       <Route path='/deals/:id'>
-        <DealDetailsHello />
+        <ContractDetails />
       </Route>
 
       <Route path='/profile'>
@@ -34,7 +34,7 @@ export default function RouterApp () {
       </Route>
 
       <Route path='/create-deal'>
-        <DealForm />
+        <CreateContract />
       </Route>
 
       <Route path='/landing'>

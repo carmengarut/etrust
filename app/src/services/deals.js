@@ -110,3 +110,35 @@ export const inviteUser = (newObject) => {
   const request = axios.post('/api/users/invite', newObject, config)
   return request.then(response => response.data)
 }
+
+export const uploadFile = (newObject) => {
+  const config = {
+    headers: {
+      Authorization: token,
+      'Content-Type': 'multipart/form-data'
+    }
+  }
+  const request = axios.post('/api/files/upload', newObject, config)
+  return request.then(response => response.data)
+}
+
+export const downloadFile = (key) => {
+  const config = {
+    headers: {
+      Authorization: token
+    }
+  }
+  const request = axios.get(`/api/files/${key}`, config)
+  return request.then(response => response.data)
+}
+
+// export const createSignature = (newObject) => {
+//   const config = {
+//     headers: {
+//       Authorization: token,
+//       'Content-Type': 'multipart/form-data'
+//     }
+//   }
+//   const request = axios.post('/api/files/create-signature', newObject, config)
+//   return request.then(response => response.data)
+// }

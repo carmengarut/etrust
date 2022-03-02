@@ -87,7 +87,9 @@
         "dont_have_account": "El usuario no tiene cuenta de eTrust",
         "want_to_send_invitation": " no tiene cuenta de eTrust. ¿Quieres enviarle una invitación?",
         "invite_user": "Invitar Usuario",
-        "cancel": "Cancelar"
+        "cancel": "Cancelar",
+        "write_here": "Redactar aquí",
+        "upload_contract": "Subir contrato"
     },
     "deal_details": {
         "contract_details": "Detalles del Contrato - ",
@@ -113,7 +115,8 @@
         "content_placeholder": "Introduce el contenido del contrato",
         "creation_date": "Fecha de creación: ",
         "propose_changes": "Proponer Cambios",
-        "sign_now": "Firmar Ahora"
+        "sign_now": "Firmar Ahora",
+        "download": "Descargar"
     },
     "ratings": {
         "contract_ratings": "Evaluaciones del contrato: ",

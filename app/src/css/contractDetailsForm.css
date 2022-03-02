@@ -1,4 +1,13 @@
-.DDF-field-group {
+.cdf-container {
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    margin-top: 20px;
+}
+
+.cdf-field-group {
     display: -webkit-flex;
     display: flex;
     flex-direction: column;
@@ -14,7 +23,7 @@
     color: #626266;
 }
 
-.DDF-field {
+.cdf-field {
     height: 46px;
     margin-top: 10px;
     padding-left: 13px;
@@ -25,7 +34,7 @@
     background: #F6F6F6;
 }
 
-.DDF-textarea {
+.cdf-textarea {
     height: 100px;
     margin-top: 10px;
     padding-top: 14px;
@@ -38,7 +47,19 @@
     background: #F6F6F6;
 }
 
-.DDF-creation-date {
+.cdf-download-button {
+    padding: 5px 20px;
+    margin-left: 10px;
+
+    border-radius: 8px;
+    border: none; 
+
+    color: #FFFFFF;
+
+    background: #4E8AF4;
+}
+
+.cdf-creation-date {
     text-align: left;
 
     margin-top: 20px;
@@ -49,13 +70,13 @@
     color: #82868C;
 }
 
-.DDF-buttons-container {
+.cdf-buttons-container {
     display: -webkit-flex;
     display: flex;
     justify-content: flex-end;
 }
 
-.DDF-save-button {
+.cdf-save-button {
     text-align: center;
 
     width: 232px;
@@ -76,7 +97,7 @@
     background: #FFFFFF;
 }
 
-.DDF-sign-button {
+.cdf-sign-button {
     text-align: center;
 
     width: 232px;
@@ -98,13 +119,19 @@
 }
 
 @media (max-width: 800px) {
-    .DDF-buttons-container {
+    .cdf-buttons-container {
         flex-direction: column;
     }
 
-    .DDF-save-button, .DDF-sign-button {
+    .cdf-save-button, .cdf-sign-button {
         width: 100%;
         margin: 20px 0 0 0 ;
+    }
+
+    .cdf-download-button {
+        display: block;
+        margin-left: 0;
+        margin-top: 10px;
     }
     
 }

@@ -4,11 +4,13 @@ import { useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 import { signDeal, editDeal } from '../reducers/dealReducer'
-import '../css/dealDetailsForm.css'
+import '../css/contractDetailsForm.css'
+import { downloadFile } from '../services/deals'
 
-export default function DealDetailsForm ({ deal }) {
+export default function ContractDetailsForm ({ deal }) {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
+  const [file, setFile] = useState('')
 
   const user = useSelector(state => state.user)
 
@@ -21,6 +23,7 @@ export default function DealDetailsForm ({ deal }) {
     if (deal) {
       setTitle(deal.title)
       setContent(deal.content)
+      setFile(deal.file)
     }
   }, [deal])
 
@@ -41,14 +44,25 @@ export default function DealDetailsForm ({ deal }) {
     dispatch(editDeal(id, editedContract))
   }
 
+  const handleDownload = async () => {
+    const url = await downloadFile(file)
+
+    // const url = window.URL.createObjectURL(new Blob([response]))
+    const link = document.createElement('a')
+    link.href = url
+    link.setAttribute('download', file)
+    document.body.appendChild(link)
+    link.click()
+  }
+
   return (
     <>
       <div>{t('deal_details_form.contract_details')}</div>
-      <form onSubmit={handleSubmit} className='DealDetailsForm'>
-        <div className='DDF-field-group'>
+      <form onSubmit={handleSubmit} className='cdf-container'>
+        <div className='cdf-field-group'>
           <label>{t('deal_details_form.title')}</label>
           <input
-            className='DDF-field'
+            className='cdf-field'
             type='text'
             name='title'
             value={title}
@@ -58,25 +72,41 @@ export default function DealDetailsForm ({ deal }) {
           />
         </div>
 
-        <div className='DDF-field-group'>
+        <div className='cdf-field-group'>
           <label>{t('deal_details_form.content')}</label>
-          <textarea
-            className='DDF-textarea'
-            name='content'
-            value={content}
-            placeholder={t('deal_details_form.content_placeholder')}
-            onChange={({ target }) => setContent(target.value)}
-            required
-          />
+          {content
+            ? <textarea
+                className='cdf-textarea'
+                name='content'
+                value={content}
+                placeholder={t('deal_details_form.content_placeholder')}
+                onChange={({ target }) => setContent(target.value)}
+                required
+              />
+            : <></>}
+          {file
+            ? (
+              <div className='cdf-creation-date'>
+                {file}
+                <button
+                  type='button'
+                  onClick={handleDownload}
+                  className='cdf-download-button'
+                >
+                  {t('deal_details_form.download')}
+                </button>
+              </div>
+              )
+            : <></>}
         </div>
 
-        <div className='DDF-creation-date'>{t('deal_details_form.creation_date')}{deal.date.slice(0, 10)}</div>
+        <div className='cdf-creation-date'>{t('deal_details_form.creation_date')}{deal.date.slice(0, 10)}</div>
 
-        <div className='DDF-buttons-container'>
+        <div className='cdf-buttons-container'>
           {(title === deal.title && content === deal.content)
             ? ''
             : (
-              <button type='submit' className='DDF-save-button'>
+              <button type='submit' className='cdf-save-button'>
                 {t('deal_details_form.propose_changes')}
               </button>)}
 
@@ -84,8 +114,8 @@ export default function DealDetailsForm ({ deal }) {
             ? deal.signedBy.length > 0
               ? deal.signedBy.find(userSigned => userSigned.id === user.id)
                 ? ''
-                : <button type='button' onClick={handleSign} className='DDF-sign-button'>{t('deal_details_form.sign_now')}</button>
-              : <button type='button' onClick={handleSign} className='DDF-sign-button'>{t('deal_details_form.sign_now')}</button>
+                : <button type='button' onClick={handleSign} className='cdf-sign-button'>{t('deal_details_form.sign_now')}</button>
+              : <button type='button' onClick={handleSign} className='cdf-sign-button'>{t('deal_details_form.sign_now')}</button>
             : ''}
         </div>
       </form>

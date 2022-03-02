@@ -48,6 +48,23 @@ const useForm = () => {
             }
             break
 
+        case 'contractFile':
+          if (value === '') {
+              // we will set the error state
+
+              setErrors({
+              ...errors,
+              content: 'Required'
+              })
+          } else {
+              // set the error state empty or remove the error for username input
+
+              // omit function removes/omits the value from given object and returns a new object
+              const newObj = omit(errors, 'content')
+              setErrors(newObj)
+          }
+          break
+
       case 'email':
         if (
           !new RegExp(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/).test(value)
