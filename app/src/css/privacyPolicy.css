@@ -1,0 +1,36 @@
+.pp-container { 
+    padding: 20px 100px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+}
+
+.pp-page-title {
+    margin-bottom: 30px;
+    font-weight: 600;
+    font-size: 24px;
+}
+
+.pp-block {
+    margin-bottom: 25px;
+}
+
+.pp-title {
+    margin-bottom: 18px;
+    font-weight: 600;
+}
+
+.pp-subtitle {
+    text-decoration: underline;
+    margin-bottom: 10px;
+}
+
+.pp-paragraf {
+    margin-bottom: 12px;
+}
+
+li {
+    display: list-item;
+  }

@@ -112,7 +112,13 @@ export default function RegistrationForm () {
               />
             </div>
           </div>
-          <label className='CheckboxContainer'><span className='Label'>{t('sign_up.terms_and_conditions')}</span>
+          <label className='CheckboxContainer'>
+            <span className='Label'>
+              {t('sign_up.i_accept')}
+              <a onClick={() => history.push('/terms-and-conditions')} href=''>
+                {t('sign_up.terms_and_conditions')}
+              </a>
+            </span>
             <input type='checkbox' required />
             <span className='Checkbox' />
           </label>

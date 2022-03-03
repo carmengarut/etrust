@@ -13,6 +13,8 @@ import HeaderWeb from './components/HeaderWeb'
 import { dealInit } from './reducers/dealReducer'
 import { ratingInit } from './reducers/ratingReducer'
 import { usersInit } from './reducers/usersReducers'
+import TermsAndConditions from './pages/TermsAndConditions'
+import PrivacyPolicy from './pages/PrivacyPolicy'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -54,6 +56,14 @@ const App = () => {
 
               <Route path='/landing'>
                 <LandingPage />
+              </Route>
+
+              <Route path='/terms-and-conditions'>
+                <TermsAndConditions />
+              </Route>
+
+              <Route path='/privacy-policy'>
+                <PrivacyPolicy />
               </Route>
 
               <Route path='/'>
