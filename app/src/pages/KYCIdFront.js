@@ -29,14 +29,14 @@ export default function KYCIdFront () {
   navigator.mediaDevices.enumerateDevices().then((devices) => {
     const videoDevices = devices.filter(device => device.kind === 'videoinput')
 
+    console.log(videoDevices)
     navigator.mediaDevices.getUserMedia({
-      audio: false,
-      video: true,
       deviceId: {
-        exact: videoDevices.length > 1
-          ? videoDevices[1].deviceId
-          : videoDevices[0].deviceId
-      }
+        exact: videoDevices[0].deviceId
+      },
+      audio: false,
+      video: true
+
     })
       .then((stream) => {
         const video = document.getElementById('video')
