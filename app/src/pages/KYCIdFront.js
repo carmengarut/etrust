@@ -26,65 +26,77 @@ export default function KYCIdFront () {
     videoElem.srcObject = null
   }
 
-  navigator.mediaDevices.getUserMedia({ audio: false, video: true })
-    .then((stream) => {
-      const video = document.getElementById('video')
-      const button = document.getElementById('button')
-      const canvas = document.getElementById('canvas')
-      const retry = document.getElementById('retry')
-      const usePhoto = document.getElementById('use-photo')
+  navigator.mediaDevices.enumerateDevices().then((devices) => {
+    const videoDevices = devices.filter(device => device.kind === 'videoinput')
 
-      video.srcObject = stream
-      video.onloadedmetadata = () => video.play()
-
-      button.addEventListener('click', () => {
-        video.pause()
-        const context = canvas.getContext('2d')
-        canvas.width = video.videoWidth
-        canvas.height = video.videoHeight
-        context.drawImage(video, 0, 0, canvas.width, canvas.height)
-
-        video.style.display = 'none'
-        canvas.style.display = 'block'
-        button.style.display = 'none'
-        retry.style.display = 'block'
-        usePhoto.style.display = 'block'
-      })
-
-      retry.addEventListener('click', () => {
-        video.play()
-
-        video.style.display = 'block'
-        canvas.style.display = 'none'
-        button.style.display = 'block'
-        retry.style.display = 'none'
-        usePhoto.style.display = 'none'
-      })
-
-      usePhoto.addEventListener('click', async () => {
-        try {
-          const photo = canvas.toDataURL()
-
-          const newObject = {
-            base64: photo,
-            userId: user.id,
-            side: 'front'
-          }
-          const type = photo.split(';')[0].split('/')[1]
-          await uploadIdPhoto(newObject)
-          dispatch(userEdit(user.id, { idFrontPhoto: user.id + `-front.${type}` }))
-          stopStreamedVideo(video)
-          if (user.documentType === 'passport') {
-            history.push('/kyc-selfie')
-          } else {
-            history.push('/kyc-id-back')
-          }
-        } catch (e) {
-          console.log(e.name)
-        }
-      })
+    navigator.mediaDevices.getUserMedia({
+      audio: false,
+      video: true,
+      deviceId: {
+        exact: videoDevices.length > 1
+          ? videoDevices[1].deviceId
+          : videoDevices[0].deviceId
+      }
     })
-    .catch(() => history.push('/kyc-access-denied'))
+      .then((stream) => {
+        const video = document.getElementById('video')
+        const button = document.getElementById('button')
+        const canvas = document.getElementById('canvas')
+        const retry = document.getElementById('retry')
+        const usePhoto = document.getElementById('use-photo')
+
+        video.srcObject = stream
+        video.onloadedmetadata = () => video.play()
+
+        button.addEventListener('click', () => {
+          video.pause()
+          const context = canvas.getContext('2d')
+          canvas.width = video.videoWidth
+          canvas.height = video.videoHeight
+          context.drawImage(video, 0, 0, canvas.width, canvas.height)
+
+          video.style.display = 'none'
+          canvas.style.display = 'block'
+          button.style.display = 'none'
+          retry.style.display = 'block'
+          usePhoto.style.display = 'block'
+        })
+
+        retry.addEventListener('click', () => {
+          video.play()
+
+          video.style.display = 'block'
+          canvas.style.display = 'none'
+          button.style.display = 'block'
+          retry.style.display = 'none'
+          usePhoto.style.display = 'none'
+        })
+
+        usePhoto.addEventListener('click', async () => {
+          try {
+            const photo = canvas.toDataURL()
+
+            const newObject = {
+              base64: photo,
+              userId: user.id,
+              side: 'front'
+            }
+            const type = photo.split(';')[0].split('/')[1]
+            await uploadIdPhoto(newObject)
+            dispatch(userEdit(user.id, { idFrontPhoto: user.id + `-front.${type}` }))
+            stopStreamedVideo(video)
+            if (user.documentType === 'passport') {
+              history.push('/kyc-selfie')
+            } else {
+              history.push('/kyc-id-back')
+            }
+          } catch (e) {
+            console.log(e.name)
+          }
+        })
+      })
+      .catch(() => history.push('/kyc-access-denied'))
+  }).catch(() => history.push('/kyc-access-denied'))
 
   return (
     <div className='kif-container'>
