@@ -48,6 +48,12 @@
     max-width: 380px;
     width: 90%;
     margin-top: 20px;
+}
+
+.kif-video-reverse {
+    max-width: 380px;
+    width: 90%;
+    margin-top: 20px;
 
     transform: rotateY(180deg);
     -webkit-transform:rotateY(180deg); /* Safari and Chrome */
@@ -144,7 +150,7 @@
         font-size: 19px;
     }
 
-    .kif-video, .kif-canvas {
+    .kif-video, .kif-canvas, .kif-video-reverse{
         width: 95%;
         margin-top: 30px;
     }
@@ -185,7 +191,7 @@
         font-size: 13px;
     }
 
-    .kif-video, .kif-canvas {
+    .kif-video, .kif-canvas, .kif-video-reverse {
         width: 300px;
         margin-top: 30px;
     }

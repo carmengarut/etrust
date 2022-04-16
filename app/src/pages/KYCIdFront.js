@@ -26,6 +26,16 @@ export default function KYCIdFront () {
     videoElem.srcObject = null
   }
 
+  const deviceType = () => {
+    const ua = navigator.userAgent
+    if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
+      return 'tablet'
+    } else if (/Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+      return 'mobile'
+    }
+    return 'desktop'
+  }
+
   navigator.mediaDevices.getUserMedia({
     audio: false,
     video: {
@@ -110,7 +120,7 @@ export default function KYCIdFront () {
         <div>
           {t('kyc.make_sure_the_entire_document_is_visible')}
         </div>
-        <video src='' id='video' className='kif-video' playsInline />
+        <video src='' id='video' className={deviceType() === 'desktop' ? 'kif-video-reverse' : 'kif-video'} playsInline />
         <canvas id='canvas' style={{ display: 'none' }} className='kif-canvas' />
         <button className='kif-use-photo-button' id='use-photo' style={{ display: 'none' }}>
           {t('kyc.use_photo')}
