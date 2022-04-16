@@ -35,7 +35,6 @@ export default function KYCIdFront () {
       const usePhoto = document.getElementById('use-photo')
 
       video.srcObject = stream
-      video.onloadedmetadata = () => video.play()
 
       button.addEventListener('click', () => {
         video.pause()
@@ -105,7 +104,7 @@ export default function KYCIdFront () {
         <div>
           {t('kyc.make_sure_the_entire_document_is_visible')}
         </div>
-        <video src='' id='video' className='kif-video' />
+        <video src='' id='video' className='kif-video' autoPlay />
         <canvas id='canvas' style={{ display: 'none' }} className='kif-canvas' />
         <button className='kif-use-photo-button' id='use-photo' style={{ display: 'none' }}>
           {t('kyc.use_photo')}
