@@ -1,0 +1,154 @@
+@import url('./fonts.css');
+
+.kec-container {
+    padding: 90px 20px;
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+
+.kec-back-button {
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+
+    border: none;
+
+    background: none;
+}
+
+.kec-back-button-img {
+    margin-right: 10px;
+}
+
+.kec-text-container {
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    margin-top: 30px;
+
+    font-weight: 500;
+}
+
+.kec-title {
+    text-align: center;
+
+    margin-bottom: 20px;
+
+    font-weight: 600;
+    font-size: 23px;
+}
+
+
+
+.kec-button {
+    position: absolute;
+    bottom: 20px;
+
+    text-align: center;
+
+    width: 85%;
+    height: 60px;
+    
+    margin-top: 20px;
+
+    border-radius: 8px;
+    border: none;
+
+    color: #FFFFFF;
+
+    background: #4E8AF4;   
+}
+
+.kec-img {
+    width: 130px;
+    margin: auto;
+    margin-top: 30px;
+}
+
+.kec-text {
+    margin-top: 30px;
+
+    font-size: 12px;
+}
+
+@media (min-width: 350px) {
+    .kec-title {
+        font-size: 30px;
+    }
+
+    .kec-container {
+        font-size: 20px;
+    }
+
+    .kec-button {
+        bottom: 40px;
+    }
+ 
+}
+
+@media (min-width: 400px) {
+    .kec-img {
+        width: 200px;
+        margin-top: 50px;
+    }
+
+    .kec-text {
+        font-size: 19px;
+    }
+}
+
+
+
+@media (min-width: 800px) {
+    .kec-container {
+        padding: 20px 20px;
+        font-size: 14px;
+    }
+
+    .kec-back-button {
+        margin: 0 0 0 60px;
+    }
+
+    .kec-text-container {
+        margin: auto;
+        padding-top: 50px;
+        width: 400px;
+        height: 550px;
+
+        box-shadow: 0px 7px 20px rgba(40, 41, 61, 0.08);
+        border-radius: 8px;
+    }
+
+    .kec-title {
+        font-size: 30px;
+    }
+
+    .kec-text {
+        margin: 0px;
+        font-size: 13px;
+    }
+
+    .kec-img {
+        width: 100px;
+        margin-bottom: 80px;
+    }
+
+    .kec-button {
+        position: static;
+    
+        width:350px;
+
+        font-size: 16px;
+    }
+
+    
+}
+
+

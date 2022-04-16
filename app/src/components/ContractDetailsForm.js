@@ -112,10 +112,10 @@ export default function ContractDetailsForm ({ deal }) {
 
           {deal.status === 'New'
             ? deal.signedBy.length > 0
-              ? deal.signedBy.find(userSigned => userSigned.id === user.id)
-                ? ''
+                ? deal.signedBy.find(userSigned => userSigned.id === user.id)
+                    ? ''
+                    : <button type='button' onClick={handleSign} className='cdf-sign-button'>{t('deal_details_form.sign_now')}</button>
                 : <button type='button' onClick={handleSign} className='cdf-sign-button'>{t('deal_details_form.sign_now')}</button>
-              : <button type='button' onClick={handleSign} className='cdf-sign-button'>{t('deal_details_form.sign_now')}</button>
             : ''}
         </div>
       </form>

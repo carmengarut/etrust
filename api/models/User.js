@@ -3,8 +3,15 @@ const { Schema, model } = require('mongoose')
 
 const userSchema = new Schema({
   email: String,
+  type: String,
   name: String,
   surname: String,
+  documentType: String,
+  documentNumber: String,
+  issuingCountry: String,
+  idFrontPhoto: String,
+  idBackPhoto: String,
+  selfie: String,
   passwordHash: String,
   profileImg: String,
   trustRate: Number,

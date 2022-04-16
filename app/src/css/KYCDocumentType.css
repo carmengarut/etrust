@@ -1,0 +1,133 @@
+@import url('./fonts.css');
+
+.kdt-container {
+    padding: 90px 20px;
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.kdt-container2 {
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.kdt-back-button {
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+
+    border: none;
+
+    background: none;
+}
+
+.kdt-back-button-img {
+    margin-right: 10px;
+}
+
+.kdt-text-container {
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    margin-top: 30px;
+
+    font-weight: 500;
+}
+
+.kdt-title {
+    text-align: center;
+
+    margin-bottom: 20px;
+
+    font-weight: 600;
+    font-size: 23px;
+}
+
+
+.kdt-list {
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: start;
+
+    margin-top: 30px;
+}
+
+.ktd-list-element {
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    text-align: start;
+
+    width: 98%;
+    height: 120px;
+    padding: 20px;
+    margin-bottom: 10px;
+
+    box-shadow: 0px 7px 20px rgba(40, 41, 61, 0.08);
+    border: none;
+    border-radius: 8px;
+
+    background: none;
+}
+
+.kdt-img {
+    margin-right: 20px;
+}
+
+@media (min-width: 350px) {
+    .kdt-title {
+        font-size: 30px;
+    }
+
+    .kdt-container {
+        font-size: 20px;
+    }
+}
+
+@media (min-width: 800px) {
+    .kdt-container {
+        padding: 20px 20px;
+        font-size: 14px;
+    }
+
+    .kdt-back-button {
+        margin: 0 0 0 60px;
+    }
+
+    .kdt-text-container {
+        margin: auto;
+        padding-top: 50px;
+        width: 400px;
+        height: 550px;
+
+        box-shadow: 0px 7px 20px rgba(40, 41, 61, 0.08);
+        border-radius: 8px;
+    }
+
+    .kdt-title {
+        font-size: 30px;
+    }
+
+    .ktd-list-element {
+        height: 100px;
+        padding: 15px;
+    }
+
+    .kdt-img {
+        width: 70px;
+        height: 70px;
+    }
+
+}
+
+

@@ -8,6 +8,7 @@ const express = require('express')
 const cors = require('cors')
 const logger = require('./loggerMiddleware')
 const app = express()
+const bodyParser = require('body-parser')
 
 const notFound = require('./middleware/notFound')
 const handleErrors = require('./middleware/handleErrors')
@@ -17,16 +18,20 @@ const loginRouter = require('./controllers/login')
 const dealsRouter = require('./controllers/deals')
 const ratingsRouter = require('./controllers/ratings.js')
 const filesRouter = require('./controllers/files.js')
+const idPhotosRouter = require('./controllers/idPhotos.js')
 
-// app.use(express.urlencoded({extended: true})); 
+// app.use(express.urlencoded({extended: true}));
+app.use(bodyParser.json({ limit: '10mb', extended: true }))
+
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }))
 app.use(cors())
 app.use(express.json())
 app.use(logger)
 
 app.use(express.static('public'))
-app.use(express.static(path.join(__dirname, "public")));
-app.use('/static', express.static(path.join(__dirname, "public/static")));
-app.use('/manifest.json', express.static(path.join(__dirname, "public", "manifest.json")));
+app.use(express.static(path.join(__dirname, 'public')))
+app.use('/static', express.static(path.join(__dirname, 'public/static')))
+app.use('/manifest.json', express.static(path.join(__dirname, 'public', 'manifest.json')))
 app.use('/login', express.static('public'))
 app.use('/register', express.static('public'))
 app.use('/deals', express.static('public'))
@@ -48,8 +53,6 @@ Sentry.init({
   tracesSampleRate: 1.0
 })
 
-
-
 // RequestHandler creates a separate execution context using domains, so that every
 // transaction/span/breadcrumb is attached to its own Hub instance
 app.use(Sentry.Handlers.requestHandler())
@@ -61,10 +64,11 @@ app.use('/api/users', usersRouter)
 app.use('/api/login', loginRouter)
 app.use('/api/ratings', ratingsRouter)
 app.use('/api/files', filesRouter)
+app.use('/api/id-photos', idPhotosRouter)
 
 app.use((req, res, next) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
-});
+  res.sendFile(path.join(__dirname, 'public', 'index.html'))
+})
 
 if (process.env.NODE_ENV === 'test') {
   const testingRouter = require('./controllers/testing')

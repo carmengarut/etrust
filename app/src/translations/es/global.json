@@ -31,7 +31,11 @@
         "terms_and_conditions": "términos y condiciones",
         "create_account": "Crear Cuenta",
         "have_account": "¿Ya tienes una cuenta? ",
-        "sign_in": "Iniciar sesión"
+        "sign_in": "Iniciar sesión",
+        "document_number": "Número de documento",
+        "account_type": "Tipo de cuenta",
+        "business": "Empresa",
+        "individual": "Particular"
 
     },
     "sign_in": {
@@ -50,7 +54,12 @@
         "creation_date": "Fecha de Creación",
         "signed": "Firmado",
         "status": "Estado",
-        "no_deals": "No hay contratos añadidos"
+        "no_deals": "No hay contratos añadidos",
+        "verify_account": "Verificar mi cuenta",
+        "cancel": "Cancelar",
+        "cant_create_contract": "No puedes crear contratos",
+        "account_not_verified": "Tienes que verificar tu cuenta para poder crear un contrato."
+
     },
     "deal": {
         "signed": "Firmado",
@@ -291,6 +300,51 @@
         "2-content-41": "7.1 Podemos poner fin a su derecho a acceder y hacer uso de los servicios que se ofrecen en el Sitio Web en cualquier momento y por el motivo que fuere, sin incurrir en responsabilidad alguna. Si así lo hacemos, o si opta usted por borrar su perfil, todo derecho que le sea otorgado en el presente documento finalizará de forma inmediata. La sección 2-8 seguirá manteniendo su vigencia tras cualquier extinción de las Condiciones de Uso.",
         "2-content-42": "Marco normativo de referencia ",
         "2-content-43": "8.1 Las Condiciones de Uso están sujetas a la legislación española y, salvo que se indique lo contrario, se aplicarán las normas generales de la legislación española en todas las relaciones entre nosotros y los Usuarios Registrados y los usuarios del Sitio Web. Toda controversia deberá someterse al tribunal de la jurisdicción española de eTrust, a menos que ello vulnere las reglas de competencia obligatorias."
+    },
+    "missing_kyc_banner": {
+        "account_not_verified": "Tu cuenta no está verificada",
+        "verify_now": "Verificar ahora",
+        "your_account_is_being_verified": "Tu cuenta está siendo verificada"
+    },
+    "kyc": {
+        "back": "Atrás",
+        "verify_your_identity" : "Verifica tu identidad",
+        "it_should_take_a_few_minutes" : "Debería tardar unos pocos minutos",
+        "use_your_device_to_photograph" : "Usa tu dispositivo para hacer una foto a:",
+        "your_identity_document" : "Tu documento de identidad",
+        "your_face" : "Tu cara",
+        "choose_document" : "Elegir documento",
+        "choose_your_document": "Elige tu documento",
+        "it_must_be_an_offitial_id": "Debe ser un documento oficial",
+        "passport": "Pasaporte",
+        "national_identity_card": "Documento Nacional de Identidad",
+        "residence_permit": "Permiso de Residencia",
+        "select_issuing_country": "Selecciona el país de expedición",
+        "continue": "Continuar",
+        "allow_camera_access": "Permitir acceso a la cámara",
+        "you_must_enable_camera_access": "Cuando se te solicite, debes habilitar el acceso a la cámara para poder continuar",
+        "we_cant_verify_you_without_your_camera": "No podemos verificarte sin tu cámara",
+        "enable_camera": "Activar la cámara",
+        "camera_access_denied": "Acceso a la cámara denegado",
+        "you_can_recover_camera_acces" : "Puedes recuperar el acceso a la cámara a través de los ajustes de tu dispositivo",
+        "go_to_browser_settings": "Ve a la configuración del navegador y habilita el acceso a la cámara para este navegador",
+        "try_again": "Probar otra vez",
+        "id-front": "Parte delantera del documento",
+        "id-back": "Parte trasera del documento",
+        "make_sure_the_entire_document_is_visible": "Asegúrate de que todo el documento queda visible",
+        "capture": "Capturar",
+        "use_photo": "Usar foto",
+        "retry": "Reintentar",
+        "take_a_selfie": "Tómate un selfie",
+        "we_will_compare_it_to_your_document": "Lo compararemos con tu documento",
+        "face_forward_and_make_sure": "Mira hacia delante y asegúrate de que tus ojos son claramente visibles",
+        "remove_your_glasses": "Quítate las gafas, si es necesario",
+        "take_selfie": "Continuar",
+        "selfie": "Selfie",
+        "make_sure_your_entire_face_is_visible": "Asegúrate de que toda tu cara queda visible",
+        "your_identity_is_being_verified": "Tu identidad está siendo verificada",
+        "it_should_take_between_1_and_2_days": "Debería tardar entre 1 y 2 días",
+        "ok": "Ok",
+        "you_must_upload_the_company_cif_in_order_to_verify_your_identity": "Debes subir el CIF de la empresa para poder verificar tu identidad"
     }
-    
 }

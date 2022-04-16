@@ -64,7 +64,7 @@ dealsRouter.get('/:id', (request, response, next) => {
     })
     .catch(err => {
       next(err)
-    }) 
+    })
 })
 
 dealsRouter.delete('/:id', userExtractor, async (request, response, next) => {

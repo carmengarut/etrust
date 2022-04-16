@@ -1,11 +1,9 @@
 const filesRouter = require('express').Router()
 const userExtractor = require('../middleware/userExtractor')
-const { upload, s3} = require('../middleware/awsUpload')
+const { upload, s3 } = require('../middleware/awsUpload')
 const { s3Bucket } = require('../middleware/config')
 // const SignaturitClient = require('signaturit-sdk');
-const fs = require('fs')
-var _ = require('lodash');
-
+const _ = require('lodash')
 
 filesRouter.post('/upload', userExtractor, upload.single('files'), async (request, response) => {
   const file = _.get(request, 'file', [])
@@ -15,19 +13,19 @@ filesRouter.post('/upload', userExtractor, upload.single('files'), async (reques
 
 filesRouter.get('/:key', userExtractor, (request, response) => {
   const { key } = request.params
-  
+
   const parametersGetObject = {
     Bucket: s3Bucket,
     Key: key,
     Expires: 3600,
-    ResponseContentDisposition :  `attachment; filename="${key}"`
+    ResponseContentDisposition: `attachment; filename="${key}"`
   }
 
   // response.attachment(key)
   // var fileStream = s3.getObject(parametersGetObject).createReadStream()
   // fileStream.pipe(response)
 
-  var url = s3.getSignedUrl('getObject', parametersGetObject)
+  const url = s3.getSignedUrl('getObject', parametersGetObject)
   return response.json(url)
 })
 

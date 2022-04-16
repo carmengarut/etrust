@@ -9,23 +9,52 @@ import { useTranslation } from 'react-i18next'
 
 import logo from '../public/blue-logo.png'
 import '../css/registrationForm.css'
+import Dropdown from './Dropdown'
 
 export default function RegistrationForm () {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [name, setName] = useState('')
   const [surname, setSurname] = useState('')
+  const [documentNumber, setDocumentNumber] = useState('')
   const [profileImg, setProfileImg] = useState(null)
+
+  const { t } = useTranslation('global')
+
+  const [dropdownList, setDropdownList] = useState([
+    {
+      id: 0,
+      title: t('sign_up.business'),
+      selected: false,
+      key: 'fullfilled',
+      value: 'business'
+    },
+    {
+      id: 1,
+      title: t('sign_up.individual'),
+      selected: false,
+      key: 'fulfilled',
+      value: 'individual'
+    }
+
+  ])
 
   // const [show, setShow] = useState(false)
 
   const dispatch = useDispatch()
   const history = useHistory()
-  const { t } = useTranslation('global')
 
   // const handleClick = ({ target }) => {
   //   setShow(true)
   // }
+
+  const resetThenSet = (id, key) => {
+    setDropdownList(prev => {
+      prev.forEach(item => { item.selected = false })
+      prev[id].selected = true
+      return prev
+    })
+  }
 
   const handleRegister = (event) => {
     event.preventDefault()
@@ -37,12 +66,14 @@ export default function RegistrationForm () {
     // formData.append('profileImg', profileImg)
 
     try {
-      dispatch(userRegister({ email, password, name, surname, profileImg }))
+      const type = dropdownList.find(item => item.selected === true).value
+      dispatch(userRegister({ email, password, name, surname, profileImg, type, documentNumber }))
       setEmail('')
       setPassword('')
       setName('')
       setSurname('')
       setProfileImg('')
+      setDocumentNumber('')
     } catch (e) {
       console.log(e.message)
     }
@@ -84,6 +115,28 @@ export default function RegistrationForm () {
                 required
               />
 
+            </div>
+          </div>
+          <div className='Row2'>
+            <div className='FieldGroup'>
+              <label>{t('sign_up.account_type')}</label>
+              <Dropdown
+                title='-'
+                list={dropdownList}
+                resetThenSet={resetThenSet}
+              />
+            </div>
+            <div className='FieldGroup'>
+              <label>{t('sign_up.document_number')}</label>
+              <input
+                className='Field'
+                type='text'
+                value={documentNumber}
+                name='Document Number'
+                placeholder={t('sign_up.document_number')}
+                onChange={({ target }) => setDocumentNumber(target.value)}
+                required
+              />
             </div>
           </div>
           <div className='Row2'>

@@ -1,0 +1,164 @@
+@import url('./fonts.css');
+
+.kcad-container {
+    padding: 90px 20px;
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+
+.kcad-back-button {
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+
+    border: none;
+
+    background: none;
+}
+
+.kcad-back-button-img {
+    margin-right: 10px;
+}
+
+.kcad-text-container {
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    margin-top: 30px;
+
+    font-weight: 500;
+}
+
+.kcad-title {
+    text-align: center;
+
+    margin-bottom: 20px;
+
+    font-weight: 600;
+    font-size: 23px;
+}
+
+.kcad-list {
+    text-align: start;
+    margin-top: 20px;
+}
+
+.kcad-list-item {
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+
+    margin-top: 10px;
+}
+
+.kcad-button, .kcad-button-2 {
+    position: absolute;
+    bottom: 20px;
+
+    text-align: center;
+
+    width: 85%;
+    height: 60px;
+    
+    margin-top: 20px;
+
+    border-radius: 8px;
+    border: none;
+
+    color: #FFFFFF;
+
+    background: #4E8AF4;   
+}
+
+.kcad-text {
+    margin-top: 30px;
+
+    font-size: 12px;
+}
+
+@media (min-width: 350px) {
+    .kcad-title {
+        font-size: 30px;
+    }
+
+    .kcad-container {
+        font-size: 20px;
+    }
+
+    .kcad-button, .kcad-button-2 {
+        bottom: 40px;
+    }
+ 
+}
+
+@media (min-width: 400px) {
+    .kcad-text {
+        font-size: 19px;
+    }
+}
+
+
+
+@media (min-width: 800px) {
+    .kcad-container {
+        padding: 20px 20px;
+        font-size: 14px;
+    }
+
+    .kcad-back-button {
+        margin: 0 0 0 60px;
+    }
+
+    .kcad-text-container {
+        margin: auto;
+        padding-top: 50px;
+        width: 400px;
+        height: 550px;
+
+        box-shadow: 0px 7px 20px rgba(40, 41, 61, 0.08);
+        border-radius: 8px;
+    }
+
+    .kcad-title {
+        font-size: 30px;
+    }
+
+    .kcad-text {
+        margin: 0px;
+        font-size: 13px;
+    }
+
+    .kcad-list {
+        width: 330px;
+        margin-top: 20px;
+    }
+
+    .kcad-button {
+        position: static;
+    
+        width:350px;
+        margin-top: 140px;
+
+        font-size: 16px;
+    }
+
+    .kcad-button-2 {
+        position: static;
+    
+        width: 350px;
+        margin-top: 220px;
+
+        font-size: 16px;
+    }
+
+    
+}
+

@@ -2,18 +2,23 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import useForm from '../hooks/useForm'
 
+import Modal from '../components/Modal'
+import useForm from '../hooks/useForm'
 import { addNewDeal } from '../reducers/dealReducer'
-import { showModal } from '../reducers/modalReducer'
+import { showModal, hideModal } from '../reducers/modalReducer'
 import { usersInit } from '../reducers/usersReducers'
 import '../css/createContractForm.css'
-import { uploadFile } from '../services/deals'
+import { uploadFile, inviteUser } from '../services/deals'
+import { removeNotification, setNotification } from '../reducers/notificationReducer'
+
+import inviteUserIcon from '../public/invite-user-icon.svg'
 
 export default function CreateContractForm () {
   const users = useSelector(state => state.users)
 
   const [addFileMode, setAddFileMode] = useState(false)
+  const { handleChange, values } = useForm()
 
   const textareaStyle = addFileMode
     ? { display: 'none' }
@@ -32,8 +37,6 @@ export default function CreateContractForm () {
     color: '#4E8AF4',
     background: '#fff'
   }
-
-  const { handleChange, values, errors } = useForm()
 
   const dispatch = useDispatch()
   const history = useHistory()
@@ -71,6 +74,34 @@ export default function CreateContractForm () {
     }
   }
 
+  const handleInviteUser = async () => {
+    try {
+      const invitationDetails = {
+        email: values.email
+        // senderName: `${user.name} ${user.surname}`,
+        // contractTitle: values.title
+      }
+
+      console.log(invitationDetails)
+      await inviteUser(invitationDetails)
+      dispatch(hideModal())
+      dispatch(setNotification('User Invited'))
+      setTimeout(() => {
+        dispatch(removeNotification())
+      }, 5000)
+      const dealObject = {
+        title: values.title,
+        content: values.content,
+        memberEmail: values.email
+      }
+      dispatch(addNewDeal(dealObject))
+      history.push('/deals')
+    } catch (e) {
+      console.error(e)
+      console.error(e.message)
+    }
+  }
+
   return (
     <div className='ccf-container'>
       <div>{t('create_contract_page.title')}</div>
@@ -85,7 +116,6 @@ export default function CreateContractForm () {
             onChange={handleChange}
             required
           />
-          {errors.title && <span>{errors.title}</span>}
         </div>
 
         <div className='ccf-field-group'>
@@ -124,9 +154,7 @@ export default function CreateContractForm () {
             required={addFileMode}
             className='cff-file-field'
           />
-          {errors.content && <span>{errors.content}</span>}
         </div>
-
         <div className='ccf-field-group'>
           <label>{t('create_contract_page.email')}</label>
           <input
@@ -137,13 +165,22 @@ export default function CreateContractForm () {
             onChange={handleChange}
             required
           />
-          {errors.email && <span>{errors.email}</span>}
         </div>
 
         <button type='submit' className='ccf-submit-button'>
           {t('create_contract_page.save')}
         </button>
       </form>
+      <Modal action={handleInviteUser} buttonName={t('create_contract_page.invite_user')} cancelButtonName={t('create_contract_page.cancel')}>
+        <img
+          alt=''
+          src={inviteUserIcon}
+          width='100'
+          height='100'
+        />
+        <h6>{t('create_contract_page.dont_have_account')}</h6>
+        {values.email} {t('create_contract_page.want_to_send_invitation')}
+      </Modal>
     </div>
   )
 }

@@ -1,0 +1,49 @@
+.mkb-container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    padding: 8px;
+
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 19px;
+    color: #fff;
+
+    background: #4F8AF4;
+}
+
+.mkb-button {
+    margin-left: 10px;
+    padding: 4px 15px;
+
+    border: none;
+    border-radius: 5px;
+
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 19px;
+    color: #4F8AF4;
+
+    background: #fff;
+}
+
+@media (max-width: 800px) {
+    .mkb-container {
+        text-align: center;
+
+        position: fixed;
+        bottom: 0;
+    }
+
+    .mkb-button {
+        width: 150px;
+        margin: none;
+    }
+}

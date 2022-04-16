@@ -1,0 +1,200 @@
+@import url('./fonts.css');
+
+.kif-container {
+    padding: 90px 20px;
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.kif-back-button {
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+
+    border: none;
+
+    background: none;
+}
+
+.kif-back-button-img {
+    margin-right: 10px;
+}
+
+.kif-text-container {
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    margin-top: 30px;
+
+    font-weight: 500;
+}
+
+.kif-title {
+    text-align: center;
+
+    margin-bottom: 20px;
+
+    font-weight: 600;
+    font-size: 23px;
+}
+
+.kif-video {
+    max-width: 380px;
+    width: 90%;
+    margin-top: 20px;
+
+    transform: rotateY(180deg);
+    -webkit-transform:rotateY(180deg); /* Safari and Chrome */
+    -moz-transform:rotateY(180deg); /* Firefox */
+}
+
+.kif-canvas {
+    max-width: 380px;
+    width: 90%;
+    margin-top: 20px;
+}
+
+.kif-button {
+    position: absolute;
+    bottom: 20px;
+
+    text-align: center;
+
+    width: 85%;
+    height: 60px;
+    
+    margin-top: 20px;
+
+    border-radius: 8px;
+    border: none;
+
+    color: #FFFFFF;
+
+    background: #4E8AF4;   
+}
+
+.kif-use-photo-button {
+
+    text-align: center;
+
+    width: 95%;
+    height: 60px;
+    
+    margin-top: 20px;
+
+    border-radius: 8px;
+    border: none;
+
+    color: #FFFFFF;
+
+    background: #4E8AF4;  
+}
+
+
+.kif-retry-button {
+
+    text-align: center;
+
+    width: 95%;
+    height: 60px;
+    
+    margin-top: 20px;
+
+    border-radius: 8px;
+    border: 1px solid #4E8AF4;
+
+    color: #4E8AF4;
+
+    background: #fff;  
+}
+
+.kif-text {
+    margin-top: 30px;
+
+    font-size: 12px;
+}
+
+@media (min-width: 350px) {
+    .kif-title {
+        font-size: 30px;
+    }
+
+    .kif-container {
+        font-size: 20px;
+    } 
+}
+
+@media (min-width: 400px) {
+    .kif-text {
+        font-size: 19px;
+    }
+
+    .kif-video, .kif-canvas {
+        width: 95%;
+        margin-top: 30px;
+    }
+
+    .kif-button {
+        bottom: 40px;
+    }
+}
+
+
+
+@media (min-width: 800px) {
+    .kif-container {
+        padding: 20px 20px;
+        font-size: 14px;
+    }
+
+    .kif-back-button {
+        margin: 0 0 0 60px;
+    }
+
+    .kif-text-container {
+        margin: auto;
+        padding-top: 50px;
+        width: 400px;
+        height: 600px;
+
+        box-shadow: 0px 7px 20px rgba(40, 41, 61, 0.08);
+        border-radius: 8px;
+    }
+
+    .kif-title {
+        font-size: 30px;
+    }
+
+    .kif-text {
+        margin: 0px;
+        font-size: 13px;
+    }
+
+    .kif-video, .kif-canvas {
+        width: 300px;
+        margin-top: 30px;
+    }
+
+    .kif-button {
+        position: static;
+    
+        width: 350px;
+        margin-top: 30px;
+
+        font-size: 16px;
+    }
+
+    .kif-retry-button, .kif-use-photo-button {
+        width: 350px;
+        height: 50px;
+    }
+
+    
+}
+

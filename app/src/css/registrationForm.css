@@ -49,6 +49,8 @@ color: #121625;
     display: -webkit-flex;
     display: flex;
     flex-direction: column;
+
+    width: 232px;
     margin: 0px 10px;
     text-align: left;
 

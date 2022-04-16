@@ -3,7 +3,6 @@ const usersRouter = require('express').Router()
 const User = require('../models/User')
 const jwt = require('jsonwebtoken')
 const userExtractor = require('../middleware/userExtractor')
-const { sendInviteUserEmail } = require('../middleware/emailNotifications')
 
 // const multer = require('multer')
 // const  { v4: uuidv4 } = require('uuid')
@@ -43,12 +42,24 @@ usersRouter.get('/:id', async (request, response) => {
   response.json(user)
 })
 
+usersRouter.put('/all', userExtractor, async (request, response) => {
+  const newObject = request.body
+
+  try {
+    const result = await User.updateMany({ status: 'active' }, { newObject }, { new: true })
+    response.json(result)
+  } catch (e) {
+    console.error(e.name)
+    console.error(e.message)
+  }
+})
+
 // usersRouter.post('/', upload.single('profileImg'), async (request, response) => {
 usersRouter.post('/', async (request, response) => {
   try {
     // const url = request.protocol + '://' + request.get('host')
     const { body } = request
-    const { email, name, surname, password, profileImg } = body
+    const { email, name, surname, password, profileImg, type, documentNumber } = body
 
     const saltRounds = 10 // coste de generar el hash, mientras mas alto mas seguro
     const passwordHash = await bcrypt.hash(password, saltRounds)
@@ -62,7 +73,9 @@ usersRouter.post('/', async (request, response) => {
         surname,
         passwordHash,
         profileImg,
-        status: 'active',
+        type,
+        documentNumber,
+        status: 'missing-kyc',
         creationDate: new Date().toISOString()
         // profileImg: url + '/public/' + request.file.filename
       })
@@ -89,13 +102,15 @@ usersRouter.post('/', async (request, response) => {
         profileImg: savedUser.profileImg,
         deals: savedUser.deals,
         status: savedUser.status,
+        type: savedUser.type,
+        documentNumber: savedUser.documentNumber,
         id: savedUser._id,
         token
       }
 
       response.status(201).json(userReturned)
     } else if (existingUser.status === 'inactive') {
-      const updatedUser = await User.findOneAndUpdate({ email: email }, { name, surname, passwordHash, profileImg, status: 'active', creationDate: new Date().toISOString() }, { new: true })
+      const updatedUser = await User.findOneAndUpdate({ email: email }, { name, surname, passwordHash, profileImg, status: 'missing-kyc', creationDate: new Date().toISOString() }, { new: true })
 
       const userForToken = {
         id: updatedUser._id,
@@ -116,6 +131,8 @@ usersRouter.post('/', async (request, response) => {
         surname: updatedUser.surname,
         profileImg: updatedUser.profileImg,
         deals: updatedUser.deals,
+        type: updatedUser.type,
+        documentNumber: updatedUser.documentNumber,
         status: updatedUser.status,
         id: updatedUser._id,
         token
@@ -136,11 +153,10 @@ usersRouter.post('/invite', async (request, response) => {
   try {
     // const url = request.protocol + '://' + request.get('host')
     const { body } = request
-    const { email, senderName, contractTitle } = body
+    const { email } = body
 
     const existingUser = await User.findOne({ email: email })
 
-    console.log(existingUser)
     if (!existingUser) {
       const user = new User({
         email,
@@ -150,7 +166,7 @@ usersRouter.post('/invite', async (request, response) => {
 
       const savedUser = await user.save()
 
-
+      // sendInviteUserEmail(senderName, email, contractTitle);
       const userReturned = {
         email: savedUser.email,
         status: savedUser.status,

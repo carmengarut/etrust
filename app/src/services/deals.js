@@ -132,6 +132,16 @@ export const downloadFile = (key) => {
   return request.then(response => response.data)
 }
 
+export const uploadIdPhoto = (newObject) => {
+  const config = {
+    headers: {
+      Authorization: token
+    }
+  }
+  const request = axios.post('/api/id-photos/upload', newObject, config)
+  return request.then(response => response.data)
+}
+
 // export const createSignature = (newObject) => {
 //   const config = {
 //     headers: {

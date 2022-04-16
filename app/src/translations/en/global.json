@@ -31,7 +31,11 @@
         "terms_and_conditions": "terms and conditions",
         "create_account": "Create Account",
         "have_account": "Have an account? ",
-        "sign_in": "Sign In"
+        "sign_in": "Sign In",
+        "document_number": "NIF/CIF",
+        "account_type": "Account type",
+        "business": "Business",
+        "individual": "Individual"
 
     },
     "sign_in": {
@@ -50,7 +54,11 @@
         "creation_date": "Creation Date",
         "signed": "Signed",
         "status": "Status",
-        "no_deals": "No contracts added"
+        "no_deals": "No contracts added",
+        "verify_account": "Verify my account",
+        "cancel": "Cancel",
+        "cant_create_contract": "You can't create contracts",
+        "account_not_verified": "You need to verify your account in order to be able to create a contract."
     },
     "deal": {
         "signed": "Signed",
@@ -292,5 +300,51 @@
         "2-content-41": "7.1 We may terminate your right to access and use the services offered on the websitem at any time and for any reason without liability. If we do so, or if you choose to delete your profile, any rights granted to you hereunder will terminate immediately. Section 2-8 shall survive any termination of the Terms of Use.",
         "2-content-42": "Normative frame of reference ",
         "2-content-43": "8.1 The Terms of Use are governed by Spanish law and, unless otherwise stated, the general rules of Spanish law shall apply to all dealings between us and Registered Users and users of the website. Any dispute shall be submitted to the court of eTrust’s Spanish jurisdiction, unless it would violate mandatory jurisdiction rules."
+    },
+    "missing_kyc_banner": {
+        "account_not_verified": "Your account is not verified",
+        "verify_now": "Verify now",
+        "your_account_is_being_verified": "Your account is being verified"
+    },
+    "kyc": {
+        "back": "Back",
+        "verify_your_identity" : "Verify your identity",
+        "it_should_take_a_few_minutes" : "It should take a few minutes",
+        "use_your_device_to_photograph" : "Use your device to photograph:",
+        "your_identity_document" : "Your identity document",
+        "your_face" : "Your face",
+        "choose_document" : "Choose document",
+        "choose_your_document": "Choose your document",
+        "it_must_be_an_offitial_id": "It must be an offitial ID",
+        "passport": "Passport",
+        "national_identity_card": "National Identity Card",
+        "residence_permit": "Residence Permit",
+        "select_issuing_country": "Select issuing country",
+        "continue": "Continue",
+        "allow_camera_access": "Allow camera access",
+        "you_must_enable_camera_access": "When prompted, you must enable camera access to continue",
+        "we_cant_verify_you_without_your_camera": "We can't verify you without your camera",
+        "enable_camera": "Enable camera",
+        "camera_access_denied": "Camera access denied",
+        "you_can_recover_camera_acces" : "You can recover camera access through your device settings",
+        "go_to_browser_settings": "Go to browser settings and enable camera access for this browser",
+        "try_again": "Try again",
+        "id-front": "ID front side",
+        "id-back": "ID back side",
+        "make_sure_the_entire_document_is_visible": "Make sure that the entire document is visible",
+        "capture": "Capture",
+        "use_photo": "Use photo",
+        "retry": "Retry",
+        "take_a_selfie": "Take a selfie",
+        "we_will_compare_it_to_your_document": "We'll compare it with your document",
+        "face_forward_and_make_sure": "Face forward and make sure your eyes are clearly visible",
+        "remove_your_glasses": "Remove your glasses, if necessary",
+        "take_selfie": "Take selfie",
+        "selfie": "Selfie",
+        "make_sure_your_entire_face_is_visible": "Make sure that your entire face is visible",
+        "your_identity_is_being_verified": "Your identity is being verified",
+        "it_should_take_between_1_and_2_days": "It should take between 1 and 2 days",
+        "ok": "Ok",
+        "you_must_upload_the_company_cif_in_order_to_verify_your_identity": "You must upload the company CIF in order to verify your identity"
     }
 }
