@@ -46,6 +46,7 @@
 
 .kif-video {
     max-width: 380px;
+    max-height: 300px;
     width: 90%;
     margin-top: 20px;
 
@@ -121,12 +122,16 @@
 }
 
 @media (min-height: 600px) {
-    .kec-container {
+    .kif-container {
         padding: 90px 20px;
     }
 
-    .kec-text-container {
+    .kif-text-container {
         margin-top: 30px;
+    }
+
+    .kif-video {
+        max-width: none;
     }
 }
 
