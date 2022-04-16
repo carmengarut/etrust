@@ -1,7 +1,7 @@
 @import url('./fonts.css');
 
 .kif-container {
-    padding: 90px 20px;
+    padding: 75px 20px;
 
     font-family: 'Poppins';
     font-style: normal;
@@ -30,7 +30,7 @@
     align-items: center;
     text-align: center;
 
-    margin-top: 30px;
+    margin-top: 10px;
 
     font-weight: 500;
 }
@@ -118,6 +118,16 @@
     margin-top: 30px;
 
     font-size: 12px;
+}
+
+@media (min-height: 600px) {
+    .kec-container {
+        padding: 90px 20px;
+    }
+
+    .kec-text-container {
+        margin-top: 30px;
+    }
 }
 
 @media (min-width: 350px) {
