@@ -197,6 +197,7 @@ text-align: center;
     .Row1, .Row2 {
       margin: 0px; 
       flex-direction: column;
+      align-items: center;
     }  
 
     .Field {
@@ -206,10 +207,12 @@ text-align: center;
 
     .FieldGroup {
         margin: 10px 15px;
+        width: 90%;
     }
 
     .Button {
-        width: 90%;
+        width: 87%;
+        align-content: center;
        
     }
 
