@@ -26,7 +26,12 @@ export default function KYCIdFront () {
     videoElem.srcObject = null
   }
 
-  navigator.mediaDevices.getUserMedia({ audio: false, video: true, facingMode: 'environment' })
+  navigator.mediaDevices.getUserMedia({
+    audio: false,
+    video: {
+      facingMode: 'environment'
+    }
+  })
     .then((stream) => {
       const video = document.getElementById('video')
       const button = document.getElementById('button')
