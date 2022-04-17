@@ -66,4 +66,5 @@ idPhotosRouter.get('/:key', userExtractor, (request, response) => {
   const url = s3.getSignedUrl('getObject', parametersGetObject)
   return response.json(url)
 })
+
 module.exports = idPhotosRouter

@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 import '../css/verificationRequest.css'
 import { userEdit } from '../reducers/userReducer'
-import { getImage, sendVerifConfirmationEmail } from '../services/deals'
+import { downloadFile, getImage, sendVerifConfirmationEmail } from '../services/deals'
 
 export default function VerificationRequest () {
   const { id } = useParams()
@@ -16,6 +16,16 @@ export default function VerificationRequest () {
 
   const dispatch = useDispatch()
 
+  const handleDownload = async () => {
+    const url = await downloadFile(user.idFrontPhoto)
+
+    // const url = window.URL.createObjectURL(new Blob([response]))
+    const link = document.createElement('a')
+    link.href = url
+    link.setAttribute('download', user.idFrontPhoto)
+    document.body.appendChild(link)
+    link.click()
+  }
   const handleAccept = () => {
     dispatch(userEdit(user.id, { status: 'active' }))
     sendVerifConfirmationEmail({ receiverEmail: user.email, receiverName: user.name })
@@ -52,20 +62,34 @@ export default function VerificationRequest () {
       <div>Tipo de documento: {user.documentType}</div>
       <div>Número de documento: {user.documentNumber}</div>
       <div>País de expedición: {user.name}</div>
-      <div>
-        <div>
-          <div>Parte delantera del Documento: </div>
-          <img src={frontPhoto} alt='' width='200px' height='auto' />
-        </div>
-        <div>
-          <div>Parte trasera del Documento: </div>
-          <img src={backPhoto} alt='' width='200px' height='auto' />
-        </div>
-        <div>
-          <div>Selfie: </div>
-          <img src={selfie} alt='' width='200px' height='auto' />
-        </div>
-      </div>
+      {user.type === 'individual'
+        ? (
+          <div>
+            <div>
+              <div>Parte delantera del Documento: </div>
+              <img src={frontPhoto} alt='' width='200px' height='auto' />
+            </div>
+            <div>
+              <div>Parte trasera del Documento: </div>
+              <img src={backPhoto} alt='' width='200px' height='auto' />
+            </div>
+            <div>
+              <div>Selfie: </div>
+              <img src={selfie} alt='' width='200px' height='auto' />
+            </div>
+          </div>)
+        : (
+          <div>
+            <div>CIF: </div>
+            <button
+              type='button'
+              onClick={handleDownload}
+            >
+              Descargar
+            </button>
+
+          </div>
+          )}
       {user.status === 'kyc_in_progress'
         ? (
           <div>
