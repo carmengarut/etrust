@@ -23,6 +23,7 @@ import KYCTakeSelfie from './pages/KYCTakeSelfie'
 import KYCSucceed from './pages/KYCSucceed'
 import KYCInProgress from './components/KYCInProgress'
 import KYCUploadCif from './pages/KYCUploadCif'
+import VerificationRequest from './pages/VerificationRequest'
 
 export default function RouterApp () {
   const user = useSelector(state => state.user)
@@ -120,6 +121,10 @@ export default function RouterApp () {
 
       <Route path='/kyc-cif'>
         <KYCUploadCif />
+      </Route>
+
+      <Route path='/verify/:id'>
+        <VerificationRequest />
       </Route>
 
       <Route

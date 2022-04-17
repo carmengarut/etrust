@@ -6,6 +6,7 @@ import backIcon from '../public/back-icon.svg'
 
 import '../css/KYCExplanation.css'
 import { userEdit } from '../reducers/userReducer'
+import { sendVerificationEmail } from '../services/deals'
 
 export default function KYCSucceed () {
   const user = useSelector(state => state.user)
@@ -15,6 +16,7 @@ export default function KYCSucceed () {
 
   const handleClick = () => {
     dispatch(userEdit(user.id, { status: 'kyc_in_progress' }))
+    sendVerificationEmail({ userId: user.id, email: user.email })
     history.push('/deals')
   }
   return (

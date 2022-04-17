@@ -19,6 +19,7 @@ const dealsRouter = require('./controllers/deals')
 const ratingsRouter = require('./controllers/ratings.js')
 const filesRouter = require('./controllers/files.js')
 const idPhotosRouter = require('./controllers/idPhotos.js')
+const emailsRouter = require('./controllers/email.js')
 
 // app.use(express.urlencoded({extended: true}));
 app.use(bodyParser.json({ limit: '10mb', extended: true }))
@@ -65,6 +66,7 @@ app.use('/api/login', loginRouter)
 app.use('/api/ratings', ratingsRouter)
 app.use('/api/files', filesRouter)
 app.use('/api/id-photos', idPhotosRouter)
+app.use('/api/email', emailsRouter)
 
 app.use((req, res, next) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'))

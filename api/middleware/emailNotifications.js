@@ -180,4 +180,39 @@ const sendRatingReceivedEmail = (receiverEmail, receiverName, signerName, signer
     })
 }
 
-module.exports = { sendProposeChangeEmail, sendContractCreatedEmail, sendContractSignedEmail, sendRatingReceivedEmail }
+const sendVerificationRequestEmail = (receiverEmail, receiverName, signerName, link) => {
+  const request = mailjet
+    .post('send', { version: 'v3.1' })
+    .request({
+      Messages: [
+        {
+          From: {
+            Email: 'contracts@etrustapp.com',
+            Name: 'eTrust'
+          },
+          To: [
+            {
+              Email: receiverEmail,
+              Name: receiverName
+            }
+          ],
+          TemplateID: 3873874,
+          TemplateLanguage: true,
+          Subject: signerName + ' ha solicitado una verificación de identidad',
+          Variables: {
+            name: signerName,
+            link: link
+          }
+        }
+      ]
+    })
+  request
+    .then((result) => {
+      console.log(result.body)
+    })
+    .catch((err) => {
+      console.log(err.statusCode)
+    })
+}
+
+module.exports = { sendProposeChangeEmail, sendContractCreatedEmail, sendContractSignedEmail, sendRatingReceivedEmail, sendVerificationRequestEmail }

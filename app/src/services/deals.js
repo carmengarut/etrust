@@ -142,6 +142,26 @@ export const uploadIdPhoto = (newObject) => {
   return request.then(response => response.data)
 }
 
+export const getImage = (key) => {
+  const config = {
+    headers: {
+      Authorization: token
+    }
+  }
+  const request = axios.get(`/api/id-photos/${key}`, config)
+  return request.then(response => response.data)
+}
+
+export const sendVerificationEmail = (newObject) => {
+  const config = {
+    headers: {
+      Authorization: token
+    }
+  }
+  const request = axios.post('/api/email/verification-request', newObject, config)
+  return request.then(response => response.data)
+}
+
 // export const createSignature = (newObject) => {
 //   const config = {
 //     headers: {
