@@ -215,4 +215,38 @@ const sendVerificationRequestEmail = (receiverEmail, receiverName, signerName, l
     })
 }
 
-module.exports = { sendProposeChangeEmail, sendContractCreatedEmail, sendContractSignedEmail, sendRatingReceivedEmail, sendVerificationRequestEmail }
+const sendVerificationConfirmationEmail = (receiverEmail, receiverName) => {
+  const request = mailjet
+    .post('send', { version: 'v3.1' })
+    .request({
+      Messages: [
+        {
+          From: {
+            Email: 'contracts@etrustapp.com',
+            Name: 'eTrust'
+          },
+          To: [
+            {
+              Email: receiverEmail,
+              Name: receiverName
+            }
+          ],
+          TemplateID: 3874310,
+          TemplateLanguage: true,
+          Subject: 'Tu cuenta de eTrust ha sido verificada',
+          Variables: {
+            name: receiverName
+          }
+        }
+      ]
+    })
+  request
+    .then((result) => {
+      console.log(result.body)
+    })
+    .catch((err) => {
+      console.log(err.statusCode)
+    })
+}
+
+module.exports = { sendProposeChangeEmail, sendContractCreatedEmail, sendContractSignedEmail, sendRatingReceivedEmail, sendVerificationRequestEmail, sendVerificationConfirmationEmail }

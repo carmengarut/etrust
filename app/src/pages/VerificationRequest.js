@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 import '../css/verificationRequest.css'
 import { userEdit } from '../reducers/userReducer'
-import { getImage } from '../services/deals'
+import { getImage, sendVerifConfirmationEmail } from '../services/deals'
 
 export default function VerificationRequest () {
   const { id } = useParams()
@@ -18,6 +18,7 @@ export default function VerificationRequest () {
 
   const handleAccept = () => {
     dispatch(userEdit(user.id, { status: 'active' }))
+    sendVerifConfirmationEmail({ receiverEmail: user.email, receiverName: user.name })
   }
 
   const handleDeny = () => {

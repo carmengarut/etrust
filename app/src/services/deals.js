@@ -162,6 +162,16 @@ export const sendVerificationEmail = (newObject) => {
   return request.then(response => response.data)
 }
 
+export const sendVerifConfirmationEmail = (newObject) => {
+  const config = {
+    headers: {
+      Authorization: token
+    }
+  }
+  const request = axios.post('/api/email/verification-confirmed', newObject, config)
+  return request.then(response => response.data)
+}
+
 // export const createSignature = (newObject) => {
 //   const config = {
 //     headers: {
