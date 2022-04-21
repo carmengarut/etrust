@@ -46,6 +46,8 @@ export default function CreateContractForm () {
     dispatch(usersInit())
   }, [])
 
+  let uploadedFile
+
   const handleSubmit = async (event) => {
     event.preventDefault()
 
@@ -56,7 +58,7 @@ export default function CreateContractForm () {
       const newForm = new FormData()
       newForm.append('files', contractFile.files[0])
 
-      const uploadedFile = await uploadFile(newForm)
+      uploadedFile = await uploadFile(newForm)
 
       const dealObject = {
         title: values.title,
@@ -66,9 +68,10 @@ export default function CreateContractForm () {
         memberEmail: values.email
       }
       dispatch(addNewDeal(dealObject))
-      console.log(newForm)
 
-      history.push('/deals')
+      addFileMode
+        ? history.push('/place-signatures/' + uploadedFile.key)
+        : history.push('/deals')
     } else {
       dispatch(showModal())
     }
@@ -95,7 +98,10 @@ export default function CreateContractForm () {
         memberEmail: values.email
       }
       dispatch(addNewDeal(dealObject))
-      history.push('/deals')
+
+      addFileMode
+        ? history.push('/place-signatures/' + uploadedFile.key)
+        : history.push('/deals')
     } catch (e) {
       console.error(e)
       console.error(e.message)

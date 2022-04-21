@@ -346,5 +346,15 @@
         "it_should_take_between_1_and_2_days": "It should take between 1 and 2 days",
         "ok": "Ok",
         "you_must_upload_the_company_cif_in_order_to_verify_your_identity": "You must upload the company CIF in order to verify your identity"
+    },
+    "contract_viewer": {
+        "place_signatures_title": "Place signatures",
+        "place_signatures": "Drag and drop the signatures to where you want them to appear in the document.",
+        "next": "Next",
+        "previous": "Previous",
+        "of": " of ",
+        "continue": "Continue",
+        "your_signature": "Your signature",
+        "other_parties_signature": "Other parties' signature"
     }
 }

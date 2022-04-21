@@ -1,4 +1,6 @@
 import { Route, Switch, Redirect } from 'react-router-dom'
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
 
 import LoginForm from './components/LoginForm'
 import RegistrationForm from './components/RegistrationForm'
@@ -24,6 +26,7 @@ import KYCSucceed from './pages/KYCSucceed'
 import KYCInProgress from './components/KYCInProgress'
 import KYCUploadCif from './pages/KYCUploadCif'
 import VerificationRequest from './pages/VerificationRequest'
+import ContractViewer from './pages/ContractViewer'
 
 export default function RouterApp () {
   const user = useSelector(state => state.user)
@@ -125,6 +128,12 @@ export default function RouterApp () {
 
       <Route path='/verify/:id'>
         <VerificationRequest />
+      </Route>
+
+      <Route path='/place-signatures/:key'>
+        <DndProvider backend={HTML5Backend}>
+          <ContractViewer />
+        </DndProvider>
       </Route>
 
       <Route

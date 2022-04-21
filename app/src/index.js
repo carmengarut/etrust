@@ -1,11 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
 import { Provider } from 'react-redux'
-import { store } from './store'
-import 'bootstrap/dist/css/bootstrap.min.css'
 import { I18nextProvider } from 'react-i18next'
 import i18next from 'i18next'
+import 'bootstrap/dist/css/bootstrap.min.css'
+
+import App from './App'
+import { store } from './store'
 
 import globalEs from './translations/es/global.json'
 import globalEn from './translations/en/global.json'
