@@ -53,13 +53,13 @@ export default function CreateContractForm () {
 
     const isUser = users.some(user => user.email === values.email)
 
+    const contractFile = document.querySelector('#file')
+    const newForm = new FormData()
+    newForm.append('files', contractFile.files[0])
+
+    uploadedFile = await uploadFile(newForm)
+
     if (isUser) {
-      const contractFile = document.querySelector('#file')
-      const newForm = new FormData()
-      newForm.append('files', contractFile.files[0])
-
-      uploadedFile = await uploadFile(newForm)
-
       const dealObject = {
         title: values.title,
         type: addFileMode ? 'File' : 'Text',
