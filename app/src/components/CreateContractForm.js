@@ -51,29 +51,33 @@ export default function CreateContractForm () {
   const handleSubmit = async (event) => {
     event.preventDefault()
 
-    const isUser = users.some(user => user.email === values.email)
+    try {
+      const isUser = users.some(user => user.email === values.email)
 
-    const contractFile = document.querySelector('#file')
-    const newForm = new FormData()
-    newForm.append('files', contractFile.files[0])
+      const contractFile = document.querySelector('#file')
+      const newForm = new FormData()
+      newForm.append('files', contractFile.files[0])
 
-    uploadedFile = await uploadFile(newForm)
+      uploadedFile = await uploadFile(newForm)
 
-    if (isUser) {
-      const dealObject = {
-        title: values.title,
-        type: addFileMode ? 'File' : 'Text',
-        content: values.content,
-        file: uploadedFile.key,
-        memberEmail: values.email
+      if (isUser) {
+        const dealObject = {
+          title: values.title,
+          type: addFileMode ? 'File' : 'Text',
+          content: values.content,
+          file: uploadedFile.key,
+          memberEmail: values.email
+        }
+        dispatch(addNewDeal(dealObject))
+
+        addFileMode
+          ? history.push('/place-signatures/' + uploadedFile.key)
+          : history.push('/deals')
+      } else {
+        dispatch(showModal())
       }
-      dispatch(addNewDeal(dealObject))
-
-      addFileMode
-        ? history.push('/place-signatures/' + uploadedFile.key)
-        : history.push('/deals')
-    } else {
-      dispatch(showModal())
+    } catch (error) {
+      console.log(error)
     }
   }
 
