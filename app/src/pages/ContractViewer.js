@@ -97,8 +97,8 @@ export default function ContractViewer () {
   }
 
   const [boxes, setBoxes] = useState({
-    a: { top: 150, left: 100, title: t('contract_viewer.your_signature') },
-    b: { top: 230, left: 100, title: t('contract_viewer.other_parties_signature') }
+    a: { top: 150, left: 85, title: t('contract_viewer.your_signature') },
+    b: { top: 230, left: 85, title: t('contract_viewer.other_parties_signature') }
   })
 
   const moveBox = useCallback(
