@@ -96,10 +96,16 @@ export default function ContractViewer () {
     }
   }
 
-  const [boxes, setBoxes] = useState({
-    a: { top: 150, left: 85, title: t('contract_viewer.your_signature') },
-    b: { top: 230, left: 85, title: t('contract_viewer.other_parties_signature') }
-  })
+  const [boxes, setBoxes] = useState(window.screen.width >= 800
+    ? ({
+        a: { top: 150, left: 85, title: t('contract_viewer.your_signature') },
+        b: { top: 230, left: 85, title: t('contract_viewer.other_parties_signature') }
+      })
+    : ({
+        a: { top: 190, left: 10, title: t('contract_viewer.your_signature') },
+        b: { top: 190, left: 110, title: t('contract_viewer.other_parties_signature') }
+      })
+  )
 
   const moveBox = useCallback(
     (id, left, top) => {
@@ -155,7 +161,9 @@ export default function ContractViewer () {
       <div className='cv-box' ref={drop}>
         <canvas ref={drop} className='cv-canvas' id='canvas' />
       </div>
-      <button onClick={() => { history.push('/deals') }} className='cv-continue-button'>{t('contract_viewer.continue')}</button>
+      <div className='cv-continue-button-container'>
+        <button onClick={() => { history.push('/deals') }} className='cv-continue-button'>{t('contract_viewer.continue')}</button>
+      </div>
     </div>
   )
 }

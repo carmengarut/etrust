@@ -1,3 +1,5 @@
+@import url('./fonts.css');
+
 .cv-top-bar {
     position: fixed;
     z-index: 1;
@@ -36,8 +38,6 @@
 
     background: #FFFFFF;
 }
-
-
 
 .cv-pagination-container {
     position: fixed;
@@ -111,13 +111,22 @@
     box-shadow: 0px 5px 5px rgba(40, 41, 61, 0.08);
 }
 
-.cv-continue-button {
+.cv-continue-button-container {
     position: fixed;
     bottom: 30px;
     right: 30px;
+
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+
+    width: 160px;
+
+}
+
+.cv-continue-button {
     text-align: center;
  
-    width: 160px;
     padding: 10px 15px;
     margin: 0 10px;
 
@@ -139,6 +148,7 @@
     .cv-top-bar {
         top: 60px;
 
+        height: 120px;
         margin: 0;
         padding: 20px 0 0 30px;
     }
@@ -157,14 +167,6 @@
         height: auto;
     }
 
-    /* .cv-signature-owner {
-        top: 50px;
-    }
-
-    .cv-signature-owner {
-        top: 50px;
-    } */
-
     .cv-box {
         padding: 300px 0px 40px 0px;
     }
@@ -176,22 +178,36 @@
         width: 100%;
     }
 
-    .canvas {
+    .cv-canvas {
         width: 95%;
     }
 
-    .cv-continue-button {
+    .cv-continue-button-container {
         left: 0;
         bottom: 20px;
+        align-items: center;
 
+        width: 100%;
+        margin: 0px;
+    }
+
+    .cv-continue-button {
         width: 90%;
-        margin: 0 20px;
+    
     }
 }
 
 @media (max-width: 285px) {
-    .cv-box {
-        padding: 5px;
-        box-shadow: none;
+    .cv-top-bar {
+        padding: 15px 0 0 15px;
+    }
+
+    .cv-text {
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+
+    .cv-continue-button-container {
+        bottom: 15px;
     }
 }

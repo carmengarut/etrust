@@ -40,7 +40,6 @@ export const DraggableBox = memo(function DraggableBox (props) {
   return (
     <div
       ref={drag}
-      className='cv-signature'
       style={getStyles(left, top, isDragging, hasDragged, setHasDragged)}
       role='DraggableBox'
     >
