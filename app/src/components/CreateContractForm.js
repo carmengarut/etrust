@@ -70,6 +70,7 @@ export default function CreateContractForm () {
         }
         dispatch(addNewDeal(dealObject))
 
+        window.scrollTo(0, 0)
         addFileMode
           ? history.push('/place-signatures/' + uploadedFile.key)
           : history.push('/deals')
@@ -103,6 +104,7 @@ export default function CreateContractForm () {
       }
       dispatch(addNewDeal(dealObject))
 
+      window.scrollTo(0, 0)
       addFileMode
         ? history.push('/place-signatures/' + uploadedFile.key)
         : history.push('/deals')
