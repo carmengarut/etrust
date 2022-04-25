@@ -143,7 +143,7 @@ export default function ContractViewer () {
           {t('contract_viewer.place_signatures')}
         </div>
       </div>
-      <div className='cv-signatures-container' />
+      <div ref={drop} className='cv-signatures-container' />
       {Object.keys(boxes).map((key) => (
         <DraggableBox key={key} id={key} {...boxes[key]} />
       ))}

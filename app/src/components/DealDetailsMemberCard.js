@@ -25,7 +25,11 @@ export default function DealDetailsMemberCard ({ deal, user }) {
             user
               ? user.name
                 ? `${user.name} ${user.surname}`
-                : `${user.email} ${t('deal_details_member_card.invitation_pending')}`
+                : user.email
+                  ? `${user.email} ${t('deal_details_member_card.invitation_pending')}`
+                  : users.find(userElem => userElem.id === user).name
+                    ? `${users.find(userElem => userElem.id === user).name} ${users.find(userElem => userElem.id === user).surname}`
+                    : `${users.find(userElem => userElem.id === user).email}  ${t('deal_details_member_card.invitation_pending')}`
               : `${users.find(userElem => userElem.id === user).name} ${users.find(userElem => userElem.id === user).surname}`
             }
           </div>
@@ -36,13 +40,33 @@ export default function DealDetailsMemberCard ({ deal, user }) {
       </div>
       <div className='DDMC-signed-container'>
         <span className={
-        deal.signedBy.some(userSigned => userSigned.id === user.id)
+        deal.signedBy.some(userSigned => {
+          if (userSigned.id) {
+            return userSigned.id === user.id
+          } else {
+            if (user.id) {
+              return userSigned === user.id
+            } else {
+              return userSigned === user
+            }
+          }
+        })
           ? 'DDMC-signed-green'
           : 'DDMC-signed-red'
       }
         >
           {
-        deal.signedBy.some(userSigned => userSigned.id === user.id)
+        deal.signedBy.some(userSigned => {
+          if (userSigned.id) {
+            return userSigned.id === user.id
+          } else {
+            if (user.id) {
+              return userSigned === user.id
+            } else {
+              return userSigned === user
+            }
+          }
+        })
           ? t('deal_details_member_card.signed')
           : t('deal_details_member_card.not_signed')
       }

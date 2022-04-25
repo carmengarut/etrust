@@ -90,7 +90,6 @@ export default function CreateContractForm () {
         // contractTitle: values.title
       }
 
-      console.log(invitationDetails)
       await inviteUser(invitationDetails)
       dispatch(hideModal())
       dispatch(setNotification('User Invited'))
