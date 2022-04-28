@@ -8,8 +8,8 @@
     "app"
   ],
   "engines": {
-    "npm": "8.3.0",
-    "node": "14.19.1"
+    "npm": "8.5.5",
+    "node": "16.15.0"
   },
   "main": "index.js",
   "scripts": {

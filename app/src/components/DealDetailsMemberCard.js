@@ -24,12 +24,12 @@ export default function DealDetailsMemberCard ({ deal, user }) {
             {
             user
               ? user.name
-                ? `${user.name} ${user.surname}`
-                : user.email
-                  ? `${user.email} ${t('deal_details_member_card.invitation_pending')}`
-                  : users.find(userElem => userElem.id === user).name
-                    ? `${users.find(userElem => userElem.id === user).name} ${users.find(userElem => userElem.id === user).surname}`
-                    : `${users.find(userElem => userElem.id === user).email}  ${t('deal_details_member_card.invitation_pending')}`
+                  ? `${user.name} ${user.surname}`
+                  : user.email
+                    ? `${user.email} ${t('deal_details_member_card.invitation_pending')}`
+                    : users.find(userElem => userElem.id === user).name
+                      ? `${users.find(userElem => userElem.id === user).name} ${users.find(userElem => userElem.id === user).surname}`
+                      : `${users.find(userElem => userElem.id === user).email}  ${t('deal_details_member_card.invitation_pending')}`
               : `${users.find(userElem => userElem.id === user).name} ${users.find(userElem => userElem.id === user).surname}`
             }
           </div>
