@@ -7,14 +7,15 @@ import Modal from '../components/Modal'
 import useForm from '../hooks/useForm'
 import { addNewDeal } from '../reducers/dealReducer'
 import { showModal, hideModal } from '../reducers/modalReducer'
-import { usersInit } from '../reducers/usersReducers'
+import { inviteUserNow, usersInit } from '../reducers/usersReducers'
 import '../css/createContractForm.css'
-import { uploadFile, inviteUser } from '../services/deals'
+import { uploadFile } from '../services/deals'
 import { removeNotification, setNotification } from '../reducers/notificationReducer'
 
 import inviteUserIcon from '../public/invite-user-icon.svg'
 
 export default function CreateContractForm () {
+  const user = useSelector(state => state.user)
   const users = useSelector(state => state.users)
 
   const [addFileMode, setAddFileMode] = useState(false)
@@ -66,8 +67,10 @@ export default function CreateContractForm () {
           type: addFileMode ? 'File' : 'Text',
           content: values.content,
           file: uploadedFile.key,
-          memberEmail: values.email
+          memberEmail: values.email,
+          signedBy: addFileMode ? [] : [user.id]
         }
+
         dispatch(addNewDeal(dealObject))
 
         window.scrollTo(0, 0)
@@ -78,7 +81,7 @@ export default function CreateContractForm () {
         dispatch(showModal())
       }
     } catch (error) {
-      console.log(error)
+      console.error(error)
     }
   }
 
@@ -90,23 +93,27 @@ export default function CreateContractForm () {
         // contractTitle: values.title
       }
 
-      await inviteUser(invitationDetails)
-      dispatch(hideModal())
-      dispatch(setNotification('User Invited'))
-      setTimeout(() => {
-        dispatch(removeNotification())
-      }, 5000)
-      const dealObject = {
-        title: values.title,
-        content: values.content,
-        memberEmail: values.email
-      }
-      dispatch(addNewDeal(dealObject))
+      dispatch(inviteUserNow(invitationDetails)).then(() => {
+        dispatch(hideModal())
+        dispatch(setNotification('User Invited'))
+        setTimeout(() => {
+          dispatch(removeNotification())
+        }, 5000)
+        const dealObject = {
+          title: values.title,
+          content: values.content,
+          file: uploadedFile.key,
+          memberEmail: values.email,
+          signedBy: addFileMode ? [] : [user.id]
+        }
 
-      window.scrollTo(0, 0)
-      addFileMode
-        ? history.push('/place-signatures/' + uploadedFile.key)
-        : history.push('/deals')
+        dispatch(addNewDeal(dealObject))
+
+        window.scrollTo(0, 0)
+        addFileMode
+          ? history.push('/place-signatures/' + uploadedFile.key)
+          : history.push('/deals')
+      })
     } catch (e) {
       console.error(e)
       console.error(e.message)

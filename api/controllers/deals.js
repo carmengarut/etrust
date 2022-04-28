@@ -80,7 +80,7 @@ dealsRouter.delete('/:id', userExtractor, async (request, response, next) => {
 
 // en el siguiente post, primerto ejecuta el user extractor y luego la funcion async
 dealsRouter.post('/', userExtractor, async (request, response, next) => {
-  const { title, type, content, file, memberEmail } = request.body
+  const { title, type, content, file, memberEmail, signedBy } = request.body
 
   // if (!content) {
   //   return response.status(400).json({
@@ -90,6 +90,7 @@ dealsRouter.post('/', userExtractor, async (request, response, next) => {
 
   const member = await User.findOne({ email: memberEmail })
   if (!member) {
+    console.error('Please, add a valid member email')
     return response.status(400).json({
       error: 'Please, add a valid member email'
     })
@@ -112,7 +113,7 @@ dealsRouter.post('/', userExtractor, async (request, response, next) => {
     status: 'New',
     createdBy: user._id,
     member: member._id,
-    signedBy: [user.id]
+    signedBy
   })
 
   try {
@@ -154,31 +155,59 @@ dealsRouter.put('/:id', userExtractor, async (request, response, next) => {
   }
 })
 
+dealsRouter.put('/add-contract-signed/:id', userExtractor, async (request, response, next) => {
+  const { id } = request.params
+  const newObject = request.body
+  
+  try {
+    const result = await Deal.findByIdAndUpdate(id, newObject, { new: true })
+
+    if (result === null) {
+      return response.status(400).json({
+        error: 'Deal does´t exist'
+      })
+    }
+
+    response.json(result)
+  } catch (e) {
+    next(e)
+  }
+})
+
 dealsRouter.put('/:id/sign', userExtractor, async (request, response) => {
   const { id } = request.params
-  const { users } = request.body
+  const { users, fileSigned } = request.body
 
-  const deal = await Deal.findById(id).populate('signedBy', {
-    email: 1,
-    name: 1,
-    surname: 1
-  })
+  try{
+    const deal = await Deal.findById(id).populate('signedBy', {
+      email: 1,
+      name: 1,
+      surname: 1
+    })
 
-  deal.signedBy = users
+    deal.signedBy = users
+    deal.fileSigned = fileSigned
 
-  if (deal.signedBy.length >= 2) {
-    deal.status = 'Signed'
+    if (deal.signedBy.length >= 2) {
+      deal.status = 'Signed'
+    }
+
+    await deal.save()
+    const savedDeal = await Deal.findById(id).populate('signedBy', {
+      email: 1,
+      name: 1,
+      surname: 1
+    })
+
+    if (deal.signedBy.length >= 2) {
+      sendContractSignedEmail(savedDeal.signedBy[0].email, savedDeal.signedBy[0].name, savedDeal.signedBy[1].name, savedDeal.signedBy[1].surname, savedDeal.title)
+    }
+    response.json(savedDeal)
+    
+  } catch (e) {
+    console.error(e.name)
+    console.error(e.message)
   }
-
-  await deal.save()
-  const savedDeal = await Deal.findById(id).populate('signedBy', {
-    email: 1,
-    name: 1,
-    surname: 1
-  })
-
-  sendContractSignedEmail(savedDeal.signedBy[0].email, savedDeal.signedBy[0].name, savedDeal.signedBy[1].name, savedDeal.signedBy[1].surname, savedDeal.title)
-  response.json(savedDeal)
 })
 
 module.exports = dealsRouter

@@ -37,16 +37,23 @@ export const updateContract = (id, newObject) => {
   return request.then(response => response.data)
 }
 
-export const sign = (id, users) => {
+export const addContractSigned = (id, newObject) => {
+  const config = {
+    headers: {
+      Authorization: token
+    }
+  }
+  const request = axios.put(`${baseUrl}/add-contract-signed/${id}`, newObject, config)
+  return request.then(response => response.data)
+}
+
+export const sign = (id, newObject) => {
   const config = {
     headers: {
       Authorization: token
     }
   }
 
-  const newObject = {
-    users
-  }
   const request = axios.put(`${baseUrl}/${id}/sign`, newObject, config)
   return request.then(response => response.data)
 }
@@ -149,6 +156,26 @@ export const getImage = (key) => {
     }
   }
   const request = axios.get(`/api/id-photos/${key}`, config)
+  return request.then(response => response.data)
+}
+
+export const uploadPdf = (newObject) => {
+  const config = {
+    headers: {
+      Authorization: token
+    }
+  }
+  const request = axios.post('/api/pdfs/upload', newObject, config)
+  return request.then(response => response.data)
+}
+
+export const downloadPdf = (key) => {
+  const config = {
+    headers: {
+      Authorization: token
+    }
+  }
+  const request = axios.get(`/api/pdfs/${key}`, config)
   return request.then(response => response.data)
 }
 

@@ -39,6 +39,26 @@
     background: #FFFFFF;
 }
 
+.cv-add-signature-button {
+    text-align: center;
+ 
+    width: 200px;
+    padding: 10px 15px;
+    margin-left: -10px;
+
+    border-radius: 8px;
+    border: none;
+
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    color: #FFFFFF;
+
+    background: #4E8AF4; 
+}
+
 .cv-pagination-container {
     position: fixed;
     top: 125px;

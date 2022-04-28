@@ -1,22 +1,37 @@
 import { useEffect, useState, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useSelector, useDispatch } from 'react-redux'
 import { useParams, useHistory } from 'react-router-dom'
 import SectionTitle from '../components/SectionTitle'
-import { downloadFile } from '../services/deals'
+import { downloadFile, uploadPdf } from '../services/deals'
 import { useDrop } from 'react-dnd'
-import update from 'immutability-helper'
+import { PDFDocument } from 'pdf-lib'
 
 import '../css/contractViewer.css'
 import { DraggableBox } from '../components/DraggableBox'
 import { CustomDragLayer } from '../components/CustomDragLayer'
+import AddSignatureModal from '../components/AddSignatureModal'
+import { signDeal } from '../reducers/dealReducer'
 
 export default function ContractViewer () {
+  const user = useSelector(state => state.user)
+  const deals = useSelector(state => state.deals)
   const { key } = useParams()
   const [pdf, setPdf] = useState(null)
   const [countOfPages, setCountOfPages] = useState(0)
   const [currentPage, setCurrentPage] = useState(1)
   const [pageRendering, setPageRendering] = useState(false)
+  const [showSignatureModal, setShowSignatureModal] = useState(false)
+  const [boxes, setBoxes] = useState([])
+  const [, updateState] = useState()
+  const forceUpdate = useCallback(() => updateState({}), [])
+  const dispatch = useDispatch()
+
   let pageNumPending = null
+
+  useEffect(() => {
+
+  }, [boxes])
 
   const history = useHistory()
   const { t } = useTranslation('global')
@@ -41,6 +56,7 @@ export default function ContractViewer () {
     const viewport = page.getViewport({ scale: 1.5 })
 
     // Prepare canvas using PDF page dimensions.
+
     const canvas = document.getElementById('canvas')
     const canvasContext = canvas.getContext('2d')
     canvas.height = viewport.height
@@ -96,29 +112,28 @@ export default function ContractViewer () {
     }
   }
 
-  const [boxes, setBoxes] = useState(window.screen.width >= 800
-    ? ({
-        a: { top: 150, left: 85, title: t('contract_viewer.your_signature') },
-        b: { top: 230, left: 85, title: t('contract_viewer.other_parties_signature') }
+  // window.screen.width >= 800
+  //   ? ({
+  //       a: { top: 150, left: 85, title: t('contract_viewer.your_signature') },
+  //       b: { top: 230, left: 85, title: t('contract_viewer.other_parties_signature') }
+  //     })
+  //   : ({
+  //       a: { top: 190, left: 10, title: t('contract_viewer.your_signature') },
+  //       b: { top: 190, left: 110, title: t('contract_viewer.other_parties_signature') }
+  //     })
+  const moveBox = (id, left, top) => {
+    setBoxes(prev => {
+      prev.map(box => {
+        if (box.id === id) {
+          box.left = left
+          box.top = top
+          box.page = currentPage
+        }
+        return box
       })
-    : ({
-        a: { top: 190, left: 10, title: t('contract_viewer.your_signature') },
-        b: { top: 190, left: 110, title: t('contract_viewer.other_parties_signature') }
-      })
-  )
-
-  const moveBox = useCallback(
-    (id, left, top) => {
-      setBoxes(
-        update(boxes, {
-          [id]: {
-            $merge: { left, top }
-          }
-        })
-      )
-    },
-    [boxes]
-  )
+      return prev
+    })
+  }
 
   const [, drop] = useDrop(
     () => ({
@@ -128,11 +143,64 @@ export default function ContractViewer () {
         const left = Math.round(item.left + delta.x)
         const top = Math.round(item.top + delta.y + (item.left < 310 ? window.pageYOffset : 0))
         moveBox(item.id, left, top)
+        forceUpdate()
         return undefined
       }
     }),
     [moveBox]
   )
+
+  async function createPDFDocument () {
+    const url = await downloadFile(key)
+    const existingPdfBytes = await fetch(url).then(res => res.arrayBuffer())
+    const document = await PDFDocument.load(existingPdfBytes)
+
+    boxes.map(async box => {
+      const page = document.getPage(box.page - 1)
+      const imgBuffer = box.src
+      const img = await document.embedPng(imgBuffer)
+
+      const { height } = img.scale(1)
+      page.drawImage(img, {
+        x: box.left - 310,
+        y: page.getHeight() - (box.top - 200) + 2 - height / 2
+        // x: page.getWidth() / 2 - width / 2,
+        // y: page.getHeight() / 2 - height / 2
+      })
+      console.log(page.getHeight() - (box.top - 200))
+      console.log(page.getHeight())
+    })
+
+    try {
+      const doc = await document.save()
+      console.log(doc)
+      const docBase64 = Buffer.from(doc).toString('base64')
+      const newObject = {
+        base64: docBase64,
+        contractTitle: Date.now().toString() + '-signed-' + key
+      }
+
+      await uploadPdf(newObject)
+      return newObject.contractTitle
+    } catch (e) {
+      console.error(e.name)
+      console.error(e.message)
+    }
+  }
+
+  const handleContinue = () => {
+    createPDFDocument().then((title) => {
+      const deal = deals.find(deal => {
+        if (deal.file === key || deal.filedSigned === key) {
+          console.log(deal)
+        }
+        return (deal.file === key || deal.fileSigned === key) && (deal.createdBy.id === user.id || deal.createdBy === user.id || deal.member.id === user.id || deal.member === user.id)
+      })
+      const users = [...deal.signedBy.map(user => user.id), user.id]
+      dispatch(signDeal(deal.id, { users: users, fileSigned: title }))
+      history.push('/deals')
+    }).catch((err) => console.error(err))
+  }
   return (
     <div>
       <div className='cv-top-bar'>
@@ -143,9 +211,14 @@ export default function ContractViewer () {
           {t('contract_viewer.place_signatures')}
         </div>
       </div>
-      <div ref={drop} className='cv-signatures-container' />
-      {Object.keys(boxes).map((key) => (
-        <DraggableBox key={key} id={key} {...boxes[key]} />
+      <div ref={drop} className='cv-signatures-container'>
+        <button onClick={() => { setShowSignatureModal(true) }} className='cv-add-signature-button'>
+          {t('contract_viewer.add_signature')}
+        </button>
+      </div>
+      {console.log(boxes)}
+      {boxes.map((box) => (
+        <DraggableBox key={box.id} {...box} currentPage={currentPage} />
       ))}
       {/* <div className='cv-signature'>
         This is a signature
@@ -162,8 +235,9 @@ export default function ContractViewer () {
         <canvas ref={drop} className='cv-canvas' id='canvas' />
       </div>
       <div className='cv-continue-button-container'>
-        <button onClick={() => { history.push('/deals') }} className='cv-continue-button'>{t('contract_viewer.continue')}</button>
+        <button onClick={handleContinue} className='cv-continue-button'>{t('contract_viewer.continue')}</button>
       </div>
+      <AddSignatureModal show={showSignatureModal} setShow={setShowSignatureModal} setBoxes={setBoxes} />
     </div>
   )
 }

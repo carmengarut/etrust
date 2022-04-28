@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 import { signDeal, editDeal } from '../reducers/dealReducer'
@@ -11,12 +11,14 @@ export default function ContractDetailsForm ({ deal }) {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [file, setFile] = useState('')
+  const [fileSigned, setFileSigned] = useState('')
 
   const user = useSelector(state => state.user)
 
   const { id } = useParams()
 
   const dispatch = useDispatch()
+  const history = useHistory()
   const { t } = useTranslation('global')
 
   useEffect(() => {
@@ -24,12 +26,20 @@ export default function ContractDetailsForm ({ deal }) {
       setTitle(deal.title)
       setContent(deal.content)
       setFile(deal.file)
+      setFileSigned(deal.fileSigned)
     }
   }, [deal])
 
   const handleSign = () => {
-    const users = [...deal.signedBy.map(user => user.id), user.id]
-    dispatch(signDeal(id, users))
+    console.log(deal)
+    if (deal.type === 'File') {
+      deal.fileSigned
+        ? history.push(`/place-signatures/${deal.fileSigned}`)
+        : history.push(`/place-signatures/${deal.file}`)
+    } else {
+      const users = [...deal.signedBy.map(user => user.id), user.id]
+      dispatch(signDeal(id, users))
+    }
   }
 
   const handleSubmit = (e) => {
@@ -44,13 +54,13 @@ export default function ContractDetailsForm ({ deal }) {
     dispatch(editDeal(id, editedContract))
   }
 
-  const handleDownload = async () => {
-    const url = await downloadFile(file)
+  const handleDownload = async (fileToDownload) => {
+    const url = await downloadFile(fileToDownload)
 
     // const url = window.URL.createObjectURL(new Blob([response]))
     const link = document.createElement('a')
     link.href = url
-    link.setAttribute('download', file)
+    link.setAttribute('download', fileToDownload)
     document.body.appendChild(link)
     link.click()
   }
@@ -84,20 +94,33 @@ export default function ContractDetailsForm ({ deal }) {
                 required
               />
             : <></>}
-          {file
+          {fileSigned
             ? (
               <div className='cdf-creation-date'>
-                {file}
+                {fileSigned}
                 <button
                   type='button'
-                  onClick={handleDownload}
+                  onClick={() => handleDownload(fileSigned)}
                   className='cdf-download-button'
                 >
                   {t('deal_details_form.download')}
                 </button>
               </div>
               )
-            : <></>}
+            : file
+              ? (
+                <div className='cdf-creation-date'>
+                  {file}
+                  <button
+                    type='button'
+                    onClick={() => handleDownload(file)}
+                    className='cdf-download-button'
+                  >
+                    {t('deal_details_form.download')}
+                  </button>
+                </div>
+                )
+              : <></>}
         </div>
 
         <div className='cdf-creation-date'>{t('deal_details_form.creation_date')}{deal.date.slice(0, 10)}</div>

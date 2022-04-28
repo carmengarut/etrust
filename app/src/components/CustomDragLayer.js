@@ -35,7 +35,7 @@ export const CustomDragLayer = (props) => {
   function renderItem () {
     switch (itemType) {
       case 'div':
-        return <BoxDragPreview title={item.title} />
+        return <BoxDragPreview src={item.src} />
       default:
         return null
     }

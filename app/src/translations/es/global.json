@@ -355,6 +355,10 @@
         "of": " de ",
         "continue": "Continuar",
         "your_signature": "Tu firma",
-        "other_parties_signature": "Firma de la otra parte"
+        "other_parties_signature": "Firma de la otra parte",
+        "add_signature": "Añadir firma",
+        "add_your_signature_below": "Añade tu firma a continuación:",
+        "clean": "Limpiar",
+        "cancel": "Cancelar"
     }
 }

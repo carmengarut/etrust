@@ -1,4 +1,4 @@
-import { create, getAll, sign, updateContract } from '../services/deals'
+import { addContractSigned, create, getAll, sign, updateContract } from '../services/deals'
 import { showModal } from './modalReducer'
 import { setNotification, removeNotification } from './notificationReducer'
 
@@ -108,6 +108,7 @@ export const addNewDeal = deal => {
         type: '@deals/created',
         payload: newDeal
       })
+      return newDeal
     } catch (e) {
       console.error(e)
       console.error(e.message)
@@ -129,6 +130,16 @@ export const editDeal = (id, object) => {
   return async (dispatch) => {
     const dealUpdated = await updateContract(id, object)
     dispatch(showModal())
+    dispatch({
+      type: '@deals/edit',
+      payload: dealUpdated
+    })
+  }
+}
+
+export const editToAddContractSigned = (id, object) => {
+  return async (dispatch) => {
+    const dealUpdated = await addContractSigned(id, object)
     dispatch({
       type: '@deals/edit',
       payload: dealUpdated

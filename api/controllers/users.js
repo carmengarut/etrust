@@ -178,8 +178,8 @@ usersRouter.post('/invite', async (request, response) => {
       throw new Error('Error: User already exists')
     }
   } catch (error) {
-    console.log(error.name)
-    console.log(error.message)
+    console.error(error.name)
+    console.error(error.message)
     response.status(400).json(error)
   }
 })

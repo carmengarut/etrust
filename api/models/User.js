@@ -12,6 +12,7 @@ const userSchema = new Schema({
   idFrontPhoto: String,
   idBackPhoto: String,
   selfie: String,
+  signature: String,
   passwordHash: String,
   profileImg: String,
   trustRate: Number,
