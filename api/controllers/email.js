@@ -5,6 +5,8 @@ const userExtractor = require('../middleware/userExtractor')
 emailsRouter.post('/verification-request', userExtractor, (request, response) => {
   const { userId, email } = request.body
   sendVerificationRequestEmail('carmencgu3@gmail.com', 'Carmen', email, 'https://etrustapp.com/verify/' + userId)
+  sendVerificationRequestEmail('manueldelriomartin@gmail.com', 'Manuel', email, 'https://etrustapp.com/verify/' + userId)
+  sendVerificationRequestEmail('cristinacuestaand@gmail.com', 'Cristina', email, 'https://etrustapp.com/verify/' + userId)
 })
 
 emailsRouter.post('/verification-confirmed', userExtractor, (request, response) => {

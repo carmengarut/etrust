@@ -23,6 +23,7 @@ export default function ContractViewer () {
   const [pageRendering, setPageRendering] = useState(false)
   const [showSignatureModal, setShowSignatureModal] = useState(false)
   const [boxes, setBoxes] = useState([])
+  const [coordinates, setCoordinates] = useState({})
   const [, updateState] = useState()
   const forceUpdate = useCallback(() => updateState({}), [])
   const dispatch = useDispatch()
@@ -58,6 +59,7 @@ export default function ContractViewer () {
     // Prepare canvas using PDF page dimensions.
 
     const canvas = document.getElementById('canvas')
+    setCoordinates(canvas.getBoundingClientRect())
     const canvasContext = canvas.getContext('2d')
     canvas.height = viewport.height
     canvas.width = viewport.width
@@ -160,14 +162,20 @@ export default function ContractViewer () {
       const imgBuffer = box.src
       const img = await document.embedPng(imgBuffer)
 
-      const { height } = img.scale(1)
+      const { height, width } = img.scale(1)
+      console.log(coordinates)
       page.drawImage(img, {
-        x: box.left - 310,
-        y: page.getHeight() - (box.top - 200) + 2 - height / 2
+        x: box.left - coordinates.left,
+        y: page.getHeight() - (box.top - coordinates.top) - height / 2,
+        width: width / 1.5,
+        height: height / 1.5
         // x: page.getWidth() / 2 - width / 2,
         // y: page.getHeight() / 2 - height / 2
       })
-      console.log(page.getHeight() - (box.top - 200))
+      console.log(box.left)
+      console.log(coordinates.left)
+      console.log('x: ' + (box.left - coordinates.left) + ', y: ' + (page.getHeight() - (box.top - coordinates.top)))
+      console.log(page.getWidth())
       console.log(page.getHeight())
     })
 
