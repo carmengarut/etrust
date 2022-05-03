@@ -19,9 +19,9 @@ idPhotosRouter.post('/upload', userExtractor, (request, response) => {
 
   s3.putObject(data, (err, data) => {
     if (err) {
-      console.log(err)
+      console.error(err)
 
-      console.log('Error uploading data: ', data)
+      console.error('Error uploading data: ', data)
     } else {
       console.log('succesfully uploaded the image!')
     }

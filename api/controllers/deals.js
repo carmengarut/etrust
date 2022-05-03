@@ -158,7 +158,7 @@ dealsRouter.put('/:id', userExtractor, async (request, response, next) => {
 dealsRouter.put('/add-contract-signed/:id', userExtractor, async (request, response, next) => {
   const { id } = request.params
   const newObject = request.body
-  
+
   try {
     const result = await Deal.findByIdAndUpdate(id, newObject, { new: true })
 
@@ -178,7 +178,7 @@ dealsRouter.put('/:id/sign', userExtractor, async (request, response) => {
   const { id } = request.params
   const { users, fileSigned } = request.body
 
-  try{
+  try {
     const deal = await Deal.findById(id).populate('signedBy', {
       email: 1,
       name: 1,
@@ -203,7 +203,6 @@ dealsRouter.put('/:id/sign', userExtractor, async (request, response) => {
       sendContractSignedEmail(savedDeal.signedBy[0].email, savedDeal.signedBy[0].name, savedDeal.signedBy[1].name, savedDeal.signedBy[1].surname, savedDeal.title)
     }
     response.json(savedDeal)
-    
   } catch (e) {
     console.error(e.name)
     console.error(e.message)

@@ -13,8 +13,6 @@ export const DraggableBox = memo(function DraggableBox (props) {
     if (isDragging && !hasDragged) {
       setHasDragged(1)
     }
-    console.log('Current Page: ' + currentPage)
-    console.log('Signature Page: ' + page)
     return {
       display: page
         ? currentPage === page ? 'block' : 'none'

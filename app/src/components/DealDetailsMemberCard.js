@@ -60,10 +60,6 @@ export default function DealDetailsMemberCard ({ deal, user }) {
         >
           {
         deal.signedBy.some(userSigned => {
-          console.log('user')
-          console.log(user)
-          console.log('userSigned')
-          console.log(userSigned)
           if (userSigned.id) {
             if (user.id) {
               return userSigned.id === user.id

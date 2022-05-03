@@ -211,7 +211,7 @@ const sendVerificationRequestEmail = (receiverEmail, receiverName, signerName, l
       console.log(result.body)
     })
     .catch((err) => {
-      console.log(err.statusCode)
+      console.error(err.statusCode)
     })
 }
 
@@ -245,7 +245,7 @@ const sendVerificationConfirmationEmail = (receiverEmail, receiverName) => {
       console.log(result.body)
     })
     .catch((err) => {
-      console.log(err.statusCode)
+      console.error(err.statusCode)
     })
 }
 

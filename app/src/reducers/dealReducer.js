@@ -27,12 +27,14 @@ export const dealReducer = (state = initialState, action) => {
           return {
             ...deal,
             signedBy: dealUpdated.signedBy,
-            status: 'Signed'
+            status: 'Signed',
+            fileSigned: dealUpdated.fileSigned
           }
         } else {
           return {
             ...deal,
-            signedBy: dealUpdated.signedBy
+            signedBy: dealUpdated.signedBy,
+            fileSigned: dealUpdated.fileSigned
           }
         }
       } else {
@@ -119,6 +121,8 @@ export const addNewDeal = deal => {
 export const signDeal = (id, users) => {
   return async (dispatch) => {
     const dealUpdated = await sign(id, users)
+    console.log('deal')
+    console.log(dealUpdated)
     dispatch({
       type: '@deals/sign',
       payload: dealUpdated

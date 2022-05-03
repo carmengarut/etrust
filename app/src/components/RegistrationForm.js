@@ -75,7 +75,7 @@ export default function RegistrationForm () {
       setProfileImg('')
       setDocumentNumber('')
     } catch (e) {
-      console.log(e.message)
+      console.error(e.message)
     }
   }
 

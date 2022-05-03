@@ -19,8 +19,8 @@ pdf.post('/upload', userExtractor, (request, response) => {
 
   s3.putObject(data, (err, data) => {
     if (err) {
-      console.log(err)
-      console.log('Error uploading data: ', data)
+      console.error(err)
+      console.error('Error uploading data: ', data)
       next(error)
     } else {
       console.log('succesfully uploaded the image!')

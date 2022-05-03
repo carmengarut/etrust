@@ -31,7 +31,6 @@ export default function ContractDetailsForm ({ deal }) {
   }, [deal])
 
   const handleSign = () => {
-    console.log(deal)
     if (deal.type === 'File') {
       deal.fileSigned
         ? history.push(`/place-signatures/${deal.fileSigned}`)
