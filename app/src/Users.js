@@ -47,7 +47,9 @@ export default function Users () {
             />
             <div className='Name'>
               {user.name} {user.surname}
-              <span className='TrustRate'>{user.trustRate} {t('users_page.trust_rate')}</span>
+              {user.ratings.length > 0
+                ? <span className='TrustRate'>{user.trustRate} {t('users_page.trust_rate')}</span>
+                : <></>}
             </div>
 
           </div>))}

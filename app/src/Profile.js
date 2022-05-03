@@ -37,7 +37,9 @@ const Profile = () => {
           />
 
           <div className='ProfileName'>{user.name} {user.surname} {' '}
-            <span className='ProfileTrustRate'>{user.trustRate} % trust</span>
+            {user.ratings.length > 0
+              ? <span className='ProfileTrustRate'>{user.trustRate} % trust</span>
+              : <></>}
           </div>
         </div>
 
