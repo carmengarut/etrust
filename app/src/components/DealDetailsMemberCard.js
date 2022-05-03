@@ -9,7 +9,6 @@ export default function DealDetailsMemberCard ({ deal, user }) {
   const users = useSelector(state => state.users)
   const { t } = useTranslation('global')
 
-  console.log(user)
   return (
     <div className='DDMC-container'>
       <div className='DDMC-member-container'>
@@ -42,7 +41,11 @@ export default function DealDetailsMemberCard ({ deal, user }) {
         <span className={
         deal.signedBy.some(userSigned => {
           if (userSigned.id) {
-            return userSigned.id === user.id
+            if (user.id) {
+              return userSigned.id === user.id
+            } else {
+              return userSigned.id === user
+            }
           } else {
             if (user.id) {
               return userSigned === user.id
@@ -57,8 +60,16 @@ export default function DealDetailsMemberCard ({ deal, user }) {
         >
           {
         deal.signedBy.some(userSigned => {
+          console.log('user')
+          console.log(user)
+          console.log('userSigned')
+          console.log(userSigned)
           if (userSigned.id) {
-            return userSigned.id === user.id
+            if (user.id) {
+              return userSigned.id === user.id
+            } else {
+              return userSigned.id === user
+            }
           } else {
             if (user.id) {
               return userSigned === user.id
