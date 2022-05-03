@@ -23,6 +23,7 @@ const Deal = ({ deal }) => {
         </div>
         <div className='d-columns-subcontainer'>
           <div className='d-column-member'>
+            {console.log(deal)}
             <img
               src={(user.id === deal.member.id)
                 ? deal.createdBy.profileImg || avatar
