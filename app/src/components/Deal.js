@@ -15,6 +15,10 @@ const Deal = ({ deal }) => {
   const history = useHistory()
   const { t } = useTranslation('global')
 
+  if (!deal.member) {
+    console.log(deal)
+  }
+
   return (
     <div className='d-container' key={deal.id} onClick={() => { history.push(`/deals/${deal.id}`) }}>
       <div className='d-columns-container-1'>
@@ -23,7 +27,7 @@ const Deal = ({ deal }) => {
         </div>
         <div className='d-columns-subcontainer'>
           <div className='d-column-member'>
-            {console.log(deal)}
+
             <img
               src={(user.id === deal.member.id)
                 ? deal.createdBy.profileImg || avatar
