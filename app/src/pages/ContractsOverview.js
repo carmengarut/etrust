@@ -1,5 +1,4 @@
 
-import Notification from '../components/Notification'
 import Deal from '../components/Deal'
 import { useTranslation } from 'react-i18next'
 
@@ -40,7 +39,6 @@ function ContractsOverview () {
       <SectionTitle>
         {t('agreements_page.agreements')}
       </SectionTitle>
-      <Notification />
       <div className='ButtonContainer'>
         <button onClick={handleCreateContract} className='Button'>{t('agreements_page.new_deal')}</button>
       </div>

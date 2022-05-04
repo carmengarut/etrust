@@ -7,6 +7,7 @@ import backIcon from '../public/back-icon.svg'
 import '../css/KYCIdFront.css'
 import { uploadIdPhoto } from '../services/deals'
 import { userEdit } from '../reducers/userReducer'
+import handleError from '../helpers/errorHandler'
 
 export default function KYCTakeSelfie () {
   const user = useSelector(state => state.user)
@@ -77,7 +78,7 @@ export default function KYCTakeSelfie () {
           stopStreamedVideo(video)
           history.push('/kyc-succeed')
         } catch (e) {
-          console.log(e.name)
+          handleError(e)
         }
       })
     })

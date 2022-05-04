@@ -15,6 +15,7 @@ import { ratingInit } from './reducers/ratingReducer'
 import { usersInit } from './reducers/usersReducers'
 import TermsAndConditions from './pages/TermsAndConditions'
 import PrivacyPolicy from './pages/PrivacyPolicy'
+import Notification from './components/Notification'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -39,6 +40,7 @@ const App = () => {
         ? (
           <>
             <Header />
+            <Notification />
             <RouterApp />
           </>)
         : (

@@ -1,3 +1,4 @@
+import handleError from '../helpers/errorHandler'
 import { getAllUsers, inviteUser } from '../services/deals'
 
 const initialState = []
@@ -24,18 +25,22 @@ export const usersInit = () => {
         type: '@users/init',
         payload: users
       })
-    } catch (err) {
-      console.error(err)
+    } catch (e) {
+      handleError(e)
     }
   }
 }
 
 export const inviteUserNow = (invitationDetails) => {
   return async (dispatch) => {
-    const user = await inviteUser(invitationDetails)
-    dispatch({
-      type: '@users/add',
-      payload: user
-    })
+    try {
+      const user = await inviteUser(invitationDetails)
+      dispatch({
+        type: '@users/add',
+        payload: user
+      })
+    } catch (e) {
+      handleError(e)
+    }
   }
 }

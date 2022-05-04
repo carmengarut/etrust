@@ -7,6 +7,7 @@ import backIcon from '../public/back-icon.svg'
 import '../css/KYCIdFront.css'
 import { uploadIdPhoto } from '../services/deals'
 import { userEdit } from '../reducers/userReducer'
+import handleError from '../helpers/errorHandler'
 
 export default function KYCIdFront () {
   const user = useSelector(state => state.user)
@@ -95,7 +96,7 @@ export default function KYCIdFront () {
             history.push('/kyc-id-back')
           }
         } catch (e) {
-          console.log(e.name)
+          handleError(e)
         }
       })
     })

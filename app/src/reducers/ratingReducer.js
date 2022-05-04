@@ -1,3 +1,4 @@
+import handleError from '../helpers/errorHandler'
 import { addRating, getAllRatings, updateTrustRate } from '../services/deals'
 import { setNotification, removeNotification } from './notificationReducer'
 
@@ -19,7 +20,6 @@ export const ratingReducer = (state = initialState, action) => {
   }
 
   // if (action.type === '@blogs/add_comment') {
-  //   console.log(action.payload)
   //   const { savedComment, id } = action.payload
   //   const blogs = state.map(blog => {
   //     if (blog.id === id) {
@@ -37,7 +37,6 @@ export const ratingReducer = (state = initialState, action) => {
   // }
 
   // if (action.type === '@blogs/deleted') {
-  //   console.log('ha entrado')
   //   const { id } = action.payload
   //   const blogs = state.filter(blog => blog.id !== id)
   //   return blogs
@@ -48,25 +47,33 @@ export const ratingReducer = (state = initialState, action) => {
 
 export const ratingInit = () => {
   return async (dispatch) => {
-    const ratings = await getAllRatings()
-    dispatch({
-      type: '@ratings/init',
-      payload: ratings
-    })
+    try {
+      const ratings = await getAllRatings()
+      dispatch({
+        type: '@ratings/init',
+        payload: ratings
+      })
+    } catch (e) {
+      handleError(e)
+    }
   }
 }
 
 export const addNewRating = (ratingObject, newTrustRate) => {
   return async (dispatch) => {
-    const savedRating = await addRating(ratingObject)
-    await updateTrustRate(ratingObject.recipientId, newTrustRate)
-    dispatch(setNotification('Rating added.'))
-    setTimeout(() => {
-      dispatch(removeNotification())
-    }, 5000)
-    dispatch({
-      type: '@ratings/created',
-      payload: savedRating
-    })
+    try {
+      const savedRating = await addRating(ratingObject)
+      await updateTrustRate(ratingObject.recipientId, newTrustRate)
+      dispatch(setNotification('Rating added.'))
+      setTimeout(() => {
+        dispatch(removeNotification())
+      }, 5000)
+      dispatch({
+        type: '@ratings/created',
+        payload: savedRating
+      })
+    } catch (e) {
+      handleError(e)
+    }
   }
 }

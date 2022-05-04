@@ -181,7 +181,6 @@ export default function ContractViewer () {
 
     try {
       const doc = await document.save()
-      console.log(doc)
       const docBase64 = Buffer.from(doc).toString('base64')
       const newObject = {
         base64: docBase64,

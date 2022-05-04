@@ -1,3 +1,4 @@
+import handleError from '../helpers/errorHandler'
 import { addContractSigned, create, getAll, sign, updateContract } from '../services/deals'
 import { showModal } from './modalReducer'
 import { setNotification, removeNotification } from './notificationReducer'
@@ -61,7 +62,6 @@ export const dealReducer = (state = initialState, action) => {
   }
 
   // if (action.type === '@blogs/add_comment') {
-  //   console.log(action.payload)
   //   const { savedComment, id } = action.payload
   //   const blogs = state.map(blog => {
   //     if (blog.id === id) {
@@ -79,7 +79,6 @@ export const dealReducer = (state = initialState, action) => {
   // }
 
   // if (action.type === '@blogs/deleted') {
-  //   console.log('ha entrado')
   //   const { id } = action.payload
   //   const blogs = state.filter(blog => blog.id !== id)
   //   return blogs
@@ -112,42 +111,51 @@ export const addNewDeal = deal => {
       })
       return newDeal
     } catch (e) {
-      console.error(e)
-      console.error(e.message)
+      handleError(e)
     }
   }
 }
 
 export const signDeal = (id, users) => {
   return async (dispatch) => {
-    const dealUpdated = await sign(id, users)
-    console.log('deal')
-    console.log(dealUpdated)
-    dispatch({
-      type: '@deals/sign',
-      payload: dealUpdated
-    })
+    try {
+      const dealUpdated = await sign(id, users)
+      dispatch({
+        type: '@deals/sign',
+        payload: dealUpdated
+      })
+    } catch (e) {
+      handleError(e)
+    }
   }
 }
 
 export const editDeal = (id, object) => {
   return async (dispatch) => {
-    const dealUpdated = await updateContract(id, object)
-    dispatch(showModal())
-    dispatch({
-      type: '@deals/edit',
-      payload: dealUpdated
-    })
+    try {
+      const dealUpdated = await updateContract(id, object)
+      dispatch(showModal())
+      dispatch({
+        type: '@deals/edit',
+        payload: dealUpdated
+      })
+    } catch (e) {
+      handleError(e)
+    }
   }
 }
 
 export const editToAddContractSigned = (id, object) => {
   return async (dispatch) => {
-    const dealUpdated = await addContractSigned(id, object)
-    dispatch({
-      type: '@deals/edit',
-      payload: dealUpdated
-    })
+    try {
+      const dealUpdated = await addContractSigned(id, object)
+      dispatch({
+        type: '@deals/edit',
+        payload: dealUpdated
+      })
+    } catch (e) {
+      handleError(e)
+    }
   }
 }
 

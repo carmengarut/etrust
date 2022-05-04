@@ -2,6 +2,7 @@ import { login } from '../services/login'
 import { register } from '../services/register'
 import { editUser, getUser, setToken } from '../services/deals'
 import { setNotification, removeNotification } from './notificationReducer'
+import handleError from '../helpers/errorHandler'
 const initialState = {}
 
 export const userReducer = (state = initialState, action) => {
@@ -65,12 +66,7 @@ export const userSet = (userToSet) => {
         payload: user
       })
     } catch (e) {
-      console.log(e.name)
-      console.log(e.message)
-      dispatch(setNotification('Couldn´t set user'))
-      setTimeout(() => {
-        dispatch(removeNotification())
-      }, 5000)
+      handleError(e)
     }
   }
 }
@@ -96,12 +92,7 @@ export const userRegister = (userToRegister) => {
         payload: userCreated
       })
     } catch (e) {
-      console.log(e.name)
-      console.log(e.message)
-      dispatch(setNotification('User couldn´t be created'))
-      setTimeout(() => {
-        dispatch(removeNotification())
-      }, 5000)
+      handleError(e)
     }
   }
 }
@@ -115,12 +106,7 @@ export const userEdit = (id, userToEdit) => {
         payload: userEdited
       })
     } catch (e) {
-      console.log(e.name)
-      console.log(e.message)
-      dispatch(setNotification('User couldn´t be edited'))
-      setTimeout(() => {
-        dispatch(removeNotification())
-      }, 5000)
+      handleError(e)
     }
   }
 }

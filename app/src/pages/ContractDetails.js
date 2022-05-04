@@ -27,7 +27,6 @@ export default function ContractDetails () {
     dispatch(hideModal())
   }
 
-  console.log(deal)
   if (!deal) {
     return null
   }

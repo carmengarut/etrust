@@ -15,10 +15,6 @@ const Deal = ({ deal }) => {
   const history = useHistory()
   const { t } = useTranslation('global')
 
-  if (!deal.member) {
-    console.log(deal)
-  }
-
   return (
     <div className='d-container' key={deal.id} onClick={() => { history.push(`/deals/${deal.id}`) }}>
       <div className='d-columns-container-1'>

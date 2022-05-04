@@ -5,6 +5,7 @@ import { useState } from 'react'
 import '../css/verificationRequest.css'
 import { userEdit } from '../reducers/userReducer'
 import { downloadFile, getImage, sendVerifConfirmationEmail } from '../services/deals'
+import handleError from '../helpers/errorHandler'
 
 export default function VerificationRequest () {
   const { id } = useParams()
@@ -40,16 +41,22 @@ export default function VerificationRequest () {
   } else {
     getImage(user.idFrontPhoto).then(data => {
       setFrontPhoto(data)
-    }).catch(err => { console.log(err) })
+    }).catch(e => {
+      handleError(e)
+    })
     if (user.idBackPhoto) {
       getImage(user.idBackPhoto).then(data => {
         setBackPhoto(data)
-      }).catch(err => { console.log(err) })
+      }).catch(e => {
+        handleError(e)
+      })
     }
     if (user.selfie) {
       getImage(user.selfie).then(data => {
         setSelfie(data)
-      }).catch(err => { console.log(err) })
+      }).catch(e => {
+        handleError(e)
+      })
     }
   }
   return (

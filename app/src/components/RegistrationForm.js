@@ -65,18 +65,14 @@ export default function RegistrationForm () {
     // formData.append('password', password)
     // formData.append('profileImg', profileImg)
 
-    try {
-      const type = dropdownList.find(item => item.selected === true).value
-      dispatch(userRegister({ email, password, name, surname, profileImg, type, documentNumber }))
-      setEmail('')
-      setPassword('')
-      setName('')
-      setSurname('')
-      setProfileImg('')
-      setDocumentNumber('')
-    } catch (e) {
-      console.error(e.message)
-    }
+    const type = dropdownList.find(item => item.selected === true).value
+    dispatch(userRegister({ email, password, name, surname, profileImg, type, documentNumber }))
+    setEmail('')
+    setPassword('')
+    setName('')
+    setSurname('')
+    setProfileImg('')
+    setDocumentNumber('')
   }
 
   return (
