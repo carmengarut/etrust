@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next'
 import { signDeal, editDeal } from '../reducers/dealReducer'
 import '../css/contractDetailsForm.css'
 import { downloadFile } from '../services/deals'
+import handleError from '../helpers/errorHandler'
 
 export default function ContractDetailsForm ({ deal }) {
   const [title, setTitle] = useState('')
@@ -54,14 +55,18 @@ export default function ContractDetailsForm ({ deal }) {
   }
 
   const handleDownload = async (fileToDownload) => {
-    const url = await downloadFile(fileToDownload)
+    try {
+      const url = await downloadFile(fileToDownload)
 
-    // const url = window.URL.createObjectURL(new Blob([response]))
-    const link = document.createElement('a')
-    link.href = url
-    link.setAttribute('download', fileToDownload)
-    document.body.appendChild(link)
-    link.click()
+      // const url = window.URL.createObjectURL(new Blob([response]))
+      const link = document.createElement('a')
+      link.href = url
+      link.setAttribute('download', fileToDownload)
+      document.body.appendChild(link)
+      link.click()
+    } catch (e) {
+      handleError(e)
+    }
   }
 
   return (

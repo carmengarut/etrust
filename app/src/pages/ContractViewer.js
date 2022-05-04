@@ -12,6 +12,7 @@ import { DraggableBox } from '../components/DraggableBox'
 import { CustomDragLayer } from '../components/CustomDragLayer'
 import AddSignatureModal from '../components/AddSignatureModal'
 import { signDeal } from '../reducers/dealReducer'
+import handleError from '../helpers/errorHandler'
 
 export default function ContractViewer () {
   const user = useSelector(state => state.user)
@@ -39,16 +40,20 @@ export default function ContractViewer () {
 
   const loadPDF = async (key) => {
     let url
-    if (key) {
-      url = await downloadFile(key)
+    try {
+      if (key) {
+        url = await downloadFile(key)
 
-      // We import this here so that it's only loaded during client-side rendering.
-      const pdfJS = await import('pdfjs-dist/legacy/build/pdf')
-      pdfJS.GlobalWorkerOptions.workerSrc = window.location.origin + '/pdf.worker.min.js'
-      pdfJS.getDocument({ url: url }).promise.then((doc) => {
-        setPdf(doc)
-        setCountOfPages(doc.numPages)
-      })
+        // We import this here so that it's only loaded during client-side rendering.
+        const pdfJS = await import('pdfjs-dist/legacy/build/pdf')
+        pdfJS.GlobalWorkerOptions.workerSrc = window.location.origin + '/pdf.worker.min.js'
+        pdfJS.getDocument({ url: url }).promise.then((doc) => {
+          setPdf(doc)
+          setCountOfPages(doc.numPages)
+        })
+      }
+    } catch (error) {
+      handleError(error)
     }
   }
   async function renderCurrentPage () {

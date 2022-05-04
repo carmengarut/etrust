@@ -32,7 +32,7 @@ const Deal = ({ deal }) => {
               height='30px'
               className='Avatar'
             /> {' '}
-            {deal.member.id !== 'undefined'
+            {deal.member.id
               ? user.id === deal.member.id
                   ? deal.createdBy.name !== 'undefined'
                       ? deal.createdBy.name
@@ -46,7 +46,7 @@ const Deal = ({ deal }) => {
                 ? users.find(user => user.id === deal.createdBy).name !== 'undefined'
                     ? users.find(user => user.id === deal.createdBy).name
                     : users.find(user => user.id === deal.createdBy).email
-                : users.find(user => user.id === deal.member).name !== 'undefined'
+                : users.find(user => user.id === deal.member).name
                   ? users.find(user => user.id === deal.member).name
                   : users.find(user => user.id === deal.member).email}
           </div>

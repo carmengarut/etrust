@@ -13,6 +13,7 @@ import { uploadFile } from '../services/deals'
 import { removeNotification, setNotification } from '../reducers/notificationReducer'
 
 import inviteUserIcon from '../public/invite-user-icon.svg'
+import handleError from '../helpers/errorHandler'
 
 export default function CreateContractForm () {
   const user = useSelector(state => state.user)
@@ -80,8 +81,8 @@ export default function CreateContractForm () {
       } else {
         dispatch(showModal())
       }
-    } catch (error) {
-      console.error(error)
+    } catch (e) {
+      handleError(e)
     }
   }
 
