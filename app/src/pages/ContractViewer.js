@@ -195,23 +195,19 @@ export default function ContractViewer () {
       await uploadPdf(newObject)
       return newObject.contractTitle
     } catch (e) {
-      console.error(e.name)
-      console.error(e.message)
+      handleError(e)
     }
   }
 
   const handleContinue = () => {
     createPDFDocument().then((title) => {
       const deal = deals.find(deal => {
-        if (deal.file === key || deal.filedSigned === key) {
-          console.log(deal)
-        }
         return (deal.file === key || deal.fileSigned === key) && (deal.createdBy.id === user.id || deal.createdBy === user.id || deal.member.id === user.id || deal.member === user.id)
       })
       const users = [...deal.signedBy.map(user => user.id), user.id]
       dispatch(signDeal(deal.id, { users: users, fileSigned: title }))
       history.push('/deals')
-    }).catch((err) => console.error(err))
+    }).catch((err) => handleError(err))
   }
   return (
     <div>
