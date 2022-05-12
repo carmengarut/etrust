@@ -32,7 +32,6 @@ export default function RouterApp () {
   const user = useSelector(state => state.user)
 
   return (
-
     <Switch>
       <Route path='/deals/:id'>
         {user.status === 'missing-kyc'
