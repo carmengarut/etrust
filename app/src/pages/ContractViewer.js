@@ -66,6 +66,8 @@ export default function ContractViewer () {
 
     const canvas = document.getElementById('canvas')
     setCoordinates(canvas.getBoundingClientRect())
+    window.addEventListener('resize', () => { setCoordinates(canvas.getBoundingClientRect()) })
+
     const canvasContext = canvas.getContext('2d')
     canvas.height = viewport.height
     canvas.width = viewport.width
@@ -227,12 +229,12 @@ export default function ContractViewer () {
       </div>
       {console.log(boxes)}
       {boxes.map((box) => (
-        <DraggableBox key={box.id} {...box} currentPage={currentPage} />
+        <DraggableBox key={box.id} {...box} currentPage={currentPage} width={coordinates.width} />
       ))}
       {/* <div className='cv-signature'>
         This is a signature
       </div> */}
-      <CustomDragLayer />
+      <CustomDragLayer width={coordinates.width} />
       <div className='cv-pagination-container'>
         <div className='cv-pagination'>
           <button onClick={handlePrevious} id='previous' className='cv-button'> {t('contract_viewer.previous')}</button>

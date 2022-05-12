@@ -23,7 +23,7 @@ function getItemStyles (initialOffset, currentOffset) {
     WebkitTransform: transform
   }
 }
-export const CustomDragLayer = (props) => {
+export const CustomDragLayer = ({ width }) => {
   const { itemType, isDragging, item, initialOffset, currentOffset } =
     useDragLayer((monitor) => ({
       item: monitor.getItem(),
@@ -35,7 +35,7 @@ export const CustomDragLayer = (props) => {
   function renderItem () {
     switch (itemType) {
       case 'div':
-        return <BoxDragPreview src={item.src} />
+        return <BoxDragPreview src={item.src} width={width} />
       default:
         return null
     }

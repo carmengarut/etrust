@@ -5,7 +5,7 @@ import { Box } from './Box'
 
 export const DraggableBox = memo(function DraggableBox (props) {
   const [hasDragged, setHasDragged] = useState(0)
-  const { id, src, left, top, page, currentPage } = props
+  const { id, src, left, top, page, currentPage, width } = props
 
   function getStyles (left, top, page, isDragging, hasDragged, setHasDragged) {
     const transform = `translate3d(${left}px, ${top + (left < 310 ? window.pageYOffset : 0)}px, 0)`
@@ -45,7 +45,7 @@ export const DraggableBox = memo(function DraggableBox (props) {
       style={getStyles(left, top, page, isDragging, hasDragged, setHasDragged)}
       role='DraggableBox'
     >
-      <Box src={src} />
+      <Box src={src} width={width} />
     </div>
   )
 })

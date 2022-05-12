@@ -16,6 +16,7 @@ export default function AddSignatureModal ({ show, setShow, setBoxes }) {
   if (canvas) {
     context = canvas.getContext('2d')
 
+    canvas.width = 250
     let xAnterior = 0; let yAnterior = 0; let xActual = 0; let yActual = 0
     const obtenerXReal = (clientX) => clientX - canvas.getBoundingClientRect().left
     const obtenerYReal = (clientY) => clientY - canvas.getBoundingClientRect().top
