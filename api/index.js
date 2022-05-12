@@ -23,21 +23,9 @@ const emailsRouter = require('./controllers/email.js')
 const pdfsRouter = require('./controllers/pdfs.js')
 
 // app.use(express.urlencoded({extended: true}));
-app.use(bodyParser.json({
-  limit: '32mb',
-  verify: (req, res, buf) => {
-  // @ts-ignore
-    req.rawBody = buf
-  }
-}))
+app.use(bodyParser.json({ limit: '10mb', extended: true }))
 
-app.use(bodyParser.urlencoded({
-  limit: '32mb',
-  verify: (req, res, buf) => {
-  // @ts-ignore
-    req.rawBody = buf
-  }
-}))
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }))
 app.use(cors())
 app.use(express.json())
 app.use(logger)

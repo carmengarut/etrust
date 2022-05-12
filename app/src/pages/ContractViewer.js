@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams, useHistory } from 'react-router-dom'
 import SectionTitle from '../components/SectionTitle'
-import { downloadFile, uploadPdf } from '../services/deals'
+import { downloadFile } from '../services/deals'
 import { useDrop } from 'react-dnd'
 import { PDFDocument } from 'pdf-lib'
 
@@ -13,6 +13,7 @@ import { CustomDragLayer } from '../components/CustomDragLayer'
 import AddSignatureModal from '../components/AddSignatureModal'
 import { signDeal } from '../reducers/dealReducer'
 import handleError from '../helpers/errorHandler'
+import uploadPdfToAws from '../helpers/uploadPdfToAws'
 
 export default function ContractViewer () {
   const user = useSelector(state => state.user)
@@ -192,7 +193,7 @@ export default function ContractViewer () {
         contractTitle: Date.now().toString() + '-signed-' + key
       }
 
-      await uploadPdf(newObject)
+      await uploadPdfToAws(newObject)
       return newObject.contractTitle
     } catch (e) {
       handleError(e)
