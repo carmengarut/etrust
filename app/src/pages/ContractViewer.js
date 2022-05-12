@@ -171,20 +171,14 @@ export default function ContractViewer () {
       const img = await document.embedPng(imgBuffer)
 
       const { height, width } = img.scale(1)
-      console.log(coordinates)
       page.drawImage(img, {
         x: box.left - coordinates.left,
-        y: page.getHeight() - (box.top - coordinates.top) - height / 2,
-        width: width / 1.5,
-        height: height / 1.5
+        y: page.getHeight() - (box.top - coordinates.top) - height * coordinates.width * 0.2 / width,
+        width: coordinates.width * 0.2,
+        height: height * coordinates.width * 0.2 / width
         // x: page.getWidth() / 2 - width / 2,
         // y: page.getHeight() / 2 - height / 2
       })
-      console.log(box.left)
-      console.log(coordinates.left)
-      console.log('x: ' + (box.left - coordinates.left) + ', y: ' + (page.getHeight() - (box.top - coordinates.top)))
-      console.log(page.getWidth())
-      console.log(page.getHeight())
     })
 
     try {
@@ -227,7 +221,6 @@ export default function ContractViewer () {
           {t('contract_viewer.add_signature')}
         </button>
       </div>
-      {console.log(boxes)}
       {boxes.map((box) => (
         <DraggableBox key={box.id} {...box} currentPage={currentPage} width={coordinates.width} />
       ))}
