@@ -1,4 +1,4 @@
 #!/bin/bash
-cd desktop/dev/etrust
+# cd desktop/dev/etrust
 npm run build
 cp -R app/build/ api/public
